@@ -392,6 +392,22 @@
     calc();
   })();
 
+  // ---------- Impact band count-up ----------
+  (function () {
+    var nums = Array.prototype.slice.call(document.querySelectorAll(".impact-num"));
+    if (!nums.length) return;
+    function render(el, v) {
+      var pre = el.getAttribute("data-pre") || "", suf = el.getAttribute("data-suf") || "", dec = +(el.getAttribute("data-dec") || 0);
+      el.textContent = pre + (dec ? v.toFixed(dec) : fmtInt(v)) + suf;
+    }
+    function run(el) { tween(el, 0, +el.getAttribute("data-to"), 1500, function (v) { render(el, v); }, "imp"); }
+    if (REDUCE || !("IntersectionObserver" in window)) { nums.forEach(run); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { run(e.target); io.unobserve(e.target); } });
+    }, { threshold: 0.4 });
+    nums.forEach(function (el) { io.observe(el); });
+  })();
+
   // ---------- Pricing: monthly / annual toggle (data-driven) ----------
   (function () {
     var toggle = document.getElementById("billToggle");
