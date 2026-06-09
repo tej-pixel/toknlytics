@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>tokanalyzr.ai for You — what your AI really costs</title>
+<meta name="description" content="tokanalyzr.ai for individuals & developers: see what your AI habit costs across ChatGPT, Claude, Gemini and more, get your personal Green Score, and trim your prompts. Free — Pro from $8/mo." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%237c5cff'/><rect x='8' y='16' width='3.4' height='8' rx='1.4' fill='white'/><rect x='14.3' y='12' width='3.4' height='12' rx='1.4' fill='white'/><rect x='20.6' y='8' width='3.4' height='16' rx='1.4' fill='white' opacity='.6'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="gsgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#18c98d" /><stop offset="1" stop-color="#7ce3b1" /></linearGradient>
+  <linearGradient id="sparkstroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c5cff" /><stop offset="1" stop-color="#2dd4ff" /></linearGradient>
+  <linearGradient id="sparkfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(124,92,255,.42)" /><stop offset="1" stop-color="rgba(124,92,255,0)" /></linearGradient>
+</defs></svg>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+        <defs><linearGradient id="tkNav" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#2dd4ff"/></linearGradient></defs>
+        <rect width="32" height="32" rx="9" fill="url(#tkNav)"/>
+        <rect x="8" y="16" width="3.4" height="8" rx="1.4" fill="#fff"/>
+        <rect x="14.3" y="12" width="3.4" height="12" rx="1.4" fill="#fff"/>
+        <rect x="20.6" y="8" width="3.4" height="16" rx="1.4" fill="#fff" opacity=".6"/>
+      </svg>
+      <span class="brand-name">tokanalyzr<b>.ai</b></span>
+    </a>
+    <div class="nav-mid">
+      <div class="aud-seg"><a href="b2b.html">Teams</a><a href="b2c.html" class="active">Individuals</a></div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#try">Try it</a>
+        <a href="#green">Green Score</a>
+        <a href="#pricing">Pricing</a>
+        <a href="b2b.html">For teams</a>
+      </nav>
+    </div>
+    <div class="nav-cta">
+      <a href="#start" class="signin">Sign in</a>
+      <a href="#start" class="btn btn-primary">Start free</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding:0;">
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow light">For developers &amp; individuals</span>
+      <h1>See what your AI actually costs you. <span class="grad">Money</span> and <span class="eco">carbon.</span></h1>
+      <p class="lede">Connect ChatGPT, Claude, Gemini and the rest, and tokanalyzr shows your real spend, your personal Green Score, and exactly which prompts to trim. Free to track — Pro from $8/mo when you want to optimize.</p>
+      <div class="hero-cta">
+        <a href="#start" class="btn btn-primary btn-lg">Start free &rarr;</a>
+        <a href="#try" class="btn btn-ghost btn-lg">Try the analyzer</a>
+      </div>
+      <div class="hero-meta">
+        <span class="pill"><span class="dot"></span> Every model, one view</span>
+        <span class="pill"><span class="dot green"></span> Your Green Score</span>
+        <span class="pill"><span class="dot"></span> Free to start</span>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="glass" id="liveConsole" data-allscope="your usage · last 24h">
+        <div class="cons-head">
+          <div class="ic">&#128100;</div>
+          <div class="gc-title"><h4>Your usage</h4><span id="consScope">your usage &middot; last 24h</span></div>
+          <div class="live-pill"><span class="live-dot"></span>LIVE</div>
+        </div>
+        <div class="cons-stats">
+          <div class="cstat"><div class="cstat-num" id="csTokens">0</div><div class="cstat-cap">tokens today</div></div>
+          <div class="cstat"><div class="cstat-num" id="csSpend">$0</div><div class="cstat-cap">spend today</div></div>
+          <div class="cstat"><div class="cstat-grade"><b id="csGrade">B+</b><span class="lf">score</span></div><div class="cstat-cap">Green Score</div></div>
+        </div>
+        <div class="cons-spark">
+          <svg viewBox="0 0 320 60" preserveAspectRatio="none" aria-hidden="true">
+            <path class="spark-area" id="sparkArea" d=""></path>
+            <path class="spark-line" id="sparkLine" d=""></path>
+          </svg>
+          <span class="spark-cap">spend &middot; last 24h</span>
+        </div>
+        <div class="cons-filter" role="tablist" aria-label="Provider filter">
+          <button class="cons-chip is-active" data-prov="all" type="button">All</button>
+          <button class="cons-chip" data-prov="openai" type="button">OpenAI</button>
+          <button class="cons-chip" data-prov="anthropic" type="button">Anthropic</button>
+          <button class="cons-chip" data-prov="gemini" type="button">Gemini</button>
+        </div>
+        <div class="cons-feed" id="consFeed"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="wrap">
+    <span class="label">Connects to the tools you already use:</span>
+    <span>ChatGPT / OpenAI</span><span>Claude</span><span>Gemini</span><span>Llama</span><span>Mistral</span><span>OpenRouter</span>
+  </div>
+</div>
+
+<!-- VALUE STRIP -->
+<section id="value">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why you'll love it</span>
+      <h2>Your AI, finally measured</h2>
+      <p>If you build with LLMs or just use them daily, you have no idea what they cost — or what they cost the planet. Now you do.</p>
+    </div>
+    <div class="vstrip">
+      <div class="vcard reveal"><div class="ic">&#128176;</div><h3>See your spend</h3><p>Every model in one place — what you spent today, this month, and which prompts and apps are quietly draining your budget.</p></div>
+      <div class="vcard reveal d1"><div class="ic">&#127807;</div><h3>Your Green Score</h3><p>A simple grade for the footprint of your AI use, with the CO&#8322;, energy and water behind it — and how to bring it down.</p></div>
+      <div class="vcard reveal d2"><div class="ic">&#9986;</div><h3>Trim your prompts</h3><p>The analyzer shows the cheapest model that still nails the job, and where your prompts are heavier than they need to be.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TRY IT -->
+<section class="tryit" id="try">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Try it yourself</span>
+      <h2>Type a prompt. See its cost and carbon, live.</h2>
+      <p>Start typing &mdash; or load a sample. tokanalyzr estimates the tokens, prices it across the major models, and grades its Green Score as you go.</p>
+    </div>
+    <div class="try-card reveal">
+      <div class="try-left">
+        <label for="tryInput">Your prompt</label>
+        <div class="try-samples" id="trySamples">
+          <button type="button" data-sample="support">Support reply</button>
+          <button type="button" data-sample="code">Code generation</button>
+          <button type="button" data-sample="summary">Long summarization</button>
+        </div>
+        <textarea id="tryInput" placeholder="Start typing a prompt&hellip; e.g. &ldquo;You are a senior support agent. Given the full ticket history below, write a warm, detailed reply that resolves the customer's billing issue&hellip;&rdquo;"></textarea>
+        <p class="try-note">Estimates update as you type. Inside tokanalyzr, every call is measured live across your real providers.</p>
+      </div>
+      <div class="try-right" id="tryRight">
+        <div class="try-empty" id="tryEmpty">Start typing or load a sample &rarr;</div>
+        <div class="try-live" id="tryLive" hidden>
+          <div class="try-rhead">
+            <div><span class="try-fw">Estimated for this prompt</span><span class="try-score"><span id="tryTokens">0</span><small>&nbsp;tokens</small></span></div>
+            <span class="badge eco" id="tryGrade">B</span>
+          </div>
+          <div class="tcost">
+            <div><div class="tc-label"><span class="tcm">GPT-4o</span><span class="tcc" id="costGpt">$0.000</span></div><div class="tc-track"><i class="g0" id="barGpt"></i></div></div>
+            <div><div class="tc-label"><span class="tcm">Claude Sonnet</span><span class="tcc" id="costClaude">$0.000</span></div><div class="tc-track"><i class="g1" id="barClaude"></i></div></div>
+            <div><div class="tc-label"><span class="tcm">Gemini Flash</span><span class="tcc" id="costGem">$0.000</span></div><div class="tc-track"><i class="g2" id="barGem"></i></div></div>
+          </div>
+          <div class="tsave" id="tSave"></div>
+          <a href="#start" class="btn btn-primary try-cta">Track this across everything you run &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GREEN SCORE -->
+<section class="greensec" id="green">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow eco light">Your Green Score</span>
+      <h2>Every prompt has a carbon footprint. See yours.</h2>
+      <p>tokanalyzr turns your token usage into a real environmental impact score &mdash; CO&#8322;, energy and water &mdash; and lets you watch it move the moment you optimize.</p>
+    </div>
+    <div class="green-card reveal" id="greenCard">
+      <div class="gs-gauge">
+        <div class="gs-ringwrap">
+          <svg class="gs-ring" viewBox="0 0 176 176" aria-hidden="true">
+            <circle class="gs-track" cx="88" cy="88" r="76"></circle>
+            <circle class="gs-prog" id="gsProg" cx="88" cy="88" r="76"></circle>
+          </svg>
+          <div class="gs-center"><span class="gs-grade" id="gsGrade">B+</span><span class="gs-sub">score <span id="gsScoreNum">80</span></span></div>
+        </div>
+        <div class="gs-label"><div class="gl-t">Your Green Score</div><div class="gl-s">From this month's usage</div></div>
+      </div>
+      <div class="gs-main">
+        <div class="gs-metrics">
+          <div class="gs-metric"><div class="gm-num"><span id="gmCo2">0</span> <small>kg</small></div><div class="gm-cap">CO&#8322;e emitted</div></div>
+          <div class="gs-metric"><div class="gm-num"><span id="gmKwh">0</span> <small>kWh</small></div><div class="gm-cap">Energy used</div></div>
+          <div class="gs-metric"><div class="gm-num"><span id="gmWater">0</span> <small>L</small></div><div class="gm-cap">Water (cooling)</div></div>
+        </div>
+        <div class="gs-equiv">
+          <div class="ge-head">That's equivalent to&hellip;</div>
+          <div class="ge-tabs" role="tablist" aria-label="Equivalence">
+            <button class="ge-tab is-active" data-eq="trees" type="button">&#127794; Trees</button>
+            <button class="ge-tab" data-eq="drive" type="button">&#128663; Driving</button>
+            <button class="ge-tab" data-eq="phone" type="button">&#128241; Phone charges</button>
+          </div>
+          <div class="ge-viz" id="geViz"><div class="ge-icons" id="geIcons"></div><div class="ge-cap" id="geCap"></div></div>
+        </div>
+        <div class="gs-whatif">
+          <label class="switch"><input type="checkbox" id="whatif" /><span class="track"></span><span class="wi-label">Route 40% of heavy prompts to a smaller model</span></label>
+          <span class="wi-out" id="wiOut">Try it &mdash; watch the score climb</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2>Free to track. $8 to optimize.</h2>
+      <p>Tracking and your Green Score are free, forever. Go Pro when you want the tools that actually cut your spend.</p>
+    </div>
+    <div style="text-align:center;">
+      <div class="bill-toggle" id="billToggle">
+        <button class="is-active" data-bill="monthly" type="button">Monthly</button>
+        <button data-bill="annual" type="button">Annual<span class="save">&minus;25%</span></button>
+      </div>
+    </div>
+    <div class="price-grid reveal">
+      <div class="tier">
+        <h3>Free</h3>
+        <div class="tier-for">For tracking your AI</div>
+        <div class="tier-price">$0</div>
+        <div class="tier-note">Forever. No card.</div>
+        <a href="#start" class="btn btn-outline">Start free</a>
+        <ul>
+          <li><span class="tk">&#10003;</span> <span>All your LLMs in one dashboard</span></li>
+          <li><span class="tk">&#10003;</span> <span>Personal <b>Green Score</b></span></li>
+          <li><span class="tk">&#10003;</span> <span>Prompt analyzer &amp; cost explorer</span></li>
+          <li><span class="tk">&#10003;</span> <span>7-day history &middot; 1 connected key</span></li>
+        </ul>
+      </div>
+      <div class="tier pop">
+        <span class="pop-flag">Best value</span>
+        <h3>Pro</h3>
+        <div class="tier-for">For spending less, automatically</div>
+        <div class="tier-price">$<span class="price-val" data-m="8" data-a="6">8</span><small>/mo</small></div>
+        <div class="tier-note bill-note" data-m-note="Billed monthly" data-a-note="Per month, billed annually">Billed monthly</div>
+        <a href="#start" class="btn btn-primary">Go Pro</a>
+        <ul>
+          <li><span class="tk">&#10003;</span> <span>Everything in <b>Free</b></span></li>
+          <li><span class="tk">&#10003;</span> <span><b>Prompt optimizer</b> &mdash; trim every prompt</span></li>
+          <li><span class="tk">&#10003;</span> <span><b>Model routing</b> suggestions</span></li>
+          <li><span class="tk">&#10003;</span> <span>Unlimited history &amp; budget alerts</span></li>
+          <li><span class="tk">&#10003;</span> <span>Unlimited connected keys</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="roi-note" style="margin-top:22px;">Running AI across a team? <a href="b2b.html#pricing" style="color:var(--brand);font-weight:700;">See team plans &rarr;</a></p>
+  </div>
+</section>
+
+<!-- START -->
+<section class="start" id="start">
+  <div class="wrap">
+    <div class="start-card reveal">
+      <span class="eyebrow eco light" style="justify-content:center;">Start free</span>
+      <h2>See what your AI costs you &mdash; in 2 minutes</h2>
+      <p>Connect your first account and get your dashboard and personal Green Score free. No credit card, no trial clock.</p>
+      <form class="start-form" id="startForm" novalidate>
+        <input type="email" id="startEmail" placeholder="you@email.com" aria-label="Email" required />
+        <button type="submit" class="btn btn-primary btn-lg">Start free &rarr;</button>
+      </form>
+      <div class="start-success" id="startSuccess">&#127807; You're in &mdash; check your inbox for your setup link. (Demo: nothing was actually sent.)</div>
+      <div class="start-meta">Free forever &middot; All major LLMs &middot; Read-only &amp; privacy-first</div>
+      <div class="start-alt">Running AI across a team? <a href="b2b.html">See tokanalyzr for Teams &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
+          <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+            <defs><linearGradient id="tkFoot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#2dd4ff"/></linearGradient></defs>
+            <rect width="32" height="32" rx="9" fill="url(#tkFoot)"/>
+            <rect x="8" y="16" width="3.4" height="8" rx="1.4" fill="#fff"/>
+            <rect x="14.3" y="12" width="3.4" height="12" rx="1.4" fill="#fff"/>
+            <rect x="20.6" y="8" width="3.4" height="16" rx="1.4" fill="#fff" opacity=".6"/>
+          </svg>
+          <span class="brand-name">tokanalyzr<b>.ai</b></span>
+        </a>
+        <p>See what your AI costs — money and carbon — across every model you use. Free to track. $8 to optimize.</p>
+      </div>
+      <div class="foot-col">
+        <h5>For you</h5>
+        <a href="#try">Prompt analyzer</a>
+        <a href="#green">Green Score</a>
+        <a href="#pricing">Pricing</a>
+        <a href="b2b.html">For teams</a>
+      </div>
+      <div class="foot-col">
+        <h5>Get started</h5>
+        <a href="#start">Start free</a>
+        <a href="#pricing">Go Pro</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="index.html">Home</a>
+        <a href="mailto:hello@tokanalyzr.ai">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="yr"></span> tokanalyzr.ai. All rights reserved.</span>
+      <span>Token analytics &middot; Green Score &middot; Built for every LLM</span>
+    </div>
+  </div>
+</footer>
+
+<div class="stickybar" id="stickyBar" role="region" aria-label="Start free">
+  <div class="stickybar-inner">
+    <span class="stickybar-dot" aria-hidden="true"></span>
+    <span class="stickybar-txt"><b>Free to track.</b><span class="long"> See what your AI costs &amp; your Green Score &mdash;</span> <span class="hl">Pro from $8/mo.</span></span>
+    <a href="#start" class="btn btn-primary">Start free &rarr;</a>
+    <button class="stickybar-x" id="stickyBarX" type="button" aria-label="Dismiss">&times;</button>
+  </div>
+</div>
+
+<script src="app.js" defer></script>
+</body>
+</html>

@@ -3,500 +3,25 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Toknlytics — AI Token Analytics & Green Score</title>
-<meta name="description" content="Toknlytics unifies your AI usage across every LLM into one dashboard, scores the environmental impact of your AI with a Green Score, and shows you exactly where to optimize. Analytics free forever — you only pay to optimize." />
+<title>tokanalyzr.ai — AI token analytics & Green Score</title>
+<meta name="description" content="tokanalyzr.ai unifies your AI usage across every LLM into one live dashboard, scores its environmental impact with a Green Score, and shows you where to optimize. Free to measure — pay only to optimize." />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='9' fill='%237c5cff'/><rect x='8' y='16' width='3.4' height='8' rx='1.4' fill='white'/><rect x='14.3' y='12' width='3.4' height='12' rx='1.4' fill='white'/><rect x='20.6' y='8' width='3.4' height='16' rx='1.4' fill='white' opacity='.6'/></svg>" />
-
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
-<style>
-  :root {
-    --navy: #0a0e24;
-    --navy-2: #11163a;
-    --navy-3: #1b2350;
-    --ink: #0c1030;
-    --brand: #7c5cff;
-    --brand-2: #5b8bff;
-    --accent: #2dd4ff;
-    --grad: linear-gradient(120deg, #7c5cff 0%, #2dd4ff 100%);
-    --green: #18c98d;
-    --green-2: #12b27c;
-    --green-grad: linear-gradient(120deg, #18c98d 0%, #7ce3b1 100%);
-    --amber: #ffb84d;
-    --rose: #ff7a7a;
-    --paper: #ffffff;
-    --mist: #f5f6fb;
-    --mist-2: #ebedf7;
-    --line: #e4e6f2;
-    --muted: #5b6280;
-    --muted-2: #8b91ad;
-    --shadow: 0 18px 50px -18px rgba(12, 16, 48, 0.30);
-    --shadow-sm: 0 8px 24px -12px rgba(12, 16, 48, 0.26);
-    --radius: 18px;
-    --radius-sm: 12px;
-    --maxw: 1140px;
-    --mono: 'SFMono-Regular', ui-monospace, 'JetBrains Mono', 'Menlo', monospace;
-  }
-
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    color: var(--ink);
-    background: var(--paper);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: inherit; text-decoration: none; }
-  img { max-width: 100%; display: block; }
-  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
-
-  h1, h2, h3 { line-height: 1.12; letter-spacing: -0.02em; font-weight: 800; }
-  h2 { font-size: clamp(28px, 4vw, 42px); }
-  .eyebrow {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--brand);
-  }
-  .eyebrow.light { color: #b3a6ff; }
-  .eyebrow.eco { color: var(--green-2); }
-  .eyebrow.eco.light { color: #5fe3b3; }
-  .eyebrow::before { content: ""; width: 22px; height: 2px; background: currentColor; border-radius: 2px; }
-
-  /* ---------- Buttons ---------- */
-  .btn {
-    display: inline-flex; align-items: center; gap: 9px;
-    font-weight: 700; font-size: 15px;
-    padding: 14px 24px; border-radius: 999px;
-    border: 1px solid transparent; cursor: pointer;
-    transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
-    white-space: nowrap;
-  }
-  .btn-primary { background: var(--grad); color: #08102e; box-shadow: 0 12px 26px -10px rgba(124,92,255,.6); }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -10px rgba(124,92,255,.7); }
-  .btn-green { background: var(--green-grad); color: #03291c; box-shadow: 0 12px 26px -10px rgba(24,201,141,.55); }
-  .btn-green:hover { transform: translateY(-2px); box-shadow: 0 18px 34px -10px rgba(24,201,141,.65); }
-  .btn-ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.28); }
-  .btn-ghost:hover { background: rgba(255,255,255,.08); }
-  .btn-outline { background: #fff; color: var(--ink); border-color: var(--line); }
-  .btn-outline:hover { border-color: var(--brand); color: var(--brand); }
-  .btn-lg { padding: 17px 32px; font-size: 16px; }
-
-  /* ---------- Nav ---------- */
-  header {
-    position: sticky; top: 0; z-index: 50;
-    background: rgba(10,14,36,.82); backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(255,255,255,.08);
-  }
-  .nav { display: flex; align-items: center; justify-content: space-between; height: 70px; }
-  .brand { display: flex; align-items: center; gap: 10px; color: #fff; font-weight: 800; font-size: 20px; letter-spacing: -0.02em; }
-  .brand svg { display: block; }
-  .brand-name b { font-weight: 800; color: var(--accent); }
-  .nav-links { display: flex; align-items: center; gap: 30px; }
-  .nav-links a { color: #c4cae0; font-weight: 600; font-size: 14.5px; transition: color .15s; }
-  .nav-links a:hover { color: #fff; }
-  .nav-cta { display: flex; align-items: center; gap: 14px; }
-  .nav-cta .signin { color: #c4cae0; font-weight: 600; font-size: 14.5px; }
-  .nav-cta .signin:hover { color: #fff; }
-  .menu-btn { display: none; background: none; border: 0; color: #fff; font-size: 26px; cursor: pointer; }
-
-  /* ---------- Hero ---------- */
-  .hero {
-    position: relative; overflow: hidden;
-    background:
-      radial-gradient(1100px 600px at 78% -10%, rgba(45,212,255,.18), transparent 60%),
-      radial-gradient(900px 520px at 8% 10%, rgba(124,92,255,.22), transparent 55%),
-      linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
-    color: #fff;
-  }
-  section.hero::after {
-    content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 120px;
-    background: linear-gradient(180deg, transparent, var(--paper));
-    clip-path: polygon(0 100%, 18% 42%, 34% 74%, 52% 18%, 70% 66%, 86% 30%, 100% 80%, 100% 100%);
-    opacity: .9;
-  }
-  .hero-inner { position: relative; z-index: 2; padding: 76px 0 150px; display: grid; grid-template-columns: 1.02fr .98fr; gap: 56px; align-items: center; }
-  .hero h1 { font-size: clamp(34px, 5.4vw, 58px); font-weight: 900; }
-  .hero h1 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero h1 .eco { background: var(--green-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .hero p.lede { margin-top: 20px; font-size: clamp(16px, 1.8vw, 19px); color: #c1c8e0; max-width: 545px; }
-  .hero-cta { margin-top: 32px; display: flex; gap: 14px; flex-wrap: wrap; }
-  .hero-meta { margin-top: 30px; display: flex; gap: 26px; flex-wrap: wrap; }
-  .hero-meta .pill { display: flex; align-items: center; gap: 9px; font-size: 14px; color: #a9b1cd; font-weight: 600; }
-  .hero-meta .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(45,212,255,.18); }
-  .hero-meta .dot.green { background: var(--green); box-shadow: 0 0 0 4px rgba(24,201,141,.18); }
-
-  /* ---------- Live console (hero card) ---------- */
-  .hero-art { position: relative; }
-  .glass {
-    background: linear-gradient(160deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
-    border: 1px solid rgba(255,255,255,.14); border-radius: 18px;
-    padding: 20px; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6); backdrop-filter: blur(8px);
-  }
-  .cons-head { display: flex; align-items: center; gap: 11px; margin-bottom: 16px; }
-  .cons-head .ic { width: 38px; height: 38px; border-radius: 10px; background: var(--grad); display: grid; place-items: center; color:#08102e; font-weight: 900; }
-  .cons-head h4 { font-size: 15.5px; color: #fff; }
-  .cons-head span { font-size: 12.5px; color: #8f97b5; }
-  .gc-title { flex: 1; min-width: 0; }
-  .live-pill { margin-left: auto; flex: 0 0 auto; display: inline-flex; align-items: center; gap: 7px; font-size: 10.5px; font-weight: 800; letter-spacing: .12em; color: #ff8585; background: rgba(255,77,77,.12); border: 1px solid rgba(255,77,77,.32); padding: 5px 10px; border-radius: 999px; }
-  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: #ff4d4d; animation: livepulse 1.5s infinite; }
-  @keyframes livepulse { 0% { box-shadow: 0 0 0 0 rgba(255,77,77,.55); } 70% { box-shadow: 0 0 0 7px rgba(255,77,77,0); } 100% { box-shadow: 0 0 0 0 rgba(255,77,77,0); } }
-
-  .cons-stats { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: end; margin-bottom: 14px; }
-  .cstat-num { font-size: 26px; font-weight: 900; letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
-  .cstat:nth-child(1) .cstat-num { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .cstat:nth-child(2) .cstat-num { color: #fff; }
-  .cstat-cap { font-size: 11.5px; color: #8f97b5; font-weight: 600; margin-top: 4px; }
-  .cstat-grade { display: inline-flex; align-items: baseline; gap: 5px; }
-  .cstat-grade b { font-size: 22px; font-weight: 900; background: var(--green-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .cstat-grade .lf { font-size: 11px; color: #8f97b5; }
-
-  .cons-spark { position: relative; margin: 4px 0 14px; }
-  .cons-spark svg { width: 100%; height: 56px; display: block; }
-  .spark-area { fill: url(#sparkfill); opacity: .9; }
-  .spark-line { fill: none; stroke: url(#sparkstroke); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; transition: stroke-dashoffset 1.1s ease; }
-  .spark-cap { position: absolute; top: 2px; right: 2px; font-size: 10.5px; color: #79839f; font-weight: 600; }
-
-  .cons-filter { display: flex; gap: 6px; padding: 4px; margin-bottom: 12px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: 999px; }
-  .cons-chip { flex: 1; border: 0; background: transparent; color: #a9b1cd; font-family: inherit; font-weight: 700; font-size: 11.5px; padding: 8px 4px; border-radius: 999px; cursor: pointer; transition: color .2s, background .2s; }
-  .cons-chip.is-active { background: var(--grad); color: #08102e; }
-
-  .cons-feed { display: flex; flex-direction: column; gap: 6px; min-height: 168px; }
-  .feed-row { display: flex; align-items: center; gap: 10px; font-size: 12.5px; padding: 8px 10px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); border-radius: 9px; }
-  .feed-row.in { animation: feedin .45s cubic-bezier(.2,.9,.3,1) both; }
-  @keyframes feedin { from { opacity: 0; transform: translateY(-10px) scale(.98); } to { opacity: 1; transform: none; } }
-  .fr-dot { width: 8px; height: 8px; border-radius: 50%; flex: 0 0 auto; }
-  .fr-dot.eco { background: var(--green); } .fr-dot.warn { background: var(--amber); } .fr-dot.hot { background: var(--rose); }
-  .fr-model { font-weight: 700; color: #e6eaf7; flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .fr-tok { color: #9aa3bd; font-family: var(--mono); font-size: 11.5px; }
-  .fr-cost { color: #fff; font-weight: 800; font-family: var(--mono); font-size: 11.5px; min-width: 52px; text-align: right; }
-  @media (prefers-reduced-motion: reduce) { .live-dot { animation: none !important; } .feed-row.in { animation: none; } }
-
-  /* ---------- Trust strip ---------- */
-  .trust { background: var(--mist); border-bottom: 1px solid var(--line); }
-  .trust .wrap { padding: 26px 24px; display: flex; align-items: center; justify-content: center; gap: 14px 38px; flex-wrap: wrap; }
-  .trust span { font-weight: 700; color: var(--muted-2); font-size: 14px; letter-spacing: .02em; }
-  .trust .label { color: var(--muted); font-size: 13px; font-weight: 600; }
-
-  /* ---------- Section scaffolding ---------- */
-  section { padding: 72px 0; }
-  .sec-head { max-width: 730px; margin: 0 auto 52px; text-align: center; }
-  .sec-head p { margin-top: 16px; color: var(--muted); font-size: 17px; }
-  .badge { font-size: 11.5px; font-weight: 800; padding: 4px 10px; border-radius: 999px; letter-spacing: .03em; }
-  .badge.win { background: rgba(45,212,255,.16); color: #6fdcff; }
-  .badge.warn { background: rgba(255,184,77,.16); color: #ffc46b; }
-  .badge.miss { background: rgba(255,99,99,.16); color: #ff9090; }
-  .badge.eco { background: rgba(24,201,141,.18); color: #38e3a4; }
-
-  /* ---------- Value / freemium banner ---------- */
-  .value { background: linear-gradient(180deg, var(--mist) 0%, #fff 100%); }
-  .value-card {
-    position: relative; overflow: hidden;
-    background: linear-gradient(125deg, var(--navy) 0%, var(--navy-3) 100%);
-    border-radius: 26px; color: #fff; padding: 52px clamp(28px,5vw,64px);
-    box-shadow: var(--shadow);
-  }
-  .value-card::before {
-    content:""; position:absolute; inset:0;
-    background: radial-gradient(620px 320px at 90% 0%, rgba(124,92,255,.24), transparent 60%),
-                radial-gradient(520px 300px at 0% 110%, rgba(24,201,141,.18), transparent 55%);
-  }
-  .value-grid { position: relative; z-index: 2; display: grid; grid-template-columns: 1.15fr .85fr; gap: 48px; align-items: center; }
-  .ribbon {
-    display:inline-flex; align-items:center; gap: 8px; background: rgba(24,201,141,.16);
-    border: 1px solid rgba(24,201,141,.4); color: #5fe3b3; font-weight: 800; font-size: 12.5px;
-    letter-spacing: .06em; text-transform: uppercase; padding: 7px 14px; border-radius: 999px;
-  }
-  .value-card h2 { margin: 18px 0 14px; font-size: clamp(26px, 3.6vw, 38px); }
-  .value-card h2 .grad { background: var(--grad); -webkit-background-clip: text; background-clip:text; color: transparent; }
-  .value-card p.body { color: #c5cce2; font-size: 16.5px; max-width: 560px; }
-  .value-points { margin: 24px 0 4px; display: grid; gap: 14px; }
-  .opt { display: flex; gap: 13px; align-items: flex-start; }
-  .opt .chk { flex: 0 0 auto; width: 24px; height: 24px; border-radius: 7px; background: rgba(45,212,255,.18); color: var(--accent); display: grid; place-items: center; font-weight: 900; font-size: 13px; margin-top: 2px; }
-  .opt .chk.eco { background: rgba(24,201,141,.18); color: #38e3a4; }
-  .opt b { color: #fff; }
-  .opt span { color: #b6bdd8; font-size: 14.8px; }
-  .value-aside { background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); border-radius: 18px; padding: 28px; text-align: center; }
-  .value-aside .price { font-size: 52px; font-weight: 900; letter-spacing: -.03em; line-height: 1; }
-  .value-aside .who { color: #a6b0cc; font-size: 14px; margin: 8px 0 22px; }
-  .value-aside .btn { width: 100%; justify-content: center; }
-  .value-aside .scarce { margin-top: 16px; font-size: 12.5px; color: #8f97b5; }
-
-  /* ---------- Reusable toggle switch ---------- */
-  .switch { display: flex; align-items: center; gap: 12px; cursor: pointer; }
-  .switch input { position: absolute; opacity: 0; width: 0; height: 0; }
-  .switch .track { width: 42px; height: 24px; border-radius: 999px; background: rgba(130,140,170,.45); position: relative; transition: background .22s; flex: 0 0 auto; }
-  .switch .track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: #fff; transition: transform .22s; box-shadow: 0 1px 3px rgba(0,0,0,.3); }
-  .switch input:checked + .track { background: var(--green); }
-  .switch input:checked + .track::after { transform: translateX(18px); }
-  .switch input:focus-visible + .track { outline: 3px solid rgba(124,92,255,.5); outline-offset: 2px; }
-
-  /* ---------- Green Score spotlight ---------- */
-  .greensec { background: var(--navy); color: #fff; }
-  .greensec .sec-head p { color: #a9b1cd; }
-  .green-card { max-width: 940px; margin: 0 auto; background: #0f1430; border: 1px solid rgba(255,255,255,.08); border-radius: 20px; box-shadow: var(--shadow); display: grid; grid-template-columns: 300px 1fr; overflow: hidden; }
-  .gs-gauge { background: linear-gradient(165deg, #12183c, #0c1130); padding: 34px 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; border-right: 1px solid rgba(255,255,255,.06); }
-  .gs-ringwrap { position: relative; width: 176px; height: 176px; }
-  .gs-ring { width: 176px; height: 176px; transform: rotate(-90deg); }
-  .gs-track { fill: none; stroke: rgba(255,255,255,.08); stroke-width: 12; }
-  .gs-prog { fill: none; stroke: url(#gsgrad); stroke-width: 12; stroke-linecap: round; transition: stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1); }
-  .gs-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-  .gs-grade { font-size: 50px; font-weight: 900; letter-spacing: -.03em; background: var(--green-grad); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1; }
-  .gs-sub { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #7e88aa; font-variant-numeric: tabular-nums; }
-  .gs-label { text-align: center; }
-  .gs-label .gl-t { font-weight: 800; font-size: 15px; }
-  .gs-label .gl-s { font-size: 12.5px; color: #8f97b5; }
-  .gs-main { padding: 28px clamp(20px,3vw,34px); min-width: 0; }
-  .gs-metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
-  .gs-metric { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 12px; padding: 14px; }
-  .gs-metric .gm-num { font-size: 22px; font-weight: 900; color: #fff; letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
-  .gs-metric .gm-num small { font-size: 12px; color: #8f97b5; font-weight: 700; }
-  .gs-metric .gm-cap { font-size: 11.5px; color: #8f97b5; font-weight: 600; margin-top: 3px; }
-  .gs-equiv { margin-top: 18px; }
-  .ge-head { font-size: 13px; font-weight: 700; color: #c4cae0; margin-bottom: 10px; }
-  .ge-tabs { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 12px; }
-  .ge-tab { border: 1px solid rgba(255,255,255,.12); background: rgba(255,255,255,.03); color: #a9b1cd; font-family: inherit; font-weight: 700; font-size: 12.5px; padding: 6px 12px; border-radius: 999px; cursor: pointer; transition: all .18s; }
-  .ge-tab:hover { color: #fff; border-color: rgba(255,255,255,.25); }
-  .ge-tab.is-active { background: rgba(24,201,141,.16); border-color: rgba(24,201,141,.5); color: #5fe3b3; }
-  .ge-viz { background: rgba(24,201,141,.06); border: 1px solid rgba(24,201,141,.18); border-radius: 12px; padding: 14px 16px; min-height: 78px; }
-  .ge-icons { font-size: 19px; line-height: 1.5; letter-spacing: 2px; word-break: break-word; }
-  .ge-icons span { display: inline-block; opacity: 0; transform: scale(.4) translateY(4px); animation: popIcon .4s cubic-bezier(.2,1.4,.4,1) forwards; }
-  @keyframes popIcon { to { opacity: 1; transform: none; } }
-  .ge-cap { margin-top: 8px; font-size: 13px; color: #cdd3e6; font-weight: 600; }
-  .ge-cap b { color: #5fe3b3; }
-  .gs-whatif { margin-top: 16px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; background: rgba(124,92,255,.1); border: 1px solid rgba(124,92,255,.3); border-radius: 12px; padding: 13px 16px; }
-  .gs-whatif .wi-label { font-size: 13.5px; font-weight: 700; color: #e7e3ff; }
-  .gs-whatif .wi-out { font-size: 13px; color: #b9c0db; font-weight: 600; }
-  .gs-whatif .wi-out b { color: #5fe3b3; }
-  @media (prefers-reduced-motion: reduce) { .gs-prog { transition: none; } .ge-icons span { animation: none; opacity: 1; transform: none; } }
-
-  /* ---------- Optimization control panel ---------- */
-  .opti { background: var(--mist); }
-  .optipanel { max-width: 980px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); }
-  .op-controls { background: #fff; padding: 34px clamp(22px,3vw,38px); }
-  .op-controls h3 { font-size: 18px; margin-bottom: 4px; }
-  .op-controls .op-sub { color: var(--muted); font-size: 14px; margin-bottom: 20px; }
-  .op-toggle { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 15px 0; border-top: 1px solid var(--line); }
-  .op-toggle:first-of-type { border-top: 0; }
-  .op-toggle .ot-txt b { display: block; font-size: 14.5px; color: var(--ink); }
-  .op-toggle .ot-txt span { font-size: 12.5px; color: var(--muted-2); }
-  .op-toggle .ot-save { font-size: 12px; font-weight: 800; color: var(--green-2); background: rgba(24,201,141,.12); padding: 3px 9px; border-radius: 999px; white-space: nowrap; }
-  .op-result { background: linear-gradient(150deg, var(--navy) 0%, var(--navy-3) 100%); color: #fff; padding: 34px clamp(22px,3vw,38px); display: flex; flex-direction: column; justify-content: center; gap: 18px; }
-  .op-headline { display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; }
-  .op-spend { font-size: 40px; font-weight: 900; letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .op-spend-cap { font-size: 12.5px; color: #8f97b5; font-weight: 600; margin-top: 5px; }
-  .op-spend-base { font-size: 13px; color: #79839f; text-decoration: line-through; }
-  .op-grade-wrap { text-align: right; }
-  .op-grade { font-size: 38px; font-weight: 900; letter-spacing: -.03em; line-height: 1; background: var(--green-grad); -webkit-background-clip: text; background-clip: text; color: transparent; transition: opacity .2s; }
-  .op-grade-cap { font-size: 11px; color: #8f97b5; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
-  .op-bar { }
-  .op-bar-top { display: flex; justify-content: space-between; font-size: 12.5px; color: #c4cae0; font-weight: 600; margin-bottom: 6px; }
-  .op-bar-top span:last-child { font-family: var(--mono); color: #fff; font-weight: 800; }
-  .op-bar-track { height: 9px; background: rgba(255,255,255,.08); border-radius: 999px; overflow: hidden; }
-  .op-bar-track i { display: block; height: 100%; border-radius: 999px; width: 100%; transition: width .5s cubic-bezier(.3,.8,.3,1); }
-  .op-bar-track i.spend { background: var(--grad); }
-  .op-bar-track i.carbon { background: var(--green-grad); }
-  .op-save { font-size: 14px; font-weight: 700; color: #5fe3b3; background: rgba(24,201,141,.1); border: 1px solid rgba(24,201,141,.3); border-radius: 10px; padding: 11px 14px; text-align: center; }
-  .op-save.idle { color: #a9b1cd; background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.1); }
-
-  /* ---------- Try it (live prompt analyzer) ---------- */
-  .tryit { background: #fff; }
-  .try-card { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--line); border-radius: 24px; overflow: hidden; box-shadow: var(--shadow); }
-  .try-left { padding: 34px clamp(22px,3vw,38px); display: flex; flex-direction: column; gap: 14px; }
-  .try-left > label { font-weight: 800; font-size: 15px; }
-  .try-samples { display: flex; flex-wrap: wrap; gap: 8px; }
-  .try-samples button { border: 1px solid var(--line); background: #fff; color: var(--muted); font-family: inherit; font-weight: 700; font-size: 13px; padding: 7px 13px; border-radius: 999px; cursor: pointer; transition: all .18s; }
-  .try-samples button:hover { border-color: var(--brand); color: var(--ink); }
-  .try-samples button.is-active { background: var(--navy); color: #fff; border-color: var(--navy); }
-  #tryInput { width: 100%; min-height: 168px; resize: vertical; border: 1px solid var(--line); border-radius: 12px; padding: 13px 15px; font-family: inherit; font-size: 14px; color: var(--ink); line-height: 1.55; background: var(--mist); }
-  #tryInput:focus { outline: none; border-color: var(--brand); background: #fff; }
-  .try-note { font-size: 12.5px; color: var(--muted-2); }
-  .try-right { background: linear-gradient(150deg, var(--navy) 0%, var(--navy-3) 100%); color: #fff; padding: 34px clamp(22px,3vw,38px); display: flex; flex-direction: column; justify-content: center; }
-  .try-empty { color: #79839f; font-weight: 600; text-align: center; font-size: 15px; }
-  .try-rhead { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 18px; }
-  .try-fw { display: block; font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: #9c8bff; margin-bottom: 4px; }
-  .try-score { font-size: 40px; font-weight: 900; line-height: 1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; font-variant-numeric: tabular-nums; }
-  .try-score small { font-size: 14px; color: #a9b1cd; -webkit-text-fill-color: #a9b1cd; font-weight: 700; }
-  .tcost { display: flex; flex-direction: column; gap: 12px; }
-  .tc-label { display: flex; align-items: center; justify-content: space-between; font-size: 13px; }
-  .tc-label .tcm { color: #cdd3e6; font-weight: 700; }
-  .tc-label .tcc { font-family: var(--mono); font-weight: 800; color: #fff; }
-  .tc-track { height: 9px; background: rgba(255,255,255,.08); border-radius: 999px; overflow: hidden; margin-top: 6px; }
-  .tc-track i { display: block; height: 100%; border-radius: 999px; width: 0; transition: width .5s cubic-bezier(.3,.8,.3,1); }
-  .tc-track i.g0 { background: var(--rose); } .tc-track i.g1 { background: var(--amber); } .tc-track i.g2 { background: var(--green-grad); }
-  .tsave { margin-top: 18px; font-size: 13.5px; font-weight: 700; color: #5fe3b3; background: rgba(24,201,141,.1); border: 1px solid rgba(24,201,141,.3); border-radius: 10px; padding: 11px 14px; text-align: center; }
-  .try-cta { margin-top: 16px; justify-content: center; width: 100%; }
-
-  /* ---------- Features grid ---------- */
-  .filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: -16px 0 36px; }
-  .chip { border: 1px solid var(--line); background: #fff; color: var(--muted); font-family: inherit; font-weight: 700; font-size: 13.5px; padding: 9px 16px; border-radius: 999px; cursor: pointer; transition: all .18s; }
-  .chip:hover { border-color: var(--brand); color: var(--ink); }
-  .chip.is-active { background: var(--navy); color: #fff; border-color: var(--navy); }
-  .feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-  .feature {
-    position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 28px; display: flex; flex-direction: column; transition: transform .3s ease, box-shadow .18s, border-color .18s, opacity .3s ease;
-  }
-  .feature:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: transparent; }
-  .feature.featured { border: 1.5px solid var(--brand); box-shadow: 0 20px 50px -22px rgba(124,92,255,.4); }
-  .feature .flag { position: absolute; top: 18px; right: 18px; font-size: 11px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 5px 11px; border-radius: 999px; }
-  .flag.free { background: rgba(24,201,141,.14); color: var(--green-2); }
-  .flag.pro { background: rgba(124,92,255,.14); color: var(--brand); }
-  .feature .ic { width: 54px; height: 54px; border-radius: 14px; display: grid; place-items: center; font-size: 26px; background: var(--mist); margin-bottom: 18px; }
-  .feature h3 { font-size: 19px; }
-  .feature .role { color: var(--brand); font-weight: 700; font-size: 13px; margin: 4px 0 12px; letter-spacing: .02em; }
-  .feature p { color: var(--muted); font-size: 14.5px; flex: 1; }
-  .feat-grid .feature.filtered-out { display: none; }
-  .feat-grid .feature.fade-in { animation: cardIn .35s ease both; }
-  @keyframes cardIn { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
-  .filter-empty { text-align: center; color: var(--muted); font-size: 15.5px; margin-top: 10px; }
-  .filter-empty a { color: var(--brand); font-weight: 700; }
-
-  /* ---------- Savings calculator ---------- */
-  .roi-card { display: grid; grid-template-columns: 1.1fr .9fr; gap: 0; border-radius: 26px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid var(--line); }
-  .roi-inputs { background: #fff; padding: 40px clamp(24px,4vw,44px); display: flex; flex-direction: column; gap: 26px; justify-content: center; }
-  .roi-field { display: flex; flex-direction: column; gap: 12px; }
-  .roi-row { display: flex; align-items: baseline; justify-content: space-between; }
-  .roi-row label { font-weight: 700; font-size: 14.5px; color: var(--ink); }
-  .roi-row output { font-weight: 800; font-size: 18px; color: var(--brand); }
-  input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 999px; background: var(--mist-2); outline: none; }
-  input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: var(--grad); cursor: pointer; box-shadow: 0 2px 8px rgba(124,92,255,.5); border: 3px solid #fff; }
-  input[type=range]::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: #7c5cff; cursor: pointer; border: 3px solid #fff; }
-  .roi-results { background: linear-gradient(150deg, var(--navy) 0%, var(--navy-3) 100%); color: #fff; padding: 40px clamp(24px,4vw,44px); display: flex; flex-direction: column; justify-content: center; gap: 16px; }
-  .roi-stat { display: flex; flex-direction: column; gap: 4px; }
-  .roi-stat.big .roi-num { font-size: 44px; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .roi-stat.eco .roi-num { background: var(--green-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  .roi-num { font-size: 26px; font-weight: 900; letter-spacing: -.02em; line-height: 1.05; font-variant-numeric: tabular-nums; }
-  .roi-num small { font-size: 15px; font-weight: 700; color: #a9b1cd; -webkit-text-fill-color: #a9b1cd; }
-  .roi-cap { font-size: 13px; color: #a9b1cd; font-weight: 600; }
-  .roi-cta { margin-top: 8px; justify-content: center; }
-  .roi-note { font-size: 12.5px; color: #8f97b5; text-align: center; }
-
-  @media (prefers-reduced-motion: reduce) { .feat-grid .feature.fade-in { animation: none; } }
-
-  /* ---------- How it works ---------- */
-  .how { background: var(--navy); color: #fff; }
-  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
-  .step { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); padding: 26px; position: relative; }
-  .step .num { width: 40px; height: 40px; border-radius: 12px; background: var(--grad); color: #08102e; font-weight: 900; display: grid; place-items: center; margin-bottom: 16px; }
-  .step h3 { font-size: 17px; margin-bottom: 8px; }
-  .step p { color: #a9b1cd; font-size: 14px; }
-  .how .sec-head p { color: #a9b1cd; }
-
-  /* ---------- Pricing ---------- */
-  .pricing { background: linear-gradient(180deg, #fff 0%, var(--mist) 100%); }
-  .bill-toggle { display: inline-flex; gap: 4px; padding: 4px; background: var(--mist-2); border: 1px solid var(--line); border-radius: 999px; margin: -22px auto 40px; }
-  .bill-toggle button { border: 0; background: transparent; color: var(--muted); font-family: inherit; font-weight: 700; font-size: 14px; padding: 9px 20px; border-radius: 999px; cursor: pointer; transition: all .18s; }
-  .bill-toggle button.is-active { background: #fff; color: var(--ink); box-shadow: var(--shadow-sm); }
-  .bill-toggle .save { font-size: 11px; color: var(--green-2); font-weight: 800; margin-left: 5px; }
-  .price-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; align-items: stretch; }
-  .tier { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 30px 26px; display: flex; flex-direction: column; }
-  .tier.pop { border: 1.5px solid var(--brand); box-shadow: 0 24px 56px -24px rgba(124,92,255,.45); position: relative; }
-  .tier .pop-flag { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--grad); color: #08102e; font-size: 11px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; white-space: nowrap; }
-  .tier h3 { font-size: 18px; }
-  .tier .tier-for { color: var(--muted); font-size: 13.5px; margin: 4px 0 18px; }
-  .tier .tier-price { font-size: 40px; font-weight: 900; letter-spacing: -.03em; line-height: 1; }
-  .tier .tier-price small { font-size: 15px; font-weight: 700; color: var(--muted); }
-  .tier .tier-price .custom { font-size: 30px; }
-  .tier .tier-note { font-size: 12.5px; color: var(--muted-2); margin-top: 6px; min-height: 18px; }
-  .tier .btn { width: 100%; justify-content: center; margin: 22px 0; }
-  .tier ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
-  .tier li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; color: var(--muted); }
-  .tier li .tk { flex: 0 0 auto; width: 19px; height: 19px; border-radius: 50%; background: rgba(24,201,141,.15); color: var(--green-2); display: grid; place-items: center; font-size: 11px; font-weight: 900; margin-top: 2px; }
-  .tier li b { color: var(--ink); font-weight: 700; }
-
-  /* ---------- Start / CTA ---------- */
-  .start { background: var(--navy); color: #fff; }
-  .start-card { position: relative; overflow: hidden; max-width: 820px; margin: 0 auto; background: linear-gradient(125deg, var(--navy-2) 0%, var(--navy-3) 100%); border: 1px solid rgba(255,255,255,.1); border-radius: 26px; padding: 48px clamp(26px,5vw,56px); text-align: center; box-shadow: var(--shadow); }
-  .start-card::before { content:""; position:absolute; inset:0; background: radial-gradient(560px 280px at 80% -10%, rgba(124,92,255,.25), transparent 60%), radial-gradient(460px 260px at 10% 120%, rgba(24,201,141,.18), transparent 55%); }
-  .start-card > * { position: relative; z-index: 2; }
-  .start-card h2 { font-size: clamp(26px, 3.4vw, 38px); }
-  .start-card p { color: #c1c8e0; margin-top: 14px; font-size: 16.5px; max-width: 560px; margin-left: auto; margin-right: auto; }
-  .start-form { margin: 28px auto 0; display: flex; gap: 12px; max-width: 520px; }
-  .start-form input { flex: 1; padding: 15px 18px; border-radius: 999px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06); color: #fff; font-family: inherit; font-size: 15px; }
-  .start-form input::placeholder { color: #8f97b5; }
-  .start-form input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(45,212,255,.2); }
-  .start-form .btn { flex: 0 0 auto; }
-  .start-success { display: none; margin: 24px auto 0; max-width: 520px; background: rgba(24,201,141,.12); border: 1px solid rgba(24,201,141,.4); color: #5fe3b3; padding: 15px 18px; border-radius: 14px; font-weight: 600; font-size: 14.5px; }
-  .start-meta { margin-top: 18px; font-size: 13px; color: #8f97b5; }
-  .start-alt { margin-top: 18px; font-size: 14.5px; color: #a9b1cd; }
-  .start-alt a { color: var(--accent); font-weight: 700; }
-
-  /* ---------- Footer ---------- */
-  footer { background: var(--navy); color: #a9b1cd; padding: 54px 0 34px; border-top: 1px solid rgba(255,255,255,.06); }
-  .foot-grid { display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; flex-wrap: wrap; }
-  .foot-brand { max-width: 320px; }
-  .foot-brand p { margin-top: 14px; font-size: 14px; }
-  .foot-col h5 { color: #fff; font-size: 14px; margin-bottom: 14px; letter-spacing: .02em; }
-  .foot-col a { display: block; color: #a9b1cd; font-size: 14px; margin-bottom: 10px; }
-  .foot-col a:hover { color: #fff; }
-  .foot-bottom { margin-top: 40px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.1); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px; font-size: 13px; }
-
-  /* ---------- Sticky bar ---------- */
-  .stickybar { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 60; transform: translateY(170%); transition: transform .45s cubic-bezier(.2,.8,.2,1); pointer-events: none; }
-  .stickybar.show { transform: none; pointer-events: auto; }
-  .stickybar-inner { max-width: var(--maxw); margin: 0 auto; background: linear-gradient(120deg, var(--navy-2), var(--navy-3)); border: 1px solid rgba(255,255,255,.14); border-radius: 14px; box-shadow: 0 20px 50px -16px rgba(0,0,0,.55); display: flex; align-items: center; gap: 16px; padding: 12px 14px 12px 20px; color: #fff; }
-  .stickybar-dot { width: 9px; height: 9px; border-radius: 50%; background: #34e0a1; flex: 0 0 auto; animation: cbpulse 1.8s infinite; }
-  @keyframes cbpulse { 0% { box-shadow: 0 0 0 0 rgba(52,224,161,.55); } 70% { box-shadow: 0 0 0 9px rgba(52,224,161,0); } 100% { box-shadow: 0 0 0 0 rgba(52,224,161,0); } }
-  .stickybar-txt { font-size: 14.5px; font-weight: 600; color: #d8dcec; flex: 1 1 auto; }
-  .stickybar-txt b { color: #fff; font-weight: 800; }
-  .stickybar-txt .hl { color: #5fe3b3; font-weight: 800; }
-  .stickybar .btn { white-space: nowrap; }
-  .stickybar-x { background: transparent; border: 0; color: #8b91ad; font-size: 22px; line-height: 1; cursor: pointer; padding: 2px 6px; flex: 0 0 auto; }
-  .stickybar-x:hover { color: #fff; }
-
-  @media (prefers-reduced-motion: reduce) { .stickybar-dot { animation: none !important; } }
-
-  /* ---------- Responsive ---------- */
-  @media (max-width: 980px) {
-    .hero-inner { grid-template-columns: 1fr; gap: 60px; }
-    .hero-art { max-width: 460px; }
-    .value-grid { grid-template-columns: 1fr; gap: 32px; }
-    .feat-grid { grid-template-columns: 1fr 1fr; }
-    .steps { grid-template-columns: 1fr 1fr; }
-    .price-grid { grid-template-columns: 1fr 1fr; }
-    .roi-card { grid-template-columns: 1fr; }
-    .try-card { grid-template-columns: 1fr; }
-    .optipanel { grid-template-columns: 1fr; }
-    .green-card { grid-template-columns: 1fr; }
-    .gs-gauge { border-right: 0; border-bottom: 1px solid rgba(255,255,255,.06); }
-    .nav-links { display: none; }
-    .menu-btn { display: block; }
-    .nav-links.open { display: flex; position: absolute; top: 70px; left: 0; right: 0; flex-direction: column; background: var(--navy-2); padding: 20px 24px; gap: 18px; border-bottom: 1px solid rgba(255,255,255,.1); }
-  }
-  @media (max-width: 620px) {
-    .feat-grid, .steps, .price-grid { grid-template-columns: 1fr; }
-    section { padding: 56px 0; }
-    .value-card { padding: 36px 24px; }
-    .nav-cta .signin { display: none; }
-    .gs-metrics { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-    .gs-metric { padding: 11px; }
-    .gs-metric .gm-num { font-size: 18px; }
-    .start-form { flex-direction: column; }
-    .start-form .btn { width: 100%; justify-content: center; }
-    .stickybar-txt .long { display: none; }
-    .stickybar-inner { padding: 11px 12px 11px 16px; gap: 12px; }
-    .stickybar .btn { padding: 11px 16px; font-size: 14px; }
-  }
-</style>
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- SVG gradient defs -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <linearGradient id="gsgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#18c98d" /><stop offset="1" stop-color="#7ce3b1" /></linearGradient>
-    <linearGradient id="sparkstroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c5cff" /><stop offset="1" stop-color="#2dd4ff" /></linearGradient>
-    <linearGradient id="sparkfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(124,92,255,.42)" /><stop offset="1" stop-color="rgba(124,92,255,0)" /></linearGradient>
-  </defs>
-</svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="gsgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#18c98d" /><stop offset="1" stop-color="#7ce3b1" /></linearGradient>
+  <linearGradient id="sparkstroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7c5cff" /><stop offset="1" stop-color="#2dd4ff" /></linearGradient>
+  <linearGradient id="sparkfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(124,92,255,.42)" /><stop offset="1" stop-color="rgba(124,92,255,0)" /></linearGradient>
+</defs></svg>
 
-<!-- ===================== NAV ===================== -->
 <header>
   <div class="wrap nav">
-    <a href="#top" class="brand" aria-label="Toknlytics home">
+    <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
       <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
         <defs><linearGradient id="tkNav" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#2dd4ff"/></linearGradient></defs>
         <rect width="32" height="32" rx="9" fill="url(#tkNav)"/>
@@ -504,14 +29,12 @@
         <rect x="14.3" y="12" width="3.4" height="12" rx="1.4" fill="#fff"/>
         <rect x="20.6" y="8" width="3.4" height="16" rx="1.4" fill="#fff" opacity=".6"/>
       </svg>
-      <span class="brand-name">Tokn<b>lytics</b></span>
+      <span class="brand-name">tokanalyzr<b>.ai</b></span>
     </a>
     <nav class="nav-links" id="navLinks">
-      <a href="#value">Why free</a>
+      <a href="b2b.html">For teams</a>
+      <a href="b2c.html">For individuals</a>
       <a href="#green">Green Score</a>
-      <a href="#features">Features</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#how">How it works</a>
     </nav>
     <div class="nav-cta">
       <a href="#start" class="signin">Sign in</a>
@@ -521,41 +44,36 @@
   </div>
 </header>
 
-<!-- ===================== HERO ===================== -->
+<!-- HERO -->
 <section class="hero" id="top" style="padding:0;">
   <div class="wrap hero-inner">
     <div>
       <span class="eyebrow light">Token analytics + sustainability</span>
-      <h1>See every token. Cut every <span class="grad">wasted dollar</span> — and <span class="eco">gram of carbon.</span></h1>
-      <p class="lede">Toknlytics unifies your AI usage across every LLM into one live dashboard, scores the environmental impact with a Green Score, and shows you exactly where to optimize. Analytics are free, forever — you only pay to optimize.</p>
+      <h1>Know what your AI really costs. <span class="grad">Money</span> and <span class="eco">carbon.</span></h1>
+      <p class="lede">tokanalyzr.ai unifies your usage across every LLM into one live dashboard, scores its environmental impact, and shows you where to optimize. Free to measure — you only pay to optimize.</p>
       <div class="hero-cta">
-        <a href="#start" class="btn btn-primary btn-lg">Start free &rarr;</a>
-        <a href="#green" class="btn btn-ghost btn-lg">See your Green Score</a>
+        <a href="b2b.html" class="btn btn-primary btn-lg">For teams &rarr;</a>
+        <a href="b2c.html" class="btn btn-ghost btn-lg">For me &rarr;</a>
       </div>
       <div class="hero-meta">
-        <span class="pill"><span class="dot"></span> Free across all your LLMs</span>
+        <span class="pill"><span class="dot"></span> Every LLM, one dashboard</span>
         <span class="pill"><span class="dot green"></span> Green Score on every model</span>
-        <span class="pill"><span class="dot"></span> No card to start</span>
+        <span class="pill"><span class="dot"></span> Free to start</span>
       </div>
     </div>
 
     <div class="hero-art">
-      <div class="glass" id="liveConsole">
+      <div class="glass" id="liveConsole" data-allscope="across all providers · sampled">
         <div class="cons-head">
           <div class="ic">&#128225;</div>
-          <div class="gc-title">
-            <h4>Live usage</h4>
-            <span id="consScope">across all providers &middot; sampled</span>
-          </div>
+          <div class="gc-title"><h4>Live usage</h4><span id="consScope">across all providers &middot; sampled</span></div>
           <div class="live-pill"><span class="live-dot"></span>LIVE</div>
         </div>
-
         <div class="cons-stats">
           <div class="cstat"><div class="cstat-num" id="csTokens">0</div><div class="cstat-cap">tokens today</div></div>
           <div class="cstat"><div class="cstat-num" id="csSpend">$0</div><div class="cstat-cap">spend today</div></div>
           <div class="cstat"><div class="cstat-grade"><b id="csGrade">B+</b><span class="lf">score</span></div><div class="cstat-cap">Green Score</div></div>
         </div>
-
         <div class="cons-spark">
           <svg viewBox="0 0 320 60" preserveAspectRatio="none" aria-hidden="true">
             <path class="spark-area" id="sparkArea" d=""></path>
@@ -563,480 +81,121 @@
           </svg>
           <span class="spark-cap">spend &middot; last 24h</span>
         </div>
-
         <div class="cons-filter" role="tablist" aria-label="Provider filter">
           <button class="cons-chip is-active" data-prov="all" type="button">All</button>
           <button class="cons-chip" data-prov="openai" type="button">OpenAI</button>
           <button class="cons-chip" data-prov="anthropic" type="button">Anthropic</button>
           <button class="cons-chip" data-prov="gemini" type="button">Gemini</button>
         </div>
-
-        <div class="cons-feed" id="consFeed" aria-live="off"></div>
+        <div class="cons-feed" id="consFeed"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== TRUST STRIP ===================== -->
+<!-- TRUST -->
 <div class="trust">
   <div class="wrap">
     <span class="label">Works with every model you already run:</span>
-    <span>OpenAI</span>
-    <span>Anthropic</span>
-    <span>Google Gemini</span>
-    <span>Meta Llama</span>
-    <span>Mistral</span>
-    <span>Azure OpenAI</span>
-    <span>AWS Bedrock</span>
+    <span>OpenAI</span><span>Anthropic</span><span>Google Gemini</span><span>Meta Llama</span><span>Mistral</span><span>Azure OpenAI</span><span>AWS Bedrock</span>
   </div>
 </div>
 
-<!-- ===================== VALUE / FREEMIUM ===================== -->
-<section class="value" id="value">
+<!-- AUDIENCE CHOOSER -->
+<section id="audience">
   <div class="wrap">
-    <div class="value-card">
-      <div class="value-grid">
-        <div>
-          <span class="ribbon">&#127807; Free forever &middot; Analytics + Green Score</span>
-          <h2>Pay for savings, <span class="grad">not for insight.</span></h2>
-          <p class="body">Most teams have no idea what their AI actually costs — or what it costs the planet. Toknlytics gives you both for free. You only pay when you're ready to optimize, and it pays for itself.</p>
-          <div class="value-points">
-            <div class="opt"><span class="chk">&#10003;</span><span><b>Unified analytics across every LLM</b> — OpenAI, Anthropic, Gemini, Llama &amp; more, in one dashboard. Free.</span></div>
-            <div class="opt"><span class="chk eco">&#10003;</span><span><b>A Green Score on every model</b> — see the CO&#8322;, energy &amp; water behind your AI, and how to shrink it.</span></div>
-            <div class="opt"><span class="chk">&#10003;</span><span><b>Turn on optimization when you're ready</b> — prompt trimming, model routing &amp; caching that cut spend automatically.</span></div>
-          </div>
-        </div>
-        <div class="value-aside">
-          <div class="price">$0</div>
-          <div class="who">to start &mdash; no credit card, no trial clock.</div>
-          <a href="#start" class="btn btn-primary btn-lg">Start free</a>
-          <a href="#pricing" class="btn btn-ghost btn-lg" style="margin-top:12px;">See pricing</a>
-          <div class="scarce">Upgrade only when optimization saves you more than it costs.</div>
-        </div>
+    <div class="sec-head reveal">
+      <span class="eyebrow">Pick your view</span>
+      <h2>Built for teams and for you</h2>
+      <p>Same engine, two experiences. Choose the one that fits how you run AI.</p>
+    </div>
+    <div class="aud-grid">
+      <div class="aud-card biz reveal">
+        <div class="ac-ic">&#127970;</div>
+        <div class="ac-sub">For teams &amp; businesses</div>
+        <h3>tokanalyzr for Teams</h3>
+        <p>Org-wide visibility into every team's AI spend, live cost optimization, and ESG-ready carbon reporting — across every model and provider.</p>
+        <ul class="ac-list">
+          <li><span class="tk">&#10003;</span> Spend &amp; usage across all teams &amp; models</li>
+          <li><span class="tk">&#10003;</span> One-click optimizations that cut the bill</li>
+          <li><span class="tk">&#10003;</span> Carbon &amp; energy reporting for ESG</li>
+        </ul>
+        <a href="b2b.html" class="btn btn-primary">Explore for teams &rarr;</a>
+      </div>
+      <div class="aud-card me reveal d1">
+        <div class="ac-ic">&#128104;&#8205;&#128187;</div>
+        <div class="ac-sub">For developers &amp; individuals</div>
+        <h3>tokanalyzr for You</h3>
+        <p>See what your AI habit really costs, get your personal Green Score, and trim your prompts to spend less — across ChatGPT, Claude, Gemini and more.</p>
+        <ul class="ac-list">
+          <li><span class="tk">&#10003;</span> Your spend across every model</li>
+          <li><span class="tk">&#10003;</span> Your personal Green Score</li>
+          <li><span class="tk">&#10003;</span> Prompt analyzer to cut cost &amp; carbon</li>
+        </ul>
+        <a href="b2c.html" class="btn btn-green">Explore for me &rarr;</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== GREEN SCORE SPOTLIGHT ===================== -->
+<!-- GREEN SCORE TEASER -->
 <section class="greensec" id="green">
   <div class="wrap">
-    <div class="sec-head">
+    <div class="sec-head reveal">
       <span class="eyebrow eco light">The Green Score</span>
-      <h2>Every prompt has a carbon footprint. Now you can see it.</h2>
-      <p>Toknlytics turns your token usage into a real environmental impact score &mdash; CO&#8322;, energy and water &mdash; and lets you watch it move the moment you optimize.</p>
+      <h2>Every prompt has a carbon footprint. See yours.</h2>
+      <p>tokanalyzr turns your token usage into a real environmental impact score — CO&#8322;, energy and water — so you can shrink it as you optimize.</p>
     </div>
-    <div class="green-card" id="greenCard">
+    <div class="green-card compact reveal" id="greenCard">
       <div class="gs-gauge">
         <div class="gs-ringwrap">
           <svg class="gs-ring" viewBox="0 0 176 176" aria-hidden="true">
             <circle class="gs-track" cx="88" cy="88" r="76"></circle>
             <circle class="gs-prog" id="gsProg" cx="88" cy="88" r="76"></circle>
           </svg>
-          <div class="gs-center">
-            <span class="gs-grade" id="gsGrade">B+</span>
-            <span class="gs-sub">score <span id="gsScoreNum">80</span></span>
-          </div>
+          <div class="gs-center"><span class="gs-grade" id="gsGrade">B+</span><span class="gs-sub">score <span id="gsScoreNum">80</span></span></div>
         </div>
-        <div class="gs-label">
-          <div class="gl-t">Your Green Score</div>
-          <div class="gl-s">From this month's usage</div>
-        </div>
+        <div class="gs-label"><div class="gl-t">A Green Score</div><div class="gl-s">on every model you run</div></div>
       </div>
       <div class="gs-main">
+        <p class="gs-intro">A single, comparable grade for the footprint of your AI — built from real token usage, model efficiency and datacenter energy. <b>Watch it climb as you optimize.</b></p>
         <div class="gs-metrics">
-          <div class="gs-metric"><div class="gm-num"><span id="gmCo2">0</span> <small>kg</small></div><div class="gm-cap">CO&#8322;e emitted</div></div>
+          <div class="gs-metric"><div class="gm-num"><span id="gmCo2">0</span> <small>kg</small></div><div class="gm-cap">CO&#8322;e / month</div></div>
           <div class="gs-metric"><div class="gm-num"><span id="gmKwh">0</span> <small>kWh</small></div><div class="gm-cap">Energy used</div></div>
           <div class="gs-metric"><div class="gm-num"><span id="gmWater">0</span> <small>L</small></div><div class="gm-cap">Water (cooling)</div></div>
         </div>
-
-        <div class="gs-equiv">
-          <div class="ge-head">That's equivalent to&hellip;</div>
-          <div class="ge-tabs" role="tablist" aria-label="Equivalence">
-            <button class="ge-tab is-active" data-eq="trees" type="button">&#127794; Trees</button>
-            <button class="ge-tab" data-eq="drive" type="button">&#128663; Driving</button>
-            <button class="ge-tab" data-eq="phone" type="button">&#128241; Phone charges</button>
-          </div>
-          <div class="ge-viz" id="geViz">
-            <div class="ge-icons" id="geIcons"></div>
-            <div class="ge-cap" id="geCap"></div>
-          </div>
-        </div>
-
-        <div class="gs-whatif">
-          <label class="switch"><input type="checkbox" id="whatif" /><span class="track"></span><span class="wi-label">Route 40% of summarization to a smaller model</span></label>
-          <span class="wi-out" id="wiOut">Try it &mdash; watch the score climb</span>
+        <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="b2c.html#green" class="btn btn-green">See it for individuals &rarr;</a>
+          <a href="b2b.html#optimize" class="btn btn-ghost">See it for teams &rarr;</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== OPTIMIZATION CONTROL PANEL ===================== -->
-<section class="opti" id="optimize">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Optimize, live</span>
-      <h2>Flip a switch. Watch the bill drop.</h2>
-      <p>This is one real workload &mdash; a support assistant running 1.2M calls a month. Toggle the optimizations Toknlytics finds and watch spend, carbon and your Green Score recalculate in real time.</p>
-    </div>
-
-    <div class="optipanel">
-      <div class="op-controls">
-        <h3>Turn on optimizations</h3>
-        <div class="op-sub">Everything off = a typical un-tuned setup.</div>
-
-        <div class="op-toggle">
-          <label class="switch"><input type="checkbox" class="opt-sw" data-cut="0.38" data-score="16" /><span class="track"></span><span class="ot-txt"><b>Right-size models</b><span>Use a smaller model where it's good enough</span></span></label>
-          <span class="ot-save">&minus;38%</span>
-        </div>
-        <div class="op-toggle">
-          <label class="switch"><input type="checkbox" class="opt-sw" data-cut="0.22" data-score="10" /><span class="track"></span><span class="ot-txt"><b>Enable caching</b><span>Stop paying for repeat &amp; near-duplicate calls</span></span></label>
-          <span class="ot-save">&minus;22%</span>
-        </div>
-        <div class="op-toggle">
-          <label class="switch"><input type="checkbox" class="opt-sw" data-cut="0.14" data-score="8" /><span class="track"></span><span class="ot-txt"><b>Trim prompts</b><span>Compress bloated system &amp; context tokens</span></span></label>
-          <span class="ot-save">&minus;14%</span>
-        </div>
-        <div class="op-toggle">
-          <label class="switch"><input type="checkbox" class="opt-sw" data-cut="0.06" data-score="6" /><span class="track"></span><span class="ot-txt"><b>Batch off-peak</b><span>Shift non-urgent jobs to greener hours</span></span></label>
-          <span class="ot-save">&minus;6%</span>
-        </div>
-      </div>
-
-      <div class="op-result">
-        <div class="op-headline">
-          <div>
-            <div class="op-spend" id="opSpend">$8,400</div>
-            <div class="op-spend-cap">monthly spend &middot; <span class="op-spend-base" id="opBase">was $8,400</span></div>
-          </div>
-          <div class="op-grade-wrap">
-            <div class="op-grade" id="opGrade">C</div>
-            <div class="op-grade-cap">Green Score</div>
-          </div>
-        </div>
-
-        <div class="op-bar">
-          <div class="op-bar-top"><span>Spend vs baseline</span><span id="opSpendPct">100%</span></div>
-          <div class="op-bar-track"><i class="spend" id="opSpendBar"></i></div>
-        </div>
-        <div class="op-bar">
-          <div class="op-bar-top"><span>CO&#8322;e / month</span><span id="opCarbon">169 kg</span></div>
-          <div class="op-bar-track"><i class="carbon" id="opCarbonBar"></i></div>
-        </div>
-
-        <div class="op-save idle" id="opSave">Flip a switch to start saving &rarr;</div>
-        <a href="#start" class="btn btn-green" style="justify-content:center;">Find these savings in your org &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== TRY IT (live prompt analyzer) ===================== -->
-<section class="tryit" id="try">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Try it yourself</span>
-      <h2>Type a prompt. See its cost and carbon, live.</h2>
-      <p>Start typing &mdash; or load a sample. Toknlytics estimates the tokens, prices it across the major models, and grades its Green Score as you go.</p>
-    </div>
-    <div class="try-card">
-      <div class="try-left">
-        <label for="tryInput">Your prompt</label>
-        <div class="try-samples" id="trySamples">
-          <button type="button" data-sample="support">Support reply</button>
-          <button type="button" data-sample="code">Code generation</button>
-          <button type="button" data-sample="summary">Long summarization</button>
-        </div>
-        <textarea id="tryInput" placeholder="Start typing a prompt&hellip; e.g. &ldquo;You are a senior support agent. Given the full ticket history below, write a warm, detailed reply that resolves the customer's billing issue&hellip;&rdquo;"></textarea>
-        <p class="try-note">Estimates update as you type. Inside Toknlytics, every call is measured live across your real providers.</p>
-      </div>
-      <div class="try-right" id="tryRight">
-        <div class="try-empty" id="tryEmpty">Start typing or load a sample &rarr;</div>
-        <div class="try-live" id="tryLive" hidden>
-          <div class="try-rhead">
-            <div>
-              <span class="try-fw">Estimated for this prompt</span>
-              <span class="try-score"><span id="tryTokens">0</span><small>&nbsp;tokens</small></span>
-            </div>
-            <span class="badge eco" id="tryGrade">B</span>
-          </div>
-          <div class="tcost">
-            <div>
-              <div class="tc-label"><span class="tcm">GPT-4o</span><span class="tcc" id="costGpt">$0.000</span></div>
-              <div class="tc-track"><i class="g0" id="barGpt"></i></div>
-            </div>
-            <div>
-              <div class="tc-label"><span class="tcm">Claude Sonnet</span><span class="tcc" id="costClaude">$0.000</span></div>
-              <div class="tc-track"><i class="g1" id="barClaude"></i></div>
-            </div>
-            <div>
-              <div class="tc-label"><span class="tcm">Gemini Flash</span><span class="tcc" id="costGem">$0.000</span></div>
-              <div class="tc-track"><i class="g2" id="barGem"></i></div>
-            </div>
-          </div>
-          <div class="tsave" id="tSave"></div>
-          <a href="#start" class="btn btn-primary try-cta">Track this across your real apps &rarr;</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== FEATURES ===================== -->
-<section id="features">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">The platform</span>
-      <h2>Everything you need to measure &mdash; and optimize</h2>
-      <p>Analytics and the Green Score are free, forever. Optimization features unlock on a paid plan and pay for themselves.</p>
-    </div>
-
-    <div class="filters" id="featFilters" role="tablist" aria-label="Filter features">
-      <button class="chip is-active" data-filter="all" type="button">All</button>
-      <button class="chip" data-filter="free" type="button">Free</button>
-      <button class="chip" data-filter="pro" type="button">Paid</button>
-      <button class="chip" data-filter="analytics" type="button">Analytics</button>
-      <button class="chip" data-filter="optimization" type="button">Optimization</button>
-      <button class="chip" data-filter="sustainability" type="button">Sustainability</button>
-    </div>
-
-    <div class="feat-grid" id="featGrid">
-      <div class="feature featured" data-status="free" data-tags="analytics">
-        <span class="flag free">Free</span>
-        <div class="ic">&#128202;</div>
-        <h3>Multi-LLM Analytics</h3>
-        <div class="role">One dashboard, every provider</div>
-        <p>Unify usage, tokens, latency and spend across OpenAI, Anthropic, Gemini, Llama and more &mdash; broken down by app, model and team.</p>
-      </div>
-      <div class="feature featured" data-status="free" data-tags="sustainability">
-        <span class="flag free">Free</span>
-        <div class="ic">&#127807;</div>
-        <h3>Green Score</h3>
-        <div class="role">Environmental impact, scored</div>
-        <p>Turn token usage into CO&#8322;, energy and water metrics with a single letter grade &mdash; and clear actions to improve it.</p>
-      </div>
-      <div class="feature" data-status="free" data-tags="analytics">
-        <span class="flag free">Free</span>
-        <div class="ic">&#128176;</div>
-        <h3>Cost Explorer</h3>
-        <div class="role">Where every dollar goes</div>
-        <p>Slice spend by model, prompt, customer or feature. Spot the 20% of calls driving 80% of your bill.</p>
-      </div>
-      <div class="feature" data-status="pro" data-tags="optimization">
-        <span class="flag pro">Pro</span>
-        <div class="ic">&#9986;</div>
-        <h3>Prompt Optimizer</h3>
-        <div class="role">Trim without losing quality</div>
-        <p>Automatically compress bloated prompts and system messages &mdash; fewer tokens, same output, measured before/after.</p>
-      </div>
-      <div class="feature" data-status="pro" data-tags="optimization">
-        <span class="flag pro">Pro</span>
-        <div class="ic">&#128256;</div>
-        <h3>Smart Model Router</h3>
-        <div class="role">Right model, every call</div>
-        <p>Route each request to the cheapest model that meets your quality bar &mdash; with automatic fallback and guardrails.</p>
-      </div>
-      <div class="feature" data-status="pro" data-tags="optimization">
-        <span class="flag pro">Pro</span>
-        <div class="ic">&#9889;</div>
-        <h3>Cache Advisor</h3>
-        <div class="role">Stop paying twice</div>
-        <p>Detects repeat and near-duplicate calls and recommends caching strategies that cut spend and latency instantly.</p>
-      </div>
-      <div class="feature" data-status="free" data-tags="analytics">
-        <span class="flag free">Free</span>
-        <div class="ic">&#128276;</div>
-        <h3>Budget Alerts</h3>
-        <div class="role">No more bill surprises</div>
-        <p>Set spend and usage thresholds per app or team and get alerted in Slack or email before you blow the budget.</p>
-      </div>
-      <div class="feature" data-status="pro" data-tags="sustainability">
-        <span class="flag pro">Pro</span>
-        <div class="ic">&#127757;</div>
-        <h3>Carbon Reporting</h3>
-        <div class="role">ESG-ready exports</div>
-        <p>Generate auditable carbon and energy reports for your AI footprint &mdash; ready for sustainability and ESG disclosures.</p>
-      </div>
-      <div class="feature" data-status="free" data-tags="analytics">
-        <span class="flag free">Free</span>
-        <div class="ic">&#129513;</div>
-        <h3>API &amp; SDK</h3>
-        <div class="role">Drop-in, in minutes</div>
-        <p>A lightweight proxy and SDKs for Python, Node and more &mdash; or upload usage exports. Read-only and privacy-first.</p>
-      </div>
-    </div>
-    <p class="filter-empty" id="filterEmpty" hidden>Nothing in this category yet &mdash; <a href="#start">tell us what you need &rarr;</a></p>
-  </div>
-</section>
-
-<!-- ===================== SAVINGS CALCULATOR ===================== -->
-<section class="roi" id="savings">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">The math</span>
-      <h2>See what you'd save</h2>
-      <p>Move the sliders to your setup. This is what optimization hands back every month &mdash; in dollars and in carbon.</p>
-    </div>
-
-    <div class="roi-card">
-      <div class="roi-inputs">
-        <div class="roi-field">
-          <div class="roi-row"><label for="spend">Monthly LLM spend</label><output id="spendOut">$6,000</output></div>
-          <input type="range" id="spend" min="200" max="100000" step="200" value="6000" />
-        </div>
-        <div class="roi-field">
-          <div class="roi-row"><label for="over">Calls on an oversized model</label><output id="overOut">45%</output></div>
-          <input type="range" id="over" min="5" max="90" value="45" />
-        </div>
-        <div class="roi-field">
-          <div class="roi-row"><label for="save">Avg saving when right-sized</label><output id="saveOut">55%</output></div>
-          <input type="range" id="save" min="20" max="80" value="55" />
-        </div>
-      </div>
-
-      <div class="roi-results">
-        <div class="roi-stat big">
-          <span class="roi-num">$<span id="moMoney">0</span> <small>/ mo</small></span>
-          <span class="roi-cap">Estimated spend reclaimed</span>
-        </div>
-        <div class="roi-stat">
-          <span class="roi-num">$<span id="yrMoney">0</span></span>
-          <span class="roi-cap">Per year</span>
-        </div>
-        <div class="roi-stat eco">
-          <span class="roi-num"><span id="co2">0</span> <small>kg CO&#8322;e / yr</small></span>
-          <span class="roi-cap">Carbon avoided &middot; &#8776; <span id="trees">0</span> trees planted</span>
-        </div>
-        <a href="#start" class="btn btn-green btn-lg roi-cta">Start free &amp; find your savings &rarr;</a>
-        <p class="roi-note">Estimates for illustration. Toknlytics measures your real numbers in minutes.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== HOW IT WORKS ===================== -->
-<section class="how" id="how">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow light">How it works</span>
-      <h2 style="color:#fff;">Live in minutes, not months</h2>
-      <p>No rip-and-replace. Toknlytics sits alongside the LLMs you already call.</p>
-    </div>
-    <div class="steps">
-      <div class="step"><div class="num">1</div><h3>Connect</h3><p>Add your API keys or drop in a usage export. Read-only and privacy-first &mdash; two minutes.</p></div>
-      <div class="step"><div class="num">2</div><h3>See everything</h3><p>Unified analytics across every LLM, plus your Green Score &mdash; free, forever.</p></div>
-      <div class="step"><div class="num">3</div><h3>Find the waste</h3><p>We pinpoint oversized models, bloated prompts and missed caching &mdash; ranked by impact.</p></div>
-      <div class="step"><div class="num">4</div><h3>Optimize &amp; save</h3><p>Turn on optimization to cut spend and carbon automatically &mdash; and watch your score climb.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== PRICING ===================== -->
-<section class="pricing" id="pricing">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow">Pricing</span>
-      <h2>Free to measure. Pay to optimize.</h2>
-      <p>Analytics and the Green Score are free for everyone, forever. Upgrade when you're ready to start saving.</p>
-    </div>
-
-    <div style="text-align:center;">
-      <div class="bill-toggle" id="billToggle">
-        <button class="is-active" data-bill="monthly" type="button">Monthly</button>
-        <button data-bill="annual" type="button">Annual<span class="save">&minus;20%</span></button>
-      </div>
-    </div>
-
-    <div class="price-grid">
-      <div class="tier">
-        <h3>Free</h3>
-        <div class="tier-for">For anyone using AI</div>
-        <div class="tier-price">$0</div>
-        <div class="tier-note">Forever. No card.</div>
-        <a href="#start" class="btn btn-outline">Start free</a>
-        <ul>
-          <li><span class="tk">&#10003;</span> <span>Unified analytics, <b>all LLMs</b></span></li>
-          <li><span class="tk">&#10003;</span> <span><b>Green Score</b> on every model</span></li>
-          <li><span class="tk">&#10003;</span> <span>Cost explorer &amp; budget alerts</span></li>
-          <li><span class="tk">&#10003;</span> <span>7-day usage history</span></li>
-          <li><span class="tk">&#10003;</span> <span>1 seat</span></li>
-        </ul>
-      </div>
-
-      <div class="tier pop">
-        <span class="pop-flag">Most popular</span>
-        <h3>Pro</h3>
-        <div class="tier-for">For individuals &amp; power users</div>
-        <div class="tier-price">$<span id="pricePro">39</span><small>/mo</small></div>
-        <div class="tier-note" id="notePro">Billed monthly</div>
-        <a href="#start" class="btn btn-primary">Start Pro</a>
-        <ul>
-          <li><span class="tk">&#10003;</span> <span>Everything in <b>Free</b></span></li>
-          <li><span class="tk">&#10003;</span> <span><b>Prompt Optimizer</b></span></li>
-          <li><span class="tk">&#10003;</span> <span><b>Smart Model Router</b></span></li>
-          <li><span class="tk">&#10003;</span> <span><b>Cache Advisor</b></span></li>
-          <li><span class="tk">&#10003;</span> <span>Unlimited history</span></li>
-        </ul>
-      </div>
-
-      <div class="tier">
-        <h3>Business</h3>
-        <div class="tier-for">For teams</div>
-        <div class="tier-price">$<span id="priceBiz">199</span><small>/mo</small></div>
-        <div class="tier-note" id="noteBiz">Billed monthly</div>
-        <a href="#start" class="btn btn-outline">Start Business</a>
-        <ul>
-          <li><span class="tk">&#10003;</span> <span>Everything in <b>Pro</b></span></li>
-          <li><span class="tk">&#10003;</span> <span>Team dashboards</span></li>
-          <li><span class="tk">&#10003;</span> <span><b>Carbon reporting</b> &amp; ESG exports</span></li>
-          <li><span class="tk">&#10003;</span> <span>Budget controls &amp; SSO-lite</span></li>
-          <li><span class="tk">&#10003;</span> <span>Up to 10 seats</span></li>
-        </ul>
-      </div>
-
-      <div class="tier">
-        <h3>Enterprise</h3>
-        <div class="tier-for">For scale &amp; compliance</div>
-        <div class="tier-price"><span class="custom">Custom</span></div>
-        <div class="tier-note">Volume pricing</div>
-        <a href="mailto:hello@toknlytics.com?subject=Toknlytics%20Enterprise" class="btn btn-outline">Talk to sales</a>
-        <ul>
-          <li><span class="tk">&#10003;</span> <span>Everything in <b>Business</b></span></li>
-          <li><span class="tk">&#10003;</span> <span>SSO / SAML &amp; SCIM</span></li>
-          <li><span class="tk">&#10003;</span> <span>On-prem / VPC proxy</span></li>
-          <li><span class="tk">&#10003;</span> <span>Dedicated support &amp; SLA</span></li>
-          <li><span class="tk">&#10003;</span> <span>Unlimited seats</span></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== START / CTA ===================== -->
+<!-- START -->
 <section class="start" id="start">
   <div class="wrap">
-    <div class="start-card">
+    <div class="start-card reveal">
       <span class="eyebrow eco light" style="justify-content:center;">Start free</span>
       <h2>See your AI spend &mdash; and your Green Score &mdash; in 2 minutes</h2>
       <p>Connect your first provider and get your unified dashboard and environmental score free. No credit card, no trial clock.</p>
       <form class="start-form" id="startForm" novalidate>
-        <input type="email" id="startEmail" placeholder="you@company.com" aria-label="Work email" required />
+        <input type="email" id="startEmail" placeholder="you@company.com" aria-label="Email" required />
         <button type="submit" class="btn btn-primary btn-lg">Start free &rarr;</button>
       </form>
       <div class="start-success" id="startSuccess">&#127807; You're in &mdash; check your inbox for your setup link. (Demo: nothing was actually sent.)</div>
       <div class="start-meta">Free forever &middot; All major LLMs &middot; Read-only &amp; privacy-first</div>
-      <div class="start-alt">Want a walkthrough first? <a href="mailto:hello@toknlytics.com?subject=Toknlytics%20demo">Book a demo &rarr;</a></div>
+      <div class="start-alt">Not sure which fits? <a href="b2b.html">For teams</a> &middot; <a href="b2c.html">For individuals</a></div>
     </div>
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
 <footer>
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a href="#top" class="brand" aria-label="Toknlytics home">
+        <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
           <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
             <defs><linearGradient id="tkFoot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset="1" stop-color="#2dd4ff"/></linearGradient></defs>
             <rect width="32" height="32" rx="9" fill="url(#tkFoot)"/>
@@ -1044,539 +203,44 @@
             <rect x="14.3" y="12" width="3.4" height="12" rx="1.4" fill="#fff"/>
             <rect x="20.6" y="8" width="3.4" height="16" rx="1.4" fill="#fff" opacity=".6"/>
           </svg>
-          <span class="brand-name">Tokn<b>lytics</b></span>
+          <span class="brand-name">tokanalyzr<b>.ai</b></span>
         </a>
         <p>AI token analytics and a Green Score for every model you run. Free to measure. Pay to optimize.</p>
       </div>
       <div class="foot-col">
         <h5>Product</h5>
-        <a href="#value">Why it's free</a>
+        <a href="b2b.html">For teams</a>
+        <a href="b2c.html">For individuals</a>
         <a href="#green">Green Score</a>
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#how">How it works</a>
       </div>
       <div class="foot-col">
-        <h5>Resources</h5>
-        <a href="#try">Prompt analyzer</a>
-        <a href="#optimize">Optimization demo</a>
-        <a href="#savings">Savings calculator</a>
-        <a href="mailto:hello@toknlytics.com">Contact</a>
-      </div>
-      <div class="foot-col">
-        <h5>Get started</h5>
+        <h5>Plans</h5>
+        <a href="b2c.html#pricing">Individual pricing</a>
+        <a href="b2b.html#pricing">Team pricing</a>
         <a href="#start">Start free</a>
-        <a href="mailto:hello@toknlytics.com?subject=Toknlytics%20demo">Book a demo</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="mailto:hello@tokanalyzr.ai">Contact</a>
+        <a href="mailto:hello@tokanalyzr.ai?subject=tokanalyzr.ai%20demo">Book a demo</a>
       </div>
     </div>
     <div class="foot-bottom">
-      <span>&copy; <span id="yr"></span> Toknlytics. All rights reserved.</span>
+      <span>&copy; <span id="yr"></span> tokanalyzr.ai. All rights reserved.</span>
       <span>Token analytics &middot; Green Score &middot; Built for every LLM</span>
     </div>
   </div>
 </footer>
 
-<!-- ===================== STICKY BAR ===================== -->
 <div class="stickybar" id="stickyBar" role="region" aria-label="Start free">
   <div class="stickybar-inner">
     <span class="stickybar-dot" aria-hidden="true"></span>
-    <span class="stickybar-txt"><b>Analytics are free forever.</b><span class="long"> See your AI spend &amp; Green Score in 2 minutes &mdash;</span> <span class="hl">no card.</span></span>
+    <span class="stickybar-txt"><b>Free to measure.</b><span class="long"> See your AI spend &amp; Green Score in 2 minutes &mdash;</span> <span class="hl">no card.</span></span>
     <a href="#start" class="btn btn-primary">Start free &rarr;</a>
     <button class="stickybar-x" id="stickyBarX" type="button" aria-label="Dismiss">&times;</button>
   </div>
 </div>
 
-<script>
-  // ---------- shared helpers ----------
-  function fmtInt(n) { return Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); }
-  function tokShort(n) {
-    if (n >= 1000000) return (n / 1000000).toFixed(2).replace(/\.?0+$/, "") + "M";
-    if (n >= 1000) return (n / 1000).toFixed(1).replace(/\.0$/, "") + "k";
-    return String(Math.round(n));
-  }
-  var REDUCE = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  // Tween a numeric element from its current value to target.
-  function tween(el, from, to, dur, render, key) {
-    el["_t" + (key||"")] = (el["_t" + (key||"")] || 0) + 1;
-    var myId = el["_t" + (key||"")];
-    var t0 = (window.performance && performance.now) ? performance.now() : Date.now();
-    var raf = window.requestAnimationFrame || function (fn) { return setTimeout(function () { fn(Date.now()); }, 30); };
-    if (REDUCE || dur <= 0) { render(to); return; }
-    render(from);
-    // Guaranteed final value even if rAF is paused (e.g. backgrounded tab).
-    setTimeout(function () { if (el["_t" + (key||"")] === myId) render(to); }, dur + 60);
-    (function step(now) {
-      if (el["_t" + (key||"")] !== myId) return;
-      var t = now || ((window.performance && performance.now) ? performance.now() : Date.now());
-      var p = Math.min(1, (t - t0) / dur);
-      var e = 1 - Math.pow(1 - p, 3);
-      render(from + (to - from) * e);
-      if (p < 1) raf(step);
-    })(t0);
-  }
-
-  function grade(score) {
-    if (score >= 90) return "A";
-    if (score >= 85) return "A−";
-    if (score >= 80) return "B+";
-    if (score >= 74) return "B";
-    if (score >= 67) return "B−";
-    if (score >= 60) return "C+";
-    if (score >= 50) return "C";
-    return "D";
-  }
-
-  // Year
-  document.getElementById("yr").textContent = new Date().getFullYear();
-
-  // Mobile menu
-  var menuBtn = document.getElementById("menuBtn");
-  var navLinks = document.getElementById("navLinks");
-  menuBtn.addEventListener("click", function () { navLinks.classList.toggle("open"); });
-  navLinks.addEventListener("click", function (e) { if (e.target.tagName === "A") navLinks.classList.remove("open"); });
-
-  // ---------- Hero: live API request stream ----------
-  (function () {
-    var card = document.getElementById("liveConsole");
-    if (!card) return;
-    var feed = document.getElementById("consFeed");
-    var elTokens = document.getElementById("csTokens");
-    var elSpend = document.getElementById("csSpend");
-    var elGrade = document.getElementById("csGrade");
-    var scope = document.getElementById("consScope");
-    var sparkLine = document.getElementById("sparkLine");
-    var sparkArea = document.getElementById("sparkArea");
-
-    var SPARK = {
-      all:       "M0,46 L29,42 L58,45 L87,34 L116,40 L145,27 L174,33 L203,22 L232,28 L261,16 L290,24 L320,12",
-      openai:    "M0,43 L29,45 L58,38 L87,40 L116,29 L145,35 L174,24 L203,30 L232,19 L261,26 L290,15 L320,19",
-      anthropic: "M0,50 L29,47 L58,49 L87,42 L116,44 L145,38 L174,40 L203,35 L232,37 L261,31 L290,33 L320,29",
-      gemini:    "M0,52 L29,50 L58,51 L87,47 L116,49 L145,45 L174,46 L203,43 L232,44 L261,41 L290,42 L320,39"
-    };
-    var PROV = {
-      all:       { scope: "across all providers · sampled", tokens: 1240000, spend: 312, grade: "B+",
-                   models: [["GPT-4o",0.0265,"warn"],["Claude Sonnet",0.0150,"warn"],["Gemini 1.5 Flash",0.0031,"eco"],["GPT-4o mini",0.0044,"eco"],["Claude Haiku",0.0035,"eco"],["Llama 3.1 70B",0.0009,"eco"],["o1-mini",0.0190,"hot"]] },
-      openai:    { scope: "OpenAI · sampled", tokens: 720000, spend: 198, grade: "B",
-                   models: [["GPT-4o",0.0265,"warn"],["GPT-4o mini",0.0044,"eco"],["o1-mini",0.0190,"hot"],["GPT-3.5 Turbo",0.0018,"eco"]] },
-      anthropic: { scope: "Anthropic · sampled", tokens: 410000, spend: 86, grade: "A−",
-                   models: [["Claude Opus",0.0900,"hot"],["Claude Sonnet",0.0150,"warn"],["Claude Haiku",0.0035,"eco"]] },
-      gemini:    { scope: "Gemini · sampled", tokens: 110000, spend: 28, grade: "A",
-                   models: [["Gemini 1.5 Pro",0.0125,"warn"],["Gemini 1.5 Flash",0.0031,"eco"],["Gemini Nano",0.0006,"eco"]] }
-    };
-    var current = "all";
-    var dispTokens = 0, dispSpend = 0;
-
-    function drawSpark(prov, animate) {
-      var d = SPARK[prov];
-      sparkLine.setAttribute("d", d);
-      sparkArea.setAttribute("d", d + " L320,60 L0,60 Z");
-      if (animate && !REDUCE && sparkLine.getTotalLength) {
-        var len = sparkLine.getTotalLength();
-        sparkLine.style.transition = "none";
-        sparkLine.style.strokeDasharray = len;
-        sparkLine.style.strokeDashoffset = len;
-        // force reflow
-        void sparkLine.getBoundingClientRect();
-        sparkLine.style.transition = "stroke-dashoffset 1.1s ease";
-        sparkLine.style.strokeDashoffset = "0";
-      } else {
-        sparkLine.style.strokeDasharray = "none";
-        sparkLine.style.strokeDashoffset = "0";
-      }
-    }
-
-    function setProvider(prov, animate) {
-      current = prov;
-      var p = PROV[prov];
-      scope.textContent = p.scope;
-      elGrade.textContent = p.grade;
-      var fromT = dispTokens, fromS = dispSpend;
-      dispTokens = p.tokens; dispSpend = p.spend;
-      tween(elTokens, fromT, dispTokens, animate ? 700 : 0, function (v) { elTokens.textContent = tokShort(v); }, "tok");
-      tween(elSpend, fromS, dispSpend, animate ? 700 : 0, function (v) { elSpend.textContent = "$" + fmtInt(v); }, "spend");
-      drawSpark(prov, animate);
-      feed.innerHTML = "";
-    }
-
-    function makeCall() {
-      var p = PROV[current];
-      var m = p.models[Math.floor(Math.random() * p.models.length)];
-      var tokens = Math.round(4000 + Math.random() * 34000);
-      var cost = tokens / 1000 * m[1];
-      return { model: m[0], dot: m[2], tokens: tokens, cost: cost };
-    }
-
-    function pushRow(c) {
-      var row = document.createElement("div");
-      row.className = "feed-row in";
-      row.innerHTML =
-        '<span class="fr-dot ' + c.dot + '"></span>' +
-        '<span class="fr-model">' + c.model + '</span>' +
-        '<span class="fr-tok">' + tokShort(c.tokens) + ' tok</span>' +
-        '<span class="fr-cost">$' + c.cost.toFixed(2) + '</span>';
-      feed.insertBefore(row, feed.firstChild);
-      while (feed.children.length > 5) feed.removeChild(feed.lastChild);
-      // bump aggregate counters
-      var fromT = dispTokens, fromS = dispSpend;
-      dispTokens += c.tokens; dispSpend += c.cost;
-      tween(elTokens, fromT, dispTokens, 450, function (v) { elTokens.textContent = tokShort(v); }, "tok");
-      tween(elSpend, fromS, dispSpend, 450, function (v) { elSpend.textContent = "$" + fmtInt(v); }, "spend");
-    }
-
-    // provider filter chips
-    var chips = Array.prototype.slice.call(card.querySelectorAll(".cons-chip"));
-    chips.forEach(function (chip) {
-      chip.addEventListener("click", function () {
-        chips.forEach(function (c) { c.classList.remove("is-active"); });
-        chip.classList.add("is-active");
-        setProvider(chip.getAttribute("data-prov"), true);
-        if (!REDUCE) { for (var i = 0; i < 3; i++) pushRow(makeCall()); }
-      });
-    });
-
-    if (REDUCE) {
-      setProvider("all", false);
-      for (var i = 0; i < 4; i++) pushRow(makeCall());
-      return;
-    }
-
-    setProvider("all", false);
-
-    var timer = null;
-    function run() { if (timer) return; timer = setInterval(function () { pushRow(makeCall()); }, 1100); }
-    function halt() { if (timer) { clearInterval(timer); timer = null; } }
-
-    var everSeen = false;
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) { everSeen = true; drawSpark(current, true); for (var k = 0; k < 3; k++) pushRow(makeCall()); run(); }
-          else if (everSeen) { halt(); }
-        });
-      }, { threshold: 0.25 });
-      io.observe(card);
-      setTimeout(function () { if (!everSeen) { drawSpark(current, true); for (var k = 0; k < 3; k++) pushRow(makeCall()); run(); } }, 1000);
-    } else {
-      drawSpark(current, true); for (var k = 0; k < 3; k++) pushRow(makeCall()); run();
-    }
-  })();
-
-  // ---------- Green Score: gauge + live metrics + equivalence + what-if ----------
-  (function () {
-    var card = document.getElementById("greenCard");
-    if (!card) return;
-    var ring = document.getElementById("gsProg");
-    var gradeEl = document.getElementById("gsGrade");
-    var scoreEl = document.getElementById("gsScoreNum");
-    var co2El = document.getElementById("gmCo2");
-    var kwhEl = document.getElementById("gmKwh");
-    var waterEl = document.getElementById("gmWater");
-    var geIcons = document.getElementById("geIcons");
-    var geCap = document.getElementById("geCap");
-    var whatif = document.getElementById("whatif");
-    var wiOut = document.getElementById("wiOut");
-
-    var R = 76, C = 2 * Math.PI * R;
-    ring.style.strokeDasharray = C.toFixed(1);
-    ring.style.strokeDashoffset = C.toFixed(1);
-
-    // base (un-optimized) vs what-if (optimized) figures
-    var STATE = {
-      base: { score: 80, co2: 182, kwh: 412, water: 1940 },
-      opt:  { score: 88, co2: 109, kwh: 247, water: 1164 }
-    };
-    var mode = "base";
-
-    function renderGauge(s, animate) {
-      ring.style.strokeDashoffset = (C * (1 - s.score / 100)).toFixed(1);
-      gradeEl.textContent = grade(s.score);
-      tween(scoreEl, +scoreEl.textContent || 0, s.score, animate ? 900 : 0, function (v) { scoreEl.textContent = Math.round(v); }, "gsc");
-    }
-    function renderMetrics(s, animate) {
-      tween(co2El, +(co2El.textContent.replace(/,/g, "")) || 0, s.co2, animate ? 900 : 0, function (v) { co2El.textContent = fmtInt(v); }, "co2");
-      tween(kwhEl, +(kwhEl.textContent.replace(/,/g, "")) || 0, s.kwh, animate ? 900 : 0, function (v) { kwhEl.textContent = fmtInt(v); }, "kwh");
-      tween(waterEl, +(waterEl.textContent.replace(/,/g, "")) || 0, s.water, animate ? 900 : 0, function (v) { waterEl.textContent = fmtInt(v); }, "wat");
-    }
-
-    // equivalence
-    var curEq = "trees";
-    function eqData(co2) {
-      return {
-        trees: { icon: "🌳", count: Math.max(1, Math.round(co2 / 21)), cap: function (n) { return "<b>" + co2 + " kg CO₂e</b> ≈ " + n + " trees working for a month to absorb it."; } },
-        drive: { icon: "🚗", count: Math.max(1, Math.round(co2 * 4 / 100)), cap: function () { return "<b>" + co2 + " kg CO₂e</b> ≈ " + fmtInt(co2 * 4) + " km driven in an average car."; } },
-        phone: { icon: "📱", count: Math.max(1, Math.round(co2 * 121 / 1000)), cap: function () { return "<b>" + co2 + " kg CO₂e</b> ≈ " + fmtInt(co2 * 121) + " smartphone charges."; } }
-      };
-    }
-    function renderEq(animate) {
-      var co2 = STATE[mode].co2;
-      var d = eqData(co2)[curEq];
-      var n = Math.min(d.count, 60);
-      var html = "";
-      for (var i = 0; i < n; i++) {
-        html += '<span style="animation-delay:' + (animate && !REDUCE ? (i * 22) : 0) + 'ms">' + d.icon + '</span>';
-      }
-      if (d.count > n) html += '<span style="animation-delay:0ms">+' + (d.count - n) + '</span>';
-      geIcons.innerHTML = html;
-      geCap.innerHTML = d.cap(d.count);
-    }
-
-    var eqTabs = Array.prototype.slice.call(card.querySelectorAll(".ge-tab"));
-    eqTabs.forEach(function (tab) {
-      tab.addEventListener("click", function () {
-        eqTabs.forEach(function (t) { t.classList.remove("is-active"); });
-        tab.classList.add("is-active");
-        curEq = tab.getAttribute("data-eq");
-        renderEq(true);
-      });
-    });
-
-    whatif.addEventListener("change", function () {
-      mode = whatif.checked ? "opt" : "base";
-      var s = STATE[mode];
-      renderGauge(s, true);
-      renderMetrics(s, true);
-      renderEq(true);
-      wiOut.innerHTML = whatif.checked
-        ? "Green Score <b>B+ → A−</b> · −0.4t CO₂e/yr, no quality drop"
-        : "Try it — watch the score climb";
-    });
-
-    function reveal(animate) {
-      renderGauge(STATE[mode], animate);
-      renderMetrics(STATE[mode], animate);
-      renderEq(animate);
-    }
-
-    if (REDUCE) { reveal(false); return; }
-
-    var everSeen = false;
-    if ("IntersectionObserver" in window) {
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) { if (e.isIntersecting && !everSeen) { everSeen = true; reveal(true); } });
-      }, { threshold: 0.3 });
-      io.observe(card);
-      setTimeout(function () { if (!everSeen) { everSeen = true; reveal(true); } }, 1200);
-    } else { reveal(true); }
-  })();
-
-  // ---------- Optimization control panel ----------
-  (function () {
-    var sws = Array.prototype.slice.call(document.querySelectorAll(".opt-sw"));
-    if (!sws.length) return;
-    var BASE_SPEND = 8400, BASE_CARBON = 169, BASE_SCORE = 50;
-    var spendEl = document.getElementById("opSpend");
-    var baseEl = document.getElementById("opBase");
-    var gradeEl = document.getElementById("opGrade");
-    var spendBar = document.getElementById("opSpendBar");
-    var spendPct = document.getElementById("opSpendPct");
-    var carbonEl = document.getElementById("opCarbon");
-    var carbonBar = document.getElementById("opCarbonBar");
-    var saveEl = document.getElementById("opSave");
-    var prevSpend = BASE_SPEND;
-
-    function recalc() {
-      var factor = 1, scoreBoost = 0, anyOn = false;
-      sws.forEach(function (sw) {
-        if (sw.checked) { factor *= (1 - parseFloat(sw.getAttribute("data-cut"))); scoreBoost += parseFloat(sw.getAttribute("data-score")); anyOn = true; }
-      });
-      var spend = BASE_SPEND * factor;
-      var carbon = BASE_CARBON * factor;
-      var score = Math.min(94, BASE_SCORE + scoreBoost);
-      var pct = factor * 100;
-
-      tween(spendEl, prevSpend, spend, 500, function (v) { spendEl.textContent = "$" + fmtInt(v); }, "sp");
-      prevSpend = spend;
-      baseEl.textContent = anyOn ? ("was $" + fmtInt(BASE_SPEND)) : "baseline";
-      baseEl.style.visibility = anyOn ? "visible" : "hidden";
-      gradeEl.textContent = grade(score);
-      spendBar.style.width = pct.toFixed(1) + "%";
-      spendPct.textContent = Math.round(pct) + "%";
-      carbonEl.textContent = fmtInt(carbon) + " kg";
-      carbonBar.style.width = pct.toFixed(1) + "%";
-
-      if (anyOn) {
-        var saved = BASE_SPEND - spend;
-        var pctSaved = Math.round((1 - factor) * 100);
-        saveEl.classList.remove("idle");
-        saveEl.innerHTML = "Saving <b>$" + fmtInt(saved) + "/mo</b> (" + pctSaved + "%) · " + fmtInt((BASE_CARBON - carbon) * 12) + " kg CO₂e/yr avoided";
-      } else {
-        saveEl.classList.add("idle");
-        saveEl.innerHTML = "Flip a switch to start saving &rarr;";
-      }
-    }
-    sws.forEach(function (sw) { sw.addEventListener("change", recalc); });
-    // initial bars
-    spendBar.style.width = "100%"; carbonBar.style.width = "100%";
-    recalc();
-  })();
-
-  // ---------- Try it: live prompt analyzer ----------
-  (function () {
-    var input = document.getElementById("tryInput");
-    var samplesWrap = document.getElementById("trySamples");
-    if (!input || !samplesWrap) return;
-    var empty = document.getElementById("tryEmpty");
-    var live = document.getElementById("tryLive");
-    var tokEl = document.getElementById("tryTokens");
-    var gradeEl = document.getElementById("tryGrade");
-    var tSave = document.getElementById("tSave");
-    var els = {
-      gpt: [document.getElementById("costGpt"), document.getElementById("barGpt"), 0.0265],
-      claude: [document.getElementById("costClaude"), document.getElementById("barClaude"), 0.0150],
-      gem: [document.getElementById("costGem"), document.getElementById("barGem"), 0.0031]
-    };
-
-    // Samples carry a realistic total token count (prompt + the implied attached
-    // context: ticket history, the 600-line module, the 40-page report).
-    var SAMPLES = {
-      support: { tokens: 1450, text: "You are a senior support agent for a SaaS billing product. Given the full ticket history and the customer's plan details below, write a warm, thorough reply that resolves their double-charge issue, explains the refund timeline, and offers a goodwill credit.\n\n[+ full ticket history and account context attached]" },
-      code: { tokens: 3850, text: "You are an expert TypeScript engineer. Given this 600-line module and its failing tests, refactor it for readability, fix the bug causing the race condition, add JSDoc to every export, and return the full updated file with no omissions.\n\n[+ 600-line source module and test suite attached]" },
-      summary: { tokens: 8600, text: "Summarize the attached 40-page quarterly report into an executive brief. Preserve every financial figure, list all risks verbatim, and produce a section-by-section breakdown with key quotes from the leadership commentary. Then translate the brief into French and Spanish.\n\n[+ 40-page quarterly report attached]" }
-    };
-
-    function tokenGrade(tokens) {
-      if (tokens <= 600) return ["A", "eco"];
-      if (tokens <= 1200) return ["B+", "eco"];
-      if (tokens <= 2500) return ["B", "warn"];
-      if (tokens <= 5000) return ["C+", "warn"];
-      if (tokens <= 9000) return ["C", "miss"];
-      return ["D", "miss"];
-    }
-
-    var prevTok = 0;
-    function update(animate, overrideTokens) {
-      var text = input.value.trim();
-      if (!text) { empty.hidden = false; live.hidden = true; prevTok = 0; return; }
-      empty.hidden = true; live.hidden = false;
-      var tokens = overrideTokens || Math.max(1, Math.round(text.length / 4) + 8); // rough estimate + overhead
-      tween(tokEl, prevTok, tokens, animate ? 500 : 0, function (v) { tokEl.textContent = fmtInt(v); }, "tk");
-      prevTok = tokens;
-      var g = tokenGrade(tokens);
-      gradeEl.textContent = g[0]; gradeEl.className = "badge " + g[1];
-      var costs = {};
-      var maxCost = tokens / 1000 * els.gpt[2];
-      Object.keys(els).forEach(function (k) {
-        var c = tokens / 1000 * els[k][2];
-        costs[k] = c;
-        els[k][0].textContent = "$" + c.toFixed(c < 0.1 ? 4 : 3);
-        els[k][1].style.width = (maxCost ? (c / maxCost * 100) : 0).toFixed(1) + "%";
-      });
-      var savePct = Math.round((1 - costs.gem / costs.gpt) * 100);
-      tSave.innerHTML = "Routing this to <b>Gemini Flash</b> instead of GPT-4o saves <b>" + savePct + "%</b> per call.";
-    }
-
-    var sampleBtns = Array.prototype.slice.call(samplesWrap.querySelectorAll("button"));
-    sampleBtns.forEach(function (b) {
-      b.addEventListener("click", function () {
-        sampleBtns.forEach(function (x) { x.classList.remove("is-active"); });
-        b.classList.add("is-active");
-        var s = SAMPLES[b.getAttribute("data-sample")];
-        input.value = s.text;
-        update(true, s.tokens);
-      });
-    });
-    input.addEventListener("input", function () {
-      sampleBtns.forEach(function (x) { x.classList.remove("is-active"); });
-      update(false);
-    });
-  })();
-
-  // ---------- Features filter ----------
-  (function () {
-    var chips = Array.prototype.slice.call(document.querySelectorAll("#featFilters .chip"));
-    var items = Array.prototype.slice.call(document.querySelectorAll("#featGrid .feature"));
-    var empty = document.getElementById("filterEmpty");
-    if (!chips.length || !items.length) return;
-    function matches(item, f) {
-      if (f === "all") return true;
-      if (f === "free" || f === "pro") return item.getAttribute("data-status") === f;
-      return (item.getAttribute("data-tags") || "").split(/\s+/).indexOf(f) !== -1;
-    }
-    function applyFilter(f) {
-      var shown = 0;
-      items.forEach(function (item) {
-        if (matches(item, f)) { item.classList.remove("filtered-out"); item.classList.add("fade-in"); shown++; }
-        else { item.classList.add("filtered-out"); item.classList.remove("fade-in"); }
-      });
-      if (empty) empty.hidden = shown !== 0;
-    }
-    chips.forEach(function (chip) {
-      chip.addEventListener("click", function () {
-        chips.forEach(function (c) { c.classList.remove("is-active"); });
-        chip.classList.add("is-active");
-        applyFilter(chip.getAttribute("data-filter"));
-      });
-    });
-  })();
-
-  // ---------- Savings calculator ----------
-  (function () {
-    var spend = document.getElementById("spend"), over = document.getElementById("over"), save = document.getElementById("save");
-    if (!spend || !over || !save) return;
-    var spendOut = document.getElementById("spendOut"), overOut = document.getElementById("overOut"), saveOut = document.getElementById("saveOut");
-    var moMoney = document.getElementById("moMoney"), yrMoney = document.getElementById("yrMoney"), co2 = document.getElementById("co2"), trees = document.getElementById("trees");
-    function calc() {
-      var s = +spend.value, o = +over.value, v = +save.value;
-      spendOut.textContent = "$" + fmtInt(s); overOut.textContent = o + "%"; saveOut.textContent = v + "%";
-      var mo = s * (o / 100) * (v / 100), yr = mo * 12;
-      moMoney.textContent = fmtInt(mo); yrMoney.textContent = fmtInt(yr);
-      var kg = yr * 0.6; co2.textContent = fmtInt(kg); trees.textContent = fmtInt(kg / 21);
-    }
-    [spend, over, save].forEach(function (el) { el.addEventListener("input", calc); });
-    calc();
-  })();
-
-  // ---------- Pricing toggle ----------
-  (function () {
-    var toggle = document.getElementById("billToggle");
-    if (!toggle) return;
-    var btns = Array.prototype.slice.call(toggle.querySelectorAll("button"));
-    var pricePro = document.getElementById("pricePro"), priceBiz = document.getElementById("priceBiz");
-    var notePro = document.getElementById("notePro"), noteBiz = document.getElementById("noteBiz");
-    var PRICES = { monthly: { pro: 39, biz: 199, note: "Billed monthly" }, annual: { pro: 31, biz: 159, note: "Per month, billed annually" } };
-    function setBill(mode) {
-      var p = PRICES[mode];
-      pricePro.textContent = p.pro; priceBiz.textContent = p.biz; notePro.textContent = p.note; noteBiz.textContent = p.note;
-      btns.forEach(function (b) { b.classList.toggle("is-active", b.getAttribute("data-bill") === mode); });
-    }
-    btns.forEach(function (b) { b.addEventListener("click", function () { setBill(b.getAttribute("data-bill")); }); });
-  })();
-
-  // ---------- Start form (mock) ----------
-  (function () {
-    var form = document.getElementById("startForm");
-    if (!form) return;
-    var email = document.getElementById("startEmail"), success = document.getElementById("startSuccess");
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      var v = (email.value || "").trim();
-      if (!v || v.indexOf("@") === -1) { email.focus(); return; }
-      form.style.display = "none";
-      if (success) success.style.display = "block";
-    });
-  })();
-
-  // ---------- Sticky bar ----------
-  (function () {
-    var bar = document.getElementById("stickyBar");
-    if (!bar) return;
-    var startSec = document.getElementById("start"), x = document.getElementById("stickyBarX");
-    var dismissed = false;
-    try { dismissed = sessionStorage.getItem("tk-sticky-dismissed") === "1"; } catch (e) {}
-    var startInView = false;
-    function update() {
-      if (dismissed) { bar.classList.remove("show"); return; }
-      var past = (window.scrollY || window.pageYOffset) > 700;
-      if (past && !startInView) bar.classList.add("show"); else bar.classList.remove("show");
-    }
-    if (x) x.addEventListener("click", function () { dismissed = true; bar.classList.remove("show"); try { sessionStorage.setItem("tk-sticky-dismissed", "1"); } catch (e) {} });
-    if ("IntersectionObserver" in window && startSec) {
-      new IntersectionObserver(function (entries) { entries.forEach(function (e) { startInView = e.isIntersecting; }); update(); }, { threshold: 0.15 }).observe(startSec);
-    }
-    window.addEventListener("scroll", update, { passive: true });
-    update();
-  })();
-</script>
+<script src="app.js" defer></script>
 </body>
 </html>
