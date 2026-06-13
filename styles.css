@@ -876,3 +876,7 @@ footer { background: var(--navy); color: #a9b1cd; padding: 54px 0 34px; border-t
 /* Penny = paid feature treatment */
 .paid-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 800; letter-spacing: .05em; text-transform: uppercase; color: var(--violet-2); background: rgba(124,92,255,.13); border: 1px solid rgba(124,92,255,.32); padding: 3px 10px; border-radius: 999px; }
 .h-penny { display: flex; align-items: center; gap: 11px; }
+
+/* fix: ladder list items must flow inline (flex was splitting <b> into gapped items) */
+.ladder-card li { display: block; position: relative; padding-left: 24px; gap: 0; }
+.ladder-card li::before { position: absolute; left: 0; top: 0; }
