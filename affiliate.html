@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=2" />
 </head>
 <body>
 
@@ -73,10 +73,10 @@
     <div class="hero-art">
       <div class="earn-card glass">
         <div class="eh"><h4>Your monthly payout</h4><span>at the 30% Partner rate</span></div>
-        <div class="earn-row"><span class="el">Paid subscribers referred</span><span class="ev">42</span></div>
-        <div class="earn-row"><span class="el">Average plan price</span><span class="ev">$39 / mo</span></div>
-        <div class="earn-row"><span class="el">Commission rate</span><span class="ev">30%</span></div>
-        <div class="earn-total"><span class="el">Recurring commission / mo</span><span class="ev">$491</span></div>
+        <div class="earn-row"><span class="el">Paid subscribers referred</span><span class="ev">40</span></div>
+        <div class="earn-row"><span class="el">Average plan price</span><span class="ev">$30 / mo</span></div>
+        <div class="earn-row"><span class="el">Commission rate</span><span class="ev">30% &middot; Partner</span></div>
+        <div class="earn-total"><span class="el">Recurring commission / mo</span><span class="ev">$360</span></div>
         <p style="color:#5fe3b3;font-size:12.5px;margin-top:12px;text-align:center;">+ free Premium on all three products while you're active</p>
       </div>
     </div>
@@ -179,15 +179,15 @@
     <div class="roi-card reveal">
       <div class="roi-inputs">
         <div class="roi-field"><div class="roi-row"><label for="afSubs">Paid subscribers you refer</label><output id="afSubsOut">40</output></div><input type="range" id="afSubs" min="1" max="250" value="40" /></div>
-        <div class="roi-field"><div class="roi-row"><label for="afPrice">Average plan price / mo</label><output id="afPriceOut">$39</output></div><input type="range" id="afPrice" min="8" max="199" value="39" /></div>
-        <div class="roi-field"><div class="roi-row"><label for="afRate">Your commission tier</label><output id="afRateOut">Partner &middot; 30%</output></div><input type="range" id="afRate" min="25" max="35" step="5" value="30" /></div>
+        <div class="roi-field"><div class="roi-row"><label for="afPrice">Avg monthly price they pay</label><output id="afPriceOut">$30</output></div><input type="range" id="afPrice" min="8" max="199" value="30" /><div class="roi-hint">Real plans: Meter $8 &middot; Ledger $12/seat &middot; Margin usage-based</div></div>
+        <div class="roi-field"><div class="roi-row"><label>Your tier</label><output id="afTierOut">Partner &middot; 30%</output></div><div class="tier-track"><i id="afTierFill"></i></div><div class="roi-hint">Auto-assigned by volume: Creator &lt;10 &middot; Partner 10+ &middot; Insider 50+</div></div>
       </div>
       <div class="roi-results">
-        <div class="roi-stat big"><span class="roi-num">$<span id="afMonthly">0</span> <small>/ mo</small></span><span class="roi-cap">Estimated recurring commission</span></div>
-        <div class="roi-stat"><span class="roi-num">$<span id="afYear">0</span></span><span class="roi-cap">Over the first 12 months</span></div>
+        <div class="roi-stat big"><span class="roi-num">$<span id="afMonthly">0</span> <small>/ mo</small></span><span class="roi-cap">Recurring commission while they stay</span></div>
+        <div class="roi-stat"><span class="roi-num">$<span id="afYear">0</span></span><span class="roi-cap">Your commission over the first 12 months</span></div>
         <div class="roi-stat eco"><span class="roi-num">Premium <small>included</small></span><span class="roi-cap">Free on all three products while active</span></div>
         <a href="#apply" class="btn btn-green btn-lg roi-cta">Apply &amp; start earning &rarr;</a>
-        <p class="roi-note">Illustrative. Commission is recurring for 12 months per referred subscriber; final terms confirmed on approval.</p>
+        <p class="roi-note">Commission is 25&ndash;35% by tier (it rises with volume), recurring for 12 months per referred subscriber. Illustrative &mdash; final terms confirmed on approval.</p>
       </div>
     </div>
   </div>
@@ -287,22 +287,24 @@
 
 <script>
   (function () {
-    var subs = document.getElementById('afSubs'), price = document.getElementById('afPrice'), rate = document.getElementById('afRate');
+    var subs = document.getElementById('afSubs'), price = document.getElementById('afPrice');
     if (!subs) return;
-    var subsOut = document.getElementById('afSubsOut'), priceOut = document.getElementById('afPriceOut'), rateOut = document.getElementById('afRateOut');
-    var mo = document.getElementById('afMonthly'), yr = document.getElementById('afYear');
-    var tiers = { 25: 'Creator', 30: 'Partner', 35: 'Insider' };
+    var subsOut = document.getElementById('afSubsOut'), priceOut = document.getElementById('afPriceOut'),
+        tierOut = document.getElementById('afTierOut'), fill = document.getElementById('afTierFill'),
+        mo = document.getElementById('afMonthly'), yr = document.getElementById('afYear');
     function fmt(n) { return Math.round(n).toLocaleString('en-US'); }
+    function tierFor(s) { if (s >= 50) return { n: 'Insider', r: 35 }; if (s >= 10) return { n: 'Partner', r: 30 }; return { n: 'Creator', r: 25 }; }
     function calc() {
-      var s = +subs.value, p = +price.value, r = +rate.value;
+      var s = +subs.value, p = +price.value, t = tierFor(s), r = t.r / 100;
       subsOut.textContent = s;
       priceOut.textContent = '$' + p;
-      rateOut.textContent = tiers[r] + ' · ' + r + '%';
-      var monthly = s * p * (r / 100);
+      tierOut.innerHTML = t.n + ' · ' + t.r + '%';
+      if (fill) fill.style.width = Math.min(100, (s / 50) * 100) + '%';
+      var monthly = s * p * r;
       mo.textContent = fmt(monthly);
       yr.textContent = fmt(monthly * 12);
     }
-    [subs, price, rate].forEach(function (el) { el.addEventListener('input', calc); });
+    [subs, price].forEach(function (el) { el.addEventListener('input', calc); });
     calc();
   })();
 </script>
