@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Contact | tokanalyzr.ai</title>
-<meta name="description" content="Talk to tokanalyzr.ai — book a demo, reach sales, get support, or ask a general question." />
-<link rel="canonical" href="https://tej-pixel.github.io/toknlytics/contact.html" />
-<meta property="og:type" content="website" />
+<title>LLM pricing explained: GPT-4o vs Claude vs Gemini | tokanalyzr.ai</title>
+<meta name="description" content="How LLM pricing works in 2026 — input vs output tokens, the price spread between frontier and small models, and how to pick the cheapest capable model." />
+<link rel="canonical" href="https://tej-pixel.github.io/toknlytics/guide-llm-pricing.html" />
+<meta property="og:type" content="article" />
 <meta property="og:site_name" content="tokanalyzr.ai" />
-<meta property="og:title" content="Contact | tokanalyzr.ai" />
-<meta property="og:description" content="Book a demo, reach sales, get support, or ask a general question." />
-<meta property="og:url" content="https://tej-pixel.github.io/toknlytics/contact.html" />
+<meta property="og:title" content="LLM pricing explained: GPT-4o vs Claude vs Gemini" />
+<meta property="og:description" content="Input vs output tokens, the price spread between frontier and small models, and how to pick the cheapest capable model." />
+<meta property="og:url" content="https://tej-pixel.github.io/toknlytics/guide-llm-pricing.html" />
 <meta property="og:image" content="https://tej-pixel.github.io/toknlytics/og-cover.png" />
 <meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Contact | tokanalyzr.ai" />
-<meta name="twitter:description" content="Book a demo, reach sales, get support, or ask a general question." />
+<meta name="twitter:title" content="LLM pricing explained | tokanalyzr.ai" />
+<meta name="twitter:description" content="How LLM token pricing works and how to pick the cheapest capable model." />
 <meta name="twitter:image" content="https://tej-pixel.github.io/toknlytics/og-cover.png" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%230ea5a5'/><stop offset='1' stop-color='%232563eb'/></linearGradient></defs><rect width='32' height='32' rx='9' fill='url(%23g)'/><circle cx='16' cy='15.5' r='9.7' fill='none' stroke='white' stroke-width='1.8'/><rect x='10.4' y='15.4' width='2.3' height='5' rx='1' fill='white'/><rect x='14.5' y='12.8' width='2.3' height='7.6' rx='1' fill='white'/><rect x='18.6' y='10.4' width='2.3' height='10' rx='1' fill='white'/><path d='M21.4 7.6 L22 9.4 L23.8 10 L22 10.6 L21.4 12.4 L20.8 10.6 L19 10 L20.8 9.4 Z' fill='white'/></svg>" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -42,7 +42,8 @@
       <a href="meter.html">Meter</a>
       <a href="ledger.html">Ledger</a>
       <a href="margin.html">Margin</a>
-      <a href="security.html">Security</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="resources.html">Resources</a>
     </nav>
     <div class="nav-cta">
       <a href="index.html#start" class="signin">Sign in</a>
@@ -54,49 +55,37 @@
 
 <section class="page-hero">
   <div class="wrap">
-    <span class="eyebrow light">Contact</span>
-    <h1>Let's talk</h1>
-    <p>Whether you want a demo, have a sales question, or need a hand getting set up &mdash; here's how to reach us.</p>
+    <span class="eyebrow light">Guide</span>
+    <h1>LLM pricing, explained</h1>
+    <p>What you actually pay for when you call GPT-4o, Claude or Gemini &mdash; and how to pick the cheapest model that still does the job.</p>
   </div>
 </section>
 
 <div class="content prose">
-  <div class="contact-grid">
-    <div class="contact-card">
-      <div class="ic">&#128202;</div>
-      <h3>Book a demo</h3>
-      <p>See Margin and the rest of the suite on your own data.</p>
-      <a href="https://cal.com/tokanalyzr/demo" target="_blank" rel="noopener">Pick a time &rarr;</a>
-    </div>
-    <div class="contact-card">
-      <div class="ic">&#128176;</div>
-      <h3>Sales &amp; Enterprise</h3>
-      <p>Pricing, SSO/SAML, DPAs and security reviews.</p>
-      <a href="mailto:hello@tokanalyzr.ai?subject=tokanalyzr.ai%20Enterprise">Talk to sales &rarr;</a>
-    </div>
-    <div class="contact-card">
-      <div class="ic">&#128172;</div>
-      <h3>Support</h3>
-      <p>Help with setup, connections or your account.</p>
-      <a href="mailto:hello@tokanalyzr.ai?subject=tokanalyzr.ai%20support">Get support &rarr;</a>
-    </div>
-  </div>
+  <p class="lead">If your AI bill feels unpredictable, it's usually because two levers are hidden: which model you call, and how many tokens each call burns. Here's how the pricing works and where the money goes.</p>
 
-  <div class="start-card reveal" style="margin-top:8px;">
-    <h2 style="margin-top:0;">Send us a message</h2>
-    <p>Drop your email and we'll get back to you within one business day.</p>
-    <form class="start-form" id="startForm" novalidate>
-      <input type="email" id="startEmail" placeholder="you@company.com" aria-label="Email" required />
-      <button type="submit" class="btn btn-primary btn-lg">Send &rarr;</button>
-    </form>
-    <div class="start-success" id="startSuccess">&#9989; Thanks &mdash; we'll be in touch shortly. (Demo: nothing was actually sent.)</div>
-    <div class="start-meta">Or email us directly at <a href="mailto:hello@tokanalyzr.ai" style="color:#fff;font-weight:700;">hello@tokanalyzr.ai</a></div>
-  </div>
+  <h2>Everything is priced per token</h2>
+  <p>A <b>token</b> is roughly ¾ of a word. Providers charge separately for the tokens you send (<b>input</b>) and the tokens the model writes back (<b>output</b>), quoted per million tokens. Output is almost always priced higher than input &mdash; often 3&ndash;5&times; &mdash; so chatty responses cost more than long prompts of the same size.</p>
 
-  <p style="text-align:center;margin-top:28px;color:var(--muted-2);font-size:13.5px;">
-    Security issue? <a href="mailto:security@tokanalyzr.ai">security@tokanalyzr.ai</a> &middot;
-    Privacy request? <a href="mailto:privacy@tokanalyzr.ai">privacy@tokanalyzr.ai</a>
-  </p>
+  <h2>The price spread is enormous</h2>
+  <p>The gap between a small model and a frontier model is not 2&times; &mdash; it can be <b>20&ndash;50&times;</b> for the same number of tokens. A lightweight model might cost cents per million tokens while a top-tier model runs into tens of dollars. That means the single biggest cost decision you make is <em>model selection per task</em>, not the prompt.</p>
+  <div class="callout"><p>Rule of thumb: use the smallest model that passes your quality bar for each task, and reserve the frontier model for the calls that genuinely need it. Routing is where most teams find their first big savings.</p></div>
+
+  <h2>What drives your bill</h2>
+  <ul>
+    <li><b>Model choice</b> &mdash; the 20&ndash;50&times; lever. Right-sizing here dwarfs everything else.</li>
+    <li><b>Output length</b> &mdash; the priciest tokens. Cap and structure responses where you can.</li>
+    <li><b>Prompt bloat</b> &mdash; oversized system prompts and context inflate the input side on every single call.</li>
+    <li><b>Repeat calls</b> &mdash; duplicate and near-duplicate requests you could cache.</li>
+  </ul>
+
+  <h2>Estimate yours</h2>
+  <p>Plug your volume into the <a href="calculator.html">free LLM cost calculator</a> to see the spread across models and what right-sizing would save. For your <em>real</em> number &mdash; across every provider, with caching and batching factored in &mdash; <a href="meter.html">Meter</a> measures it live, free.</p>
+
+  <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;">
+    <a href="calculator.html" class="btn btn-primary">Open the calculator &rarr;</a>
+    <a href="guide-cut-ai-costs.html" class="btn btn-outline">How to cut your bill</a>
+  </div>
 </div>
 
 <footer>
@@ -121,21 +110,22 @@
         <a href="meter.html">Meter &middot; Individuals</a>
         <a href="ledger.html">Ledger &middot; Team</a>
         <a href="margin.html">Margin &middot; Application</a>
-        <a href="green-score.html">Green Score</a>
         <a href="pricing.html">Pricing</a>
-        <a href="resources.html">Resources</a>
       </div>
       <div class="foot-col">
-        <h5>Company</h5>
+        <h5>Resources</h5>
+        <a href="resources.html">Guides &amp; tools</a>
+        <a href="calculator.html">LLM cost calculator</a>
+        <a href="green-score.html">Green Score</a>
+        <a href="affiliate.html">Affiliate program</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company &amp; legal</h5>
         <a href="about.html">About</a>
         <a href="contact.html">Contact</a>
-        <a href="security.html">Security &amp; Trust</a>
-      </div>
-      <div class="foot-col">
-        <h5>Legal</h5>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
         <a href="security.html">Security</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
       </div>
     </div>
     <div class="foot-bottom">

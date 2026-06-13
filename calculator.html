@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Free LLM Cost Calculator — GPT, Claude & Gemini | tokanalyzr.ai</title>
+<meta name="description" content="Estimate your monthly AI bill across GPT-4o, Claude, Gemini, Llama and more. Free LLM cost calculator — compare model prices and see how much you'd save by right-sizing." />
+<link rel="canonical" href="https://tej-pixel.github.io/toknlytics/calculator.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="tokanalyzr.ai" />
+<meta property="og:title" content="Free LLM Cost Calculator | tokanalyzr.ai" />
+<meta property="og:description" content="Estimate your monthly AI bill across GPT-4o, Claude, Gemini and Llama — and see how much right-sizing would save." />
+<meta property="og:url" content="https://tej-pixel.github.io/toknlytics/calculator.html" />
+<meta property="og:image" content="https://tej-pixel.github.io/toknlytics/og-cover.png" />
+<meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Free LLM Cost Calculator | tokanalyzr.ai" />
+<meta name="twitter:description" content="Estimate your monthly AI bill across GPT-4o, Claude, Gemini and Llama." />
+<meta name="twitter:image" content="https://tej-pixel.github.io/toknlytics/og-cover.png" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%230ea5a5'/><stop offset='1' stop-color='%232563eb'/></linearGradient></defs><rect width='32' height='32' rx='9' fill='url(%23g)'/><circle cx='16' cy='15.5' r='9.7' fill='none' stroke='white' stroke-width='1.8'/><rect x='10.4' y='15.4' width='2.3' height='5' rx='1' fill='white'/><rect x='14.5' y='12.8' width='2.3' height='7.6' rx='1' fill='white'/><rect x='18.6' y='10.4' width='2.3' height='10' rx='1' fill='white'/><path d='M21.4 7.6 L22 9.4 L23.8 10 L22 10.6 L21.4 12.4 L20.8 10.6 L19 10 L20.8 9.4 Z' fill='white'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=2" />
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+        <defs><linearGradient id="tkNav" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5a5"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+        <circle cx="16" cy="16" r="13" fill="none" stroke="url(#tkNav)" stroke-width="2.4"/>
+        <rect x="9.8" y="17.3" width="2.8" height="5.2" rx="1.2" fill="url(#tkNav)"/>
+        <rect x="14.6" y="13.7" width="2.8" height="8.8" rx="1.2" fill="url(#tkNav)"/>
+        <rect x="19.4" y="10.6" width="2.8" height="11.9" rx="1.2" fill="url(#tkNav)"/>
+        <path d="M22.7 7.1 L23.5 9.5 L25.9 10.3 L23.5 11.1 L22.7 13.5 L21.9 11.1 L19.5 10.3 L21.9 9.5 Z" fill="url(#tkNav)"/>
+      </svg>
+      <span class="brand-name">tokanalyzr<b>.ai</b></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="meter.html">Meter</a>
+      <a href="ledger.html">Ledger</a>
+      <a href="margin.html">Margin</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="resources.html">Resources</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="index.html#start" class="signin">Sign in</a>
+      <a href="index.html#start" class="btn btn-primary">Start free</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <span class="eyebrow light">Free tool</span>
+    <h1>LLM cost calculator</h1>
+    <p>Estimate your monthly AI bill across GPT-4o, Claude, Gemini and Llama &mdash; and see how much you'd save by routing to the cheapest capable model. No signup.</p>
+  </div>
+</section>
+
+<section class="roi" style="padding-top:48px;">
+  <div class="wrap">
+    <div class="roi-card reveal">
+      <div class="roi-inputs">
+        <div class="roi-field"><div class="roi-row"><label for="cReq">Requests / month</label><output id="cReqOut">100,000</output></div><input type="range" id="cReq" min="1000" max="5000000" step="1000" value="100000" /></div>
+        <div class="roi-field"><div class="roi-row"><label for="cIn">Avg input tokens / request</label><output id="cInOut">1,500</output></div><input type="range" id="cIn" min="50" max="20000" step="50" value="1500" /></div>
+        <div class="roi-field"><div class="roi-row"><label for="cOut">Avg output tokens / request</label><output id="cOutOut">500</output></div><input type="range" id="cOut" min="20" max="8000" step="20" value="500" /></div>
+        <div class="roi-hint">Prices are illustrative blended public rates ($/1M tokens) for comparison &mdash; your live numbers are measured exactly inside Meter.</div>
+      </div>
+      <div class="roi-results">
+        <div class="roi-stat big"><span class="roi-num">$<span id="cBest">0</span> <small>/ mo</small></span><span class="roi-cap">Cheapest capable model &middot; <span id="cBestName">&mdash;</span></span></div>
+        <div class="calc-models" id="cList"></div>
+        <div class="roi-stat eco" style="margin-top:14px;"><span class="roi-num">$<span id="cSave">0</span> <small>/ mo saved</small></span><span class="roi-cap">vs your most expensive option &mdash; just by right-sizing</span></div>
+        <a href="index.html#start" class="btn btn-green btn-lg roi-cta">Track your real spend free &rarr;</a>
+        <p class="roi-note">Estimate only. Real cost depends on caching, batching and exact tokenization &mdash; Meter measures all of it live.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="seo">
+  <div class="wrap content prose" style="padding-top:8px;">
+    <h2>How LLM cost is calculated</h2>
+    <p>Every API call is priced per <b>token</b> &mdash; roughly ¾ of a word &mdash; and providers charge different rates for the tokens you send (<b>input</b>) and the tokens the model generates (<b>output</b>), usually quoted per million tokens. Your monthly bill is simply:</p>
+    <div class="callout"><p style="margin:0;"><b>requests / month &times; (input tokens &times; input price + output tokens &times; output price)</b></p></div>
+    <p>Two things dominate the bill: <b>which model</b> you call and <b>how many tokens</b> each call uses. A frontier model can cost 20&ndash;50&times; a small one for the same task, and bloated prompts quietly inflate the input side. The calculator above shows the spread; the only way to know your <em>real</em> number &mdash; across every provider, with caching and batching factored in &mdash; is to measure it. That's what <a href="meter.html">Meter</a> does, free.</p>
+    <h2>Cut the number you just saw</h2>
+    <ul>
+      <li><b>Right-size the model.</b> Route easy calls to a smaller model; reserve the frontier model for the hard ones.</li>
+      <li><b>Trim prompts.</b> Compress bloated system and context tokens &mdash; the input side is often the biggest, quietest cost.</li>
+      <li><b>Cache.</b> Stop paying for repeat and near-duplicate calls.</li>
+    </ul>
+    <p><a href="guide-cut-ai-costs.html">Read the full guide to cutting your AI bill &rarr;</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
+          <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+            <defs><linearGradient id="tkFoot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5a5"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+            <circle cx="16" cy="16" r="13" fill="none" stroke="url(#tkFoot)" stroke-width="2.4"/>
+            <rect x="9.8" y="17.3" width="2.8" height="5.2" rx="1.2" fill="url(#tkFoot)"/>
+            <rect x="14.6" y="13.7" width="2.8" height="8.8" rx="1.2" fill="url(#tkFoot)"/>
+            <rect x="19.4" y="10.6" width="2.8" height="11.9" rx="1.2" fill="url(#tkFoot)"/>
+            <path d="M22.7 7.1 L23.5 9.5 L25.9 10.3 L23.5 11.1 L22.7 13.5 L21.9 11.1 L19.5 10.3 L21.9 9.5 Z" fill="url(#tkFoot)"/>
+          </svg>
+          <span class="brand-name">tokanalyzr<b>.ai</b></span>
+        </a>
+        <p>AI token analytics and a Green Score for every model you run. Free to measure. Pay to optimize.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Products</h5>
+        <a href="meter.html">Meter &middot; Individuals</a>
+        <a href="ledger.html">Ledger &middot; Team</a>
+        <a href="margin.html">Margin &middot; Application</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div class="foot-col">
+        <h5>Resources</h5>
+        <a href="resources.html">Guides &amp; tools</a>
+        <a href="calculator.html">LLM cost calculator</a>
+        <a href="green-score.html">Green Score</a>
+        <a href="affiliate.html">Affiliate program</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company &amp; legal</h5>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="security.html">Security</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="foot-legal">
+        <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a><a href="about.html">About</a><a href="affiliate.html">Affiliate</a><a href="contact.html">Contact</a>
+      </div>
+      <span>&copy; <span id="yr"></span> tokanalyzr.ai. All rights reserved.</span>
+      <span>Meter &middot; Ledger &middot; Margin &mdash; one engine for AI cost</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var req = document.getElementById('cReq'), inp = document.getElementById('cIn'), outp = document.getElementById('cOut');
+    if (!req) return;
+    // illustrative blended public rates, $ per 1M tokens [input, output]
+    var MODELS = [
+      { n: 'Gemini 1.5 Flash', i: 0.075, o: 0.30 },
+      { n: 'GPT-4o mini', i: 0.15, o: 0.60 },
+      { n: 'Llama 3.1 70B (hosted)', i: 0.50, o: 0.75 },
+      { n: 'Claude Haiku', i: 0.80, o: 4.0 },
+      { n: 'Gemini 1.5 Pro', i: 1.25, o: 5.0 },
+      { n: 'GPT-4o', i: 2.50, o: 10.0 },
+      { n: 'Claude Sonnet', i: 3.0, o: 15.0 },
+      { n: 'Claude Opus', i: 15.0, o: 75.0 }
+    ];
+    var reqOut = document.getElementById('cReqOut'), inOut = document.getElementById('cInOut'), outOut = document.getElementById('cOutOut');
+    var bestEl = document.getElementById('cBest'), bestName = document.getElementById('cBestName'), saveEl = document.getElementById('cSave'), list = document.getElementById('cList');
+    function money(n) { if (n >= 1000) return Math.round(n).toLocaleString('en-US'); return n.toFixed(n < 10 ? 2 : 0); }
+    function calc() {
+      var r = +req.value, it = +inp.value, ot = +outp.value;
+      reqOut.textContent = r.toLocaleString('en-US'); inOut.textContent = it.toLocaleString('en-US'); outOut.textContent = ot.toLocaleString('en-US');
+      var rows = MODELS.map(function (m) { return { n: m.n, c: r * (it * m.i + ot * m.o) / 1e6 }; }).sort(function (a, b) { return a.c - b.c; });
+      var best = rows[0], worst = rows[rows.length - 1];
+      bestEl.textContent = money(best.c); bestName.textContent = best.n;
+      saveEl.textContent = money(worst.c - best.c);
+      list.innerHTML = rows.map(function (row, idx) {
+        return '<div class="calc-row' + (idx === 0 ? ' best' : '') + '"><span class="cm">' + row.n + '</span><span class="cc">$' + money(row.c) + '/mo</span></div>';
+      }).join('');
+    }
+    [req, inp, outp].forEach(function (el) { el.addEventListener('input', calc); });
+    calc();
+  })();
+</script>
+<script src="app.js" defer></script>
+</body>
+</html>
