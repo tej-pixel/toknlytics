@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Margin — per-customer AI cost & margin | tokanalyzr.ai</title>
+<meta name="description" content="Margin by tokanalyzr.ai is the system of record for your AI cost-of-goods. Know what each customer costs you to serve, your gross margin on every one, and who just turned margin-negative — built for AI-native products that resell AI." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%230ea5a5'/><stop offset='1' stop-color='%232563eb'/></linearGradient></defs><rect width='32' height='32' rx='9' fill='url(%23g)'/><circle cx='16' cy='15.5' r='9.7' fill='none' stroke='white' stroke-width='1.8'/><rect x='10.4' y='15.4' width='2.3' height='5' rx='1' fill='white'/><rect x='14.5' y='12.8' width='2.3' height='7.6' rx='1' fill='white'/><rect x='18.6' y='10.4' width='2.3' height='10' rx='1' fill='white'/><path d='M21.4 7.6 L22 9.4 L23.8 10 L22 10.6 L21.4 12.4 L20.8 10.6 L19 10 L20.8 9.4 Z' fill='white'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+        <defs><linearGradient id="tkNav" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5a5"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+        <circle cx="16" cy="16" r="13" fill="none" stroke="url(#tkNav)" stroke-width="2.4"/>
+        <rect x="9.8" y="17.3" width="2.8" height="5.2" rx="1.2" fill="url(#tkNav)"/>
+        <rect x="14.6" y="13.7" width="2.8" height="8.8" rx="1.2" fill="url(#tkNav)"/>
+        <rect x="19.4" y="10.6" width="2.8" height="11.9" rx="1.2" fill="url(#tkNav)"/>
+        <path d="M22.7 7.1 L23.5 9.5 L25.9 10.3 L23.5 11.1 L22.7 13.5 L21.9 11.1 L19.5 10.3 L21.9 9.5 Z" fill="url(#tkNav)"/>
+      </svg>
+      <span class="brand-name">tokanalyzr<b>.ai</b></span>
+    </a>
+    <div class="nav-mid">
+      <div class="aud-seg"><a href="b2c.html">Meter</a><a href="b2b.html">Ledger</a><a href="margin.html" class="active">Margin</a></div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#how">How it works</a>
+        <a href="#why">Why Margin</a>
+        <a href="#pricing">Pricing</a>
+        <a href="b2b.html">For teams</a>
+      </nav>
+    </div>
+    <div class="nav-cta">
+      <a href="#start" class="signin">Sign in</a>
+      <a href="#start" class="btn btn-app">Book a demo</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding:0;">
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow light">Margin &middot; FinOps for AI</span>
+      <h1>Know what each customer <span class="grad-app">costs you to serve.</span></h1>
+      <p class="lede">Margin is the system of record for your AI cost-of-goods. It attributes every token to the customer who drove it, sets it against what you charge them, and tells you who's profitable &mdash; and who's quietly underwater.</p>
+      <div class="hero-cta">
+        <a href="#start" class="btn btn-app btn-lg">Book a demo &rarr;</a>
+        <a href="#how" class="btn btn-ghost btn-lg">See how it works</a>
+      </div>
+      <div class="hero-meta">
+        <span class="pill"><span class="dot app"></span> Per-customer COGS</span>
+        <span class="pill"><span class="dot app"></span> Live gross margin</span>
+        <span class="pill"><span class="dot app"></span> Margin-negative alerts</span>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="margin-board glass">
+        <div class="mb-head">
+          <div class="mb-title"><h4>Per-customer margin</h4><span>this month &middot; revenue &minus; AI cost</span></div>
+          <div class="live-pill"><span class="live-dot"></span>LIVE</div>
+        </div>
+        <div class="mb-table">
+          <div class="mb-row mb-colhead"><span>Customer</span><span>Revenue</span><span>AI cost</span><span>Margin</span></div>
+          <div class="mb-row"><span class="mb-cust">Acme Corp</span><span class="mb-num">$4,200</span><span class="mb-num">$610</span><span class="mb-pct good">85%</span></div>
+          <div class="mb-row"><span class="mb-cust">Vertex Labs</span><span class="mb-num">$1,880</span><span class="mb-num">$410</span><span class="mb-pct good">78%</span></div>
+          <div class="mb-row hot"><span class="mb-cust">Northwind</span><span class="mb-num">$1,900</span><span class="mb-num">$2,240</span><span class="mb-pct bad">&minus;18%</span></div>
+          <div class="mb-row"><span class="mb-cust">Lumen</span><span class="mb-num">$920</span><span class="mb-num">$190</span><span class="mb-pct good">79%</span></div>
+          <div class="mb-row"><span class="mb-cust">Cobalt</span><span class="mb-num">$610</span><span class="mb-num">$165</span><span class="mb-pct good">73%</span></div>
+        </div>
+        <div class="mb-alert"><span class="mb-alert-ic">&#9888;</span> <b>Northwind</b> flipped margin-negative &mdash; AI cost up 3.4&times; in 7 days.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="wrap">
+    <span class="label">Built for AI-native products that embed &amp; resell AI:</span>
+    <span>AI copilots</span><span>Support agents</span><span>Vertical SaaS</span><span>Dev tools</span><span>Voice AI</span><span>RAG apps</span>
+  </div>
+</div>
+
+<!-- VALUE STRIP -->
+<section id="value">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow app">What Margin gives you</span>
+      <h2>The number almost nobody can answer</h2>
+      <p>You know your total AI bill. You don't know which customers it's coming from &mdash; or whether you make money on each. Margin does.</p>
+    </div>
+    <div class="vstrip">
+      <div class="vcard reveal"><div class="ic">&#128101;</div><h3>Customer registry &amp; COGS</h3><p>First-class customers with the plan and price you charge each one, and the true AI cost to serve them &mdash; attributed from real requests by model, member and feature.</p></div>
+      <div class="vcard reveal d1"><div class="ic">&#128201;</div><h3>Margin &amp; unit economics</h3><p>Revenue minus AI COGS, gross-margin %, cost per active user and per feature &mdash; ranked, trended and exportable to your finance stack.</p></div>
+      <div class="vcard reveal d2"><div class="ic">&#128276;</div><h3>Margin &amp; anomaly alerts</h3><p>Know the moment a customer flips margin-negative or a daily cost spikes off its baseline &mdash; abuse, a runaway loop, or a deal that needs repricing &mdash; before it hits the invoice.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow light">How it works</span>
+      <h2 style="color:#fff;">From tokens to per-customer margin</h2>
+      <p>The cost half already exists &mdash; Margin adds the revenue half and pairs them.</p>
+    </div>
+    <div class="steps three reveal">
+      <div class="step"><div class="num">1</div><h3>Connect &amp; attribute</h3><p>tokanalyzr already attributes every token to a customer, member, model and feature. Read-only &mdash; minutes, no rewrite.</p></div>
+      <div class="step"><div class="num">2</div><h3>Add what you charge</h3><p>Import each customer's plan and price by CSV or API &mdash; or sync your billing system. Now every cost has a revenue counterpart.</p></div>
+      <div class="step"><div class="num">3</div><h3>See margin</h3><p>Per-customer gross margin, unit economics and alerts, live &mdash; and export COGS per customer per month to finance.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY MARGIN -->
+<section class="greensec" id="why">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow app light">Why Margin</span>
+      <h2 style="color:#fff;">Savings shrink. Margin compounds.</h2>
+      <p>Token prices fall ~10&times; a year and providers now ship native caching &mdash; so &ldquo;we cut your bill&rdquo; fights free, open-source gateways on a shrinking number. Per-customer margin is the opposite kind of pain: it gets <em>worse</em> as you scale, and almost no one has it.</p>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card"><div class="why-ic">&#128200;</div><h3>It appreciates with adoption</h3><p>More customers and more volume = more to attribute and more reason to pay us. The wedge grows instead of shrinking.</p></div>
+      <div class="why-card"><div class="why-ic">&#127919;</div><h3>You become the source of truth</h3><p>Once per-customer COGS and margin live in Margin and feed your pricing and finance decisions, switching cost is real.</p></div>
+      <div class="why-card"><div class="why-ic">&#128176;</div><h3>Savings sell themselves</h3><p>Optimization stops being the pitch and becomes the second act: &ldquo;customer X is margin-negative &mdash; here's the $/mo we'd recover.&rdquo;</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="wrap">
+    <div class="impact-head reveal">
+      <span class="eyebrow app light" style="justify-content:center;">What teams find</span>
+      <h2 style="color:#fff;">The moment they can see per-customer margin.</h2>
+      <p>What design partners surfaced in the first month of running Margin on real data.</p>
+    </div>
+    <div class="impact-grid reveal">
+      <div class="impact-stat"><div class="is-num impact-num" data-pre="$" data-to="2.4" data-dec="1" data-suf="M">$0</div><div class="is-cap">margin recovered from underwater accounts</div></div>
+      <div class="impact-stat"><div class="is-num impact-num" data-to="22" data-suf="%">0</div><div class="is-cap">of customers were margin-negative</div></div>
+      <div class="impact-stat"><div class="is-num impact-num" data-to="4.1" data-dec="1" data-suf="M">0</div><div class="is-cap">requests attributed to a customer</div></div>
+    </div>
+    <p class="impact-note">Illustrative figures for now &mdash; we'll show live platform totals at launch.</p>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow app">Pricing</span>
+      <h2>Priced to your scale, not your headcount</h2>
+      <p>Usage-based on the spend and customers you track &mdash; no per-seat tax on growth. Margin is sales-led so we can map it to your finance stack on the demo.</p>
+    </div>
+    <div class="price-grid reveal">
+      <div class="tier">
+        <h3>Growth</h3>
+        <div class="tier-for">For scaling AI-native products</div>
+        <div class="tier-price tier-price-sm">Usage&#8209;based</div>
+        <div class="tier-note">On tracked spend &amp; # of customers</div>
+        <a href="#start" class="btn btn-outline">Book a demo</a>
+        <ul>
+          <li><span class="tk app">&#10003;</span> <span>Customer registry &amp; <b>per-customer COGS</b></span></li>
+          <li><span class="tk app">&#10003;</span> <span><b>Margin</b> &amp; unit-economics dashboards</span></li>
+          <li><span class="tk app">&#10003;</span> <span>Margin &amp; anomaly <b>alerts</b></span></li>
+          <li><span class="tk app">&#10003;</span> <span>Finance export &mdash; COGS per customer / month</span></li>
+        </ul>
+      </div>
+      <div class="tier pop pop-app">
+        <span class="pop-flag pop-flag-app">For finance teams</span>
+        <h3>Enterprise</h3>
+        <div class="tier-for">For when Margin is your source of truth</div>
+        <div class="tier-price tier-price-sm">Let's talk</div>
+        <div class="tier-note">SSO, VPC &amp; integrations</div>
+        <a href="#start" class="btn btn-app">Talk to us</a>
+        <ul>
+          <li><span class="tk app">&#10003;</span> <span>Everything in <b>Growth</b></span></li>
+          <li><span class="tk app">&#10003;</span> <span><b>Billing sync</b> &mdash; Stripe, Chargebee &amp; more</span></li>
+          <li><span class="tk app">&#10003;</span> <span>Reconciliation API &amp; data warehouse export</span></li>
+          <li><span class="tk app">&#10003;</span> <span>SSO/SAML, VPC proxy &amp; an SLA</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="roi-note" style="margin-top:22px;">Just want to measure your own spend first? <a href="b2c.html" style="color:var(--brand);font-weight:700;">Start with Meter &rarr;</a> &middot; <a href="b2b.html" style="color:var(--brand);font-weight:700;">or Ledger for teams &rarr;</a></p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow app">FAQ</span><h2>Questions founders &amp; finance ask</h2></div>
+    <div class="faq-list reveal">
+      <details class="faq-item"><summary>How do you know our cost per customer?</summary><div class="faq-a">Every request you run carries the customer (and member, model, feature and source) that drove it. Margin attributes the real token cost back to that customer &mdash; the same way tokanalyzr already aggregates spend &mdash; so COGS is measured, not estimated.</div></details>
+      <details class="faq-item"><summary>How do you get what we charge each customer?</summary><div class="faq-a">Import each customer's plan and price by CSV or API, or sync your billing system (Stripe, Chargebee and more on Enterprise). That revenue is paired with AI COGS to produce gross margin per customer.</div></details>
+      <details class="faq-item"><summary>How is this different from our billing system?</summary><div class="faq-a">Billing knows what you charge. It has no idea what each customer costs you in AI. Margin pairs the two &mdash; so you see gross margin, not just revenue, on every customer.</div></details>
+      <details class="faq-item"><summary>Is prompt or response content stored?</summary><div class="faq-a">No. Margin uses usage metadata only &mdash; tokens, model, customer attribution &mdash; never the contents of your prompts or responses. Keys are encrypted; we're GDPR-ready with SOC&nbsp;2 in progress.</div></details>
+      <details class="faq-item"><summary>What does it cost?</summary><div class="faq-a">Usage-based on the spend and number of customers you track, so it scales with the value. Book a demo and we'll map it to your numbers.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- START -->
+<section class="start" id="start">
+  <div class="wrap">
+    <div class="start-card reveal">
+      <span class="eyebrow app light" style="justify-content:center;">Book a demo</span>
+      <h2>See your per-customer margin &mdash; on your real data</h2>
+      <p>Tell us where to send your walkthrough. We'll show Margin on a sample of your own usage and the per-customer view in under 30 minutes.</p>
+      <form class="start-form" id="startForm" novalidate>
+        <input type="email" id="startEmail" placeholder="you@company.com" aria-label="Work email" required />
+        <button type="submit" class="btn btn-app btn-lg">Book a demo &rarr;</button>
+      </form>
+      <div class="start-success" id="startSuccess">&#9989; Got it &mdash; we'll be in touch to schedule your Margin walkthrough. (Demo: nothing was actually sent.)</div>
+      <div class="start-meta">Read-only &middot; Metadata only &middot; Usage-based pricing</div>
+      <div class="trustbadges">
+        <span class="tb"><span class="tb-ic">&#10003;</span> Read-only</span>
+        <span class="tb"><span class="tb-ic">&#10003;</span> Never stores prompts</span>
+        <span class="tb"><span class="tb-ic">&#10003;</span> GDPR-ready</span>
+        <span class="tb"><span class="tb-ic">&#10003;</span> SOC 2 (in progress)</span>
+      </div>
+      <div class="start-alt">Prefer email? <a href="mailto:hello@tokanalyzr.ai?subject=Margin%20(FinOps)%20demo">hello@tokanalyzr.ai &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
+          <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+            <defs><linearGradient id="tkFoot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5a5"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+            <circle cx="16" cy="16" r="13" fill="none" stroke="url(#tkFoot)" stroke-width="2.4"/>
+            <rect x="9.8" y="17.3" width="2.8" height="5.2" rx="1.2" fill="url(#tkFoot)"/>
+            <rect x="14.6" y="13.7" width="2.8" height="8.8" rx="1.2" fill="url(#tkFoot)"/>
+            <rect x="19.4" y="10.6" width="2.8" height="11.9" rx="1.2" fill="url(#tkFoot)"/>
+            <path d="M22.7 7.1 L23.5 9.5 L25.9 10.3 L23.5 11.1 L22.7 13.5 L21.9 11.1 L19.5 10.3 L21.9 9.5 Z" fill="url(#tkFoot)"/>
+          </svg>
+          <span class="brand-name">tokanalyzr<b>.ai</b></span>
+        </a>
+        <p><b>Margin</b> &mdash; the system of record for your AI cost-of-goods and per-customer gross margin. For products that resell AI.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Margin</h5>
+        <a href="#how">How it works</a>
+        <a href="#why">Why Margin</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#start">Book a demo</a>
+      </div>
+      <div class="foot-col">
+        <h5>The family</h5>
+        <a href="b2c.html">Meter &middot; for individuals</a>
+        <a href="b2b.html">Ledger &middot; for teams</a>
+        <a href="index.html#audience">Compare all three</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="index.html">Home</a>
+        <a href="mailto:hello@tokanalyzr.ai">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="yr"></span> tokanalyzr.ai. All rights reserved.</span>
+      <span>Meter &middot; Ledger &middot; Margin &mdash; one engine for AI cost</span>
+    </div>
+  </div>
+</footer>
+
+<div class="stickybar" id="stickyBar" role="region" aria-label="Book a demo">
+  <div class="stickybar-inner">
+    <span class="stickybar-dot" aria-hidden="true"></span>
+    <span class="stickybar-txt"><b>Margin &mdash; FinOps for AI.</b><span class="long"> See per-customer cost &amp; gross margin on your real data.</span></span>
+    <a href="#start" class="btn btn-app">Book a demo &rarr;</a>
+    <button class="stickybar-x" id="stickyBarX" type="button" aria-label="Dismiss">&times;</button>
+  </div>
+</div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
