@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ledger — AI cost control for teams | tokanalyzr.ai</title>
+<meta name="description" content="tokanalyzr.ai for Teams: org-wide AI usage analytics across every LLM, live cost optimization, and ESG-ready carbon reporting. Free to measure — pay only to optimize." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%230ea5a5'/><stop offset='1' stop-color='%232563eb'/></linearGradient></defs><rect width='32' height='32' rx='9' fill='url(%23g)'/><circle cx='16' cy='15.5' r='9.7' fill='none' stroke='white' stroke-width='1.8'/><rect x='10.4' y='15.4' width='2.3' height='5' rx='1' fill='white'/><rect x='14.5' y='12.8' width='2.3' height='7.6' rx='1' fill='white'/><rect x='18.6' y='10.4' width='2.3' height='10' rx='1' fill='white'/><path d='M21.4 7.6 L22 9.4 L23.8 10 L22 10.6 L21.4 12.4 L20.8 10.6 L19 10 L20.8 9.4 Z' fill='white'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="gsgrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#18c98d" /><stop offset="1" stop-color="#7ce3b1" /></linearGradient>
+  <linearGradient id="sparkstroke" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0ea5a5" /><stop offset="1" stop-color="#2563eb" /></linearGradient>
+  <linearGradient id="sparkfill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(14,165,165,.42)" /><stop offset="1" stop-color="rgba(14,165,165,0)" /></linearGradient>
+</defs></svg>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+        <defs><linearGradient id="tkNav" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5a5"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+        <circle cx="16" cy="16" r="13" fill="none" stroke="url(#tkNav)" stroke-width="2.4"/>
+        <rect x="9.8" y="17.3" width="2.8" height="5.2" rx="1.2" fill="url(#tkNav)"/>
+        <rect x="14.6" y="13.7" width="2.8" height="8.8" rx="1.2" fill="url(#tkNav)"/>
+        <rect x="19.4" y="10.6" width="2.8" height="11.9" rx="1.2" fill="url(#tkNav)"/>
+        <path d="M22.7 7.1 L23.5 9.5 L25.9 10.3 L23.5 11.1 L22.7 13.5 L21.9 11.1 L19.5 10.3 L21.9 9.5 Z" fill="url(#tkNav)"/>
+      </svg>
+      <span class="brand-name">tokanalyzr<b>.ai</b></span>
+    </a>
+    <div class="nav-mid">
+      <div class="aud-seg"><a href="meter.html">Meter</a><a href="ledger.html" class="active">Ledger</a><a href="margin.html">Margin</a></div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#optimize">Optimize</a>
+        <a href="#savings">Savings</a>
+        <a href="#pricing">Pricing</a>
+        <a href="index.html#products">All products</a>
+      </nav>
+    </div>
+    <div class="nav-cta">
+      <a href="#start" class="signin">Sign in</a>
+      <a href="#start" class="btn btn-primary">Start free</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="top" style="padding:0;">
+  <div class="wrap hero-inner">
+    <div>
+      <span class="eyebrow light">Ledger &middot; Team</span>
+      <h1>One dashboard for every team's <span class="grad">AI spend</span> — and its <span class="eco">carbon.</span></h1>
+      <p class="lede">Ledger unifies usage across every team, app and LLM, finds the waste, and turns it into one-click savings — with ESG-ready carbon reporting built in. Analytics are free; you pay only to optimize.</p>
+      <div class="hero-cta">
+        <a href="#start" class="btn btn-primary btn-lg">Start free &rarr;</a>
+        <a href="#pricing" class="btn btn-ghost btn-lg">See pricing</a>
+      </div>
+      <div class="hero-meta">
+        <span class="pill"><span class="dot"></span> Org-wide, every model</span>
+        <span class="pill"><span class="dot green"></span> ESG carbon reporting</span>
+        <span class="pill"><span class="dot"></span> SSO &amp; budget controls</span>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="glass" id="liveConsole" data-allscope="across your org · sampled">
+        <div class="cons-head">
+          <div class="ic">&#127970;</div>
+          <div class="gc-title"><h4>Org usage</h4><span id="consScope">across your org &middot; sampled</span></div>
+          <div class="live-pill"><span class="live-dot"></span>LIVE</div>
+        </div>
+        <div class="cons-stats">
+          <div class="cstat"><div class="cstat-num" id="csTokens">0</div><div class="cstat-cap">tokens today</div></div>
+          <div class="cstat"><div class="cstat-num" id="csSpend">$0</div><div class="cstat-cap">spend today</div></div>
+          <div class="cstat"><div class="cstat-grade"><b id="csGrade">B+</b><span class="lf">score</span></div><div class="cstat-cap">Green Score</div></div>
+        </div>
+        <div class="cons-spark">
+          <svg viewBox="0 0 320 60" preserveAspectRatio="none" aria-hidden="true">
+            <path class="spark-area" id="sparkArea" d=""></path>
+            <path class="spark-line" id="sparkLine" d=""></path>
+          </svg>
+          <span class="spark-cap">spend &middot; last 24h</span>
+        </div>
+        <div class="cons-filter" role="tablist" aria-label="Provider filter">
+          <button class="cons-chip is-active" data-prov="all" type="button">All</button>
+          <button class="cons-chip" data-prov="openai" type="button">OpenAI</button>
+          <button class="cons-chip" data-prov="anthropic" type="button">Anthropic</button>
+          <button class="cons-chip" data-prov="gemini" type="button">Gemini</button>
+        </div>
+        <div class="cons-feed" id="consFeed"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<div class="trust">
+  <div class="wrap">
+    <span class="label">Works with every model your teams run:</span>
+    <span>OpenAI</span><span>Anthropic</span><span>Google Gemini</span><span>Meta Llama</span><span>Mistral</span><span>Azure OpenAI</span><span>AWS Bedrock</span>
+  </div>
+</div>
+
+<!-- VALUE STRIP -->
+<section id="value">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Why teams choose us</span>
+      <h2>Control the cost &mdash; and the carbon &mdash; of AI at scale</h2>
+      <p>Your teams are shipping AI features faster than finance can track them. tokanalyzr puts it all in one place.</p>
+    </div>
+    <div class="vstrip">
+      <div class="vcard reveal"><div class="ic">&#128202;</div><h3>Org-wide observability</h3><p>Every team, app, model and provider in one view. See spend, tokens, latency and errors broken down however you need.</p></div>
+      <div class="vcard reveal d1"><div class="ic">&#128176;</div><h3>Cost governance</h3><p>Budgets and alerts per team, anomaly detection, and live optimizations — routing, caching and prompt trimming — that cut the bill.</p></div>
+      <div class="vcard reveal d2"><div class="ic">&#127757;</div><h3>ESG-ready carbon reporting</h3><p>A Green Score for the whole org, with auditable CO&#8322;, energy and water reports your sustainability team can actually file.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow light">How it works</span>
+      <h2 style="color:#fff;">Live across your org in minutes</h2>
+      <p>No rip-and-replace. tokanalyzr sits alongside the LLMs your teams already call.</p>
+    </div>
+    <div class="steps three reveal">
+      <div class="step"><div class="num">1</div><h3>Connect</h3><p>Add provider keys, drop in our optional proxy, or upload usage exports. Read-only &mdash; two minutes.</p></div>
+      <div class="step"><div class="num">2</div><h3>See everything</h3><p>Every team, app and model in one dashboard, with your org-wide Green Score &mdash; free, forever.</p></div>
+      <div class="step"><div class="num">3</div><h3>Optimize &amp; report</h3><p>Turn on optimization to cut spend and carbon &mdash; and export ESG-ready impact reports.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- OPTIMIZATION PANEL -->
+<section class="opti" id="optimize">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Optimize, live</span>
+      <h2>Flip a switch. Watch the bill drop.</h2>
+      <p>One real workload &mdash; a support assistant running 1.2M calls a month. Toggle the optimizations tokanalyzr finds and watch spend, carbon and your Green Score recalculate in real time.</p>
+    </div>
+    <div class="optipanel reveal">
+      <div class="op-controls">
+        <h3>Turn on optimizations</h3>
+        <div class="op-sub">Everything off = a typical un-tuned setup.</div>
+        <div class="op-toggle">
+          <label class="switch"><input type="checkbox" class="opt-sw" data-cut="0.38" data-score="16" /><span class="track"></span><span class="ot-txt"><b>Right-size models</b><span>Use a smaller model where it's good enough</span></span></label>
+          <span class="ot-save">&minus;38%</span>
+        </div>
+        <div class="op-toggle">
+          <label class="switch"><input type="checkbox" class="opt-sw" data-cut="0.22" data-score="10" /><span class="track"></span><span class="ot-txt"><b>Enable caching</b><span>Stop paying for repeat &amp; near-duplicate calls</span></span></label>
+          <span class="ot-save">&minus;22%</span>
+        </div>
+        <div class="op-toggle">
+          <label class="switch"><input type="checkbox" class="opt-sw" data-cut="0.14" data-score="8" /><span class="track"></span><span class="ot-txt"><b>Trim prompts</b><span>Compress bloated system &amp; context tokens</span></span></label>
+          <span class="ot-save">&minus;14%</span>
+        </div>
+        <div class="op-toggle">
+          <label class="switch"><input type="checkbox" class="opt-sw" data-cut="0.06" data-score="6" /><span class="track"></span><span class="ot-txt"><b>Batch off-peak</b><span>Shift non-urgent jobs to greener hours</span></span></label>
+          <span class="ot-save">&minus;6%</span>
+        </div>
+      </div>
+      <div class="op-result">
+        <div class="op-headline">
+          <div><div class="op-spend" id="opSpend">$8,400</div><div class="op-spend-cap">monthly spend &middot; <span class="op-spend-base" id="opBase">was $8,400</span></div></div>
+          <div class="op-grade-wrap"><div class="op-grade" id="opGrade">C</div><div class="op-grade-cap">Green Score</div></div>
+        </div>
+        <div class="op-bar"><div class="op-bar-top"><span>Spend vs baseline</span><span id="opSpendPct">100%</span></div><div class="op-bar-track"><i class="spend" id="opSpendBar"></i></div></div>
+        <div class="op-bar"><div class="op-bar-top"><span>CO&#8322;e / month</span><span id="opCarbon">169 kg</span></div><div class="op-bar-track"><i class="carbon" id="opCarbonBar"></i></div></div>
+        <div class="op-save idle" id="opSave">Flip a switch to start saving &rarr;</div>
+        <a href="#start" class="btn btn-green" style="justify-content:center;">Find these savings in your org &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAVINGS CALCULATOR -->
+<section class="roi" id="savings">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">The math</span>
+      <h2>See what your org would save</h2>
+      <p>Move the sliders to your spend. This is what optimization hands back every month &mdash; in dollars and in carbon.</p>
+    </div>
+    <div class="roi-card reveal">
+      <div class="roi-inputs">
+        <div class="roi-field"><div class="roi-row"><label for="spend">Monthly LLM spend</label><output id="spendOut">$12,000</output></div><input type="range" id="spend" min="500" max="200000" step="500" value="12000" /></div>
+        <div class="roi-field"><div class="roi-row"><label for="over">Calls on an oversized model</label><output id="overOut">45%</output></div><input type="range" id="over" min="5" max="90" value="45" /></div>
+        <div class="roi-field"><div class="roi-row"><label for="save">Avg saving when right-sized</label><output id="saveOut">55%</output></div><input type="range" id="save" min="20" max="80" value="55" /></div>
+      </div>
+      <div class="roi-results">
+        <div class="roi-stat big"><span class="roi-num">$<span id="moMoney">0</span> <small>/ mo</small></span><span class="roi-cap">Estimated spend reclaimed</span></div>
+        <div class="roi-stat"><span class="roi-num">$<span id="yrMoney">0</span></span><span class="roi-cap">Per year</span></div>
+        <div class="roi-stat eco"><span class="roi-num"><span id="co2">0</span> <small>kg CO&#8322;e / yr</small></span><span class="roi-cap">Carbon avoided &middot; &#8776; <span id="trees">0</span> trees planted</span></div>
+        <a href="#start" class="btn btn-green btn-lg roi-cta">Start free &amp; find your savings &rarr;</a>
+        <p class="roi-note">Estimates for illustration. tokanalyzr measures your real numbers in minutes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="impact" id="impact">
+  <div class="wrap">
+    <div class="impact-head reveal">
+      <span class="eyebrow eco light" style="justify-content:center;">The impact so far</span>
+      <h2 style="color:#fff;">Real money saved. Real carbon avoided.</h2>
+      <p>What teams on tokanalyzr have already cut from their AI bills &mdash; and their footprint.</p>
+    </div>
+    <div class="impact-grid reveal">
+      <div class="impact-stat"><div class="is-num impact-num" data-pre="$" data-to="2.4" data-dec="1" data-suf="M">$0</div><div class="is-cap">cut from AI bills</div></div>
+      <div class="impact-stat"><div class="is-num impact-num" data-to="680" data-suf=" t">0</div><div class="is-cap">CO&#8322;e avoided</div></div>
+      <div class="impact-stat"><div class="is-num impact-num" data-to="4.1" data-dec="1" data-suf="M">0</div><div class="is-cap">prompts analyzed</div></div>
+    </div>
+    <p class="impact-note">Illustrative figures for now &mdash; we'll show live platform totals at launch.</p>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof">
+  <div class="wrap">
+    <div class="logos reveal">
+      <span class="ll">Northwind</span><span class="ll">Acme AI</span><span class="ll">Vertex Labs</span><span class="ll">Lumen</span><span class="ll">Forge</span><span class="ll">Cobalt</span>
+    </div>
+    <div class="quotes">
+      <div class="quote reveal"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&ldquo;We found $4k/month of waste in the first afternoon. The model router paid for itself in a week.&rdquo;</p><div class="qby"><span class="qav">PN</span><span><span class="qn">Priya N.</span><br /><span class="qr">Head of Engineering</span></span></div></div>
+      <div class="quote reveal d1"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&ldquo;Finally a number I can take to finance and to our sustainability lead in the same breath.&rdquo;</p><div class="qby"><span class="qav">ML</span><span><span class="qn">Marcus L.</span><br /><span class="qr">VP Engineering</span></span></div></div>
+      <div class="quote reveal d2"><div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div><p>&ldquo;Rolling it out across four product teams took an afternoon. The cost dashboards alone justified it.&rdquo;</p><div class="qby"><span class="qav">RT</span><span><span class="qn">Rachel T.</span><br /><span class="qr">Director of Platform</span></span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2>Free to measure. Pay to optimize.</h2>
+      <p>Analytics and the Green Score are free for your whole team, forever. Upgrade when you're ready to start saving.</p>
+    </div>
+    <div style="text-align:center;">
+      <div class="bill-toggle" id="billToggle">
+        <button class="is-active" data-bill="monthly" type="button">Monthly</button>
+        <button data-bill="annual" type="button">Annual<span class="save">&minus;25%</span></button>
+      </div>
+    </div>
+    <div class="price-grid reveal">
+      <div class="tier">
+        <h3>Free</h3>
+        <div class="tier-for">For getting visibility</div>
+        <div class="tier-price">$0</div>
+        <div class="tier-note">Forever. No card.</div>
+        <a href="#start" class="btn btn-outline">Start free</a>
+        <ul>
+          <li><span class="tk">&#10003;</span> <span>Unified team analytics, <b>all LLMs</b></span></li>
+          <li><span class="tk">&#10003;</span> <span><b>Green Score</b> for your org</span></li>
+          <li><span class="tk">&#10003;</span> <span>Cost explorer &amp; budget alerts</span></li>
+          <li><span class="tk">&#10003;</span> <span>7-day history &middot; up to 3 seats</span></li>
+        </ul>
+      </div>
+      <div class="tier pop">
+        <span class="pop-flag">Most popular</span>
+        <h3>Pro</h3>
+        <div class="tier-for">For teams that want to save</div>
+        <div class="tier-price">$<span class="price-val" data-m="12" data-a="9">12</span><small>/user/mo</small></div>
+        <div class="tier-note bill-note" data-m-note="Billed monthly" data-a-note="Per user/mo, billed annually">Billed monthly</div>
+        <a href="#start" class="btn btn-primary">Start Pro</a>
+        <ul>
+          <li><span class="tk">&#10003;</span> <span>Everything in <b>Free</b></span></li>
+          <li><span class="tk">&#10003;</span> <span><b>Optimization</b>: routing, caching &amp; prompt trimming</span></li>
+          <li><span class="tk">&#10003;</span> <span><b>Carbon reporting</b> &amp; ESG exports</span></li>
+          <li><span class="tk">&#10003;</span> <span>Budget controls &amp; SSO-lite</span></li>
+          <li><span class="tk">&#10003;</span> <span>Unlimited history &amp; seats</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="roi-note" style="margin-top:22px;">Need SSO/SAML, a VPC proxy or an SLA? <a href="mailto:hello@tokanalyzr.ai?subject=tokanalyzr.ai%20Enterprise" style="color:var(--brand);font-weight:700;">Talk to us about Enterprise &rarr;</a></p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="eyebrow">FAQ</span><h2>Questions teams ask us</h2></div>
+    <div class="faq-list reveal">
+      <details class="faq-item"><summary>How does it connect to our stack?</summary><div class="faq-a">Three ways, all read-only: add provider API keys, route through our optional lightweight proxy, or upload usage exports. No code rewrite required.</div></details>
+      <details class="faq-item"><summary>Is it secure and compliant?</summary><div class="faq-a">Keys are encrypted, we never store prompt or response content, and we're GDPR-ready with SOC&nbsp;2 in progress. SSO and budget controls come with Pro.</div></details>
+      <details class="faq-item"><summary>Will it slow our applications down?</summary><div class="faq-a">Analytics are passive &mdash; zero added latency. The optional routing/caching proxy adds only a few milliseconds and always fails open to your provider.</div></details>
+      <details class="faq-item"><summary>How is the carbon calculated?</summary><div class="faq-a">Energy-per-token benchmarks per model &times; the carbon intensity of the datacenter region it ran in &mdash; auditable and exportable for ESG disclosures.</div></details>
+      <details class="faq-item"><summary>What does it cost?</summary><div class="faq-a">Analytics and the Green Score are free for your whole team, forever. Pro is $12/user/mo ($9 annual) for optimization and reporting &mdash; <a href="#pricing">see plans</a>.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- START -->
+<section class="start" id="start">
+  <div class="wrap">
+    <div class="start-card reveal">
+      <span class="eyebrow eco light" style="justify-content:center;">Start free</span>
+      <h2>Put every team's AI spend in one place &mdash; in 2 minutes</h2>
+      <p>Connect your providers and get org-wide analytics and your Green Score free. No credit card, no trial clock.</p>
+      <form class="start-form" id="startForm" novalidate>
+        <input type="email" id="startEmail" placeholder="you@company.com" aria-label="Work email" required />
+        <button type="submit" class="btn btn-primary btn-lg">Start free &rarr;</button>
+      </form>
+      <div class="start-success" id="startSuccess">&#127807; You're in &mdash; check your inbox for your setup link. (Demo: nothing was actually sent.)</div>
+      <div class="start-meta">Free forever &middot; All major LLMs &middot; Read-only &amp; privacy-first</div>
+      <div class="trustbadges">
+        <span class="tb"><span class="tb-ic">&#10003;</span> Read-only</span>
+        <span class="tb"><span class="tb-ic">&#10003;</span> Encrypted keys</span>
+        <span class="tb"><span class="tb-ic">&#10003;</span> GDPR-ready</span>
+        <span class="tb"><span class="tb-ic">&#10003;</span> SOC 2 (in progress)</span>
+      </div>
+      <div class="start-alt">Want a walkthrough first? <a href="mailto:hello@tokanalyzr.ai?subject=tokanalyzr.ai%20team%20demo">Book a demo &rarr;</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
+          <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+            <defs><linearGradient id="tkFoot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5a5"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+            <circle cx="16" cy="16" r="13" fill="none" stroke="url(#tkFoot)" stroke-width="2.4"/>
+            <rect x="9.8" y="17.3" width="2.8" height="5.2" rx="1.2" fill="url(#tkFoot)"/>
+            <rect x="14.6" y="13.7" width="2.8" height="8.8" rx="1.2" fill="url(#tkFoot)"/>
+            <rect x="19.4" y="10.6" width="2.8" height="11.9" rx="1.2" fill="url(#tkFoot)"/>
+            <path d="M22.7 7.1 L23.5 9.5 L25.9 10.3 L23.5 11.1 L22.7 13.5 L21.9 11.1 L19.5 10.3 L21.9 9.5 Z" fill="url(#tkFoot)"/>
+          </svg>
+          <span class="brand-name">tokanalyzr<b>.ai</b></span>
+        </a>
+        <p>AI token analytics and a Green Score for every model your teams run. Free to measure. Pay to optimize.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Ledger &middot; Team</h5>
+        <a href="#optimize">Optimization</a>
+        <a href="#savings">Savings calculator</a>
+        <a href="#pricing">Pricing</a>
+        <a href="meter.html">Meter &middot; Individuals</a>
+        <a href="margin.html">Margin &middot; Application</a>
+      </div>
+      <div class="foot-col">
+        <h5>Get started</h5>
+        <a href="#start">Start free</a>
+        <a href="mailto:hello@tokanalyzr.ai?subject=tokanalyzr.ai%20team%20demo">Book a demo</a>
+        <a href="mailto:hello@tokanalyzr.ai?subject=tokanalyzr.ai%20Enterprise">Enterprise</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="index.html">Home</a>
+        <a href="mailto:hello@tokanalyzr.ai">Contact</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>&copy; <span id="yr"></span> tokanalyzr.ai. All rights reserved.</span>
+      <span>Token analytics &middot; Green Score &middot; Built for every LLM</span>
+    </div>
+  </div>
+</footer>
+
+<div class="stickybar" id="stickyBar" role="region" aria-label="Start free">
+  <div class="stickybar-inner">
+    <span class="stickybar-dot" aria-hidden="true"></span>
+    <span class="stickybar-txt"><b>Free for your whole team.</b><span class="long"> See every team's AI spend &amp; Green Score &mdash;</span> <span class="hl">no card.</span></span>
+    <a href="#start" class="btn btn-primary">Start free &rarr;</a>
+    <button class="stickybar-x" id="stickyBarX" type="button" aria-label="Dismiss">&times;</button>
+  </div>
+</div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
