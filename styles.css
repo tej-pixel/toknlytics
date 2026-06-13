@@ -860,3 +860,15 @@ footer { background: var(--navy); color: #a9b1cd; padding: 54px 0 34px; border-t
 .bene .ic { font-size: 21px; width: 44px; height: 44px; border-radius: 12px; background: var(--mist); display: grid; place-items: center; margin-bottom: 12px; }
 .bene h3 { font-size: 15.5px; }
 .bene p { color: var(--muted); font-size: 13.5px; margin-top: 6px; }
+
+/* Penny — AI FinOps analyst persona */
+.penny-av { width: 30px; height: 30px; border-radius: 50%; flex: 0 0 auto; display: inline-block; vertical-align: middle; box-shadow: 0 2px 8px -2px rgba(14,165,165,.5); }
+.penny-av.sm { width: 22px; height: 22px; }
+.penny-intro { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: 16px; padding: 18px 22px; max-width: 760px; margin: 22px auto 0; }
+.penny-intro .penny-av { width: 44px; height: 44px; }
+.penny-intro p { color: #c1c8e0; font-size: 14.5px; margin: 0; }
+.penny-intro p b { color: #fff; }
+/* light-surface variant */
+.penny-intro.light { background: var(--mist); border-color: var(--line); }
+.penny-intro.light p { color: var(--muted); }
+.penny-intro.light p b { color: var(--ink); }
