@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://tej-pixel.github.io/toknlytics/sitemap.xml
