@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Penny — your AI FinOps analyst | tokanalyzr.ai</title>
+<meta name="description" content="Penny is the AI analyst inside tokanalyzr. She watches your AI spend, flags margin risk, and automatically implements savings — included on every paid plan. You only pay when she lowers your bill." />
+<link rel="canonical" href="https://tej-pixel.github.io/toknlytics/penny.html" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="tokanalyzr.ai" />
+<meta property="og:title" content="Penny — your AI FinOps analyst" />
+<meta property="og:description" content="The AI agent that watches your AI spend, flags margin risk, and automatically cuts the bill. Included on every paid plan — you only pay when she saves." />
+<meta property="og:url" content="https://tej-pixel.github.io/toknlytics/penny.html" />
+<meta property="og:image" content="https://tej-pixel.github.io/toknlytics/og-cover-v2.png" />
+<meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Penny — your AI FinOps analyst" />
+<meta name="twitter:description" content="The AI agent that watches your spend, flags risk and cuts the bill. Paid plans — you only pay when she saves." />
+<meta name="twitter:image" content="https://tej-pixel.github.io/toknlytics/og-cover-v2.png" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%230ea5a5'/><stop offset='1' stop-color='%232563eb'/></linearGradient></defs><rect width='32' height='32' rx='9' fill='url(%23g)'/><circle cx='16' cy='15.5' r='9.7' fill='none' stroke='white' stroke-width='1.8'/><rect x='10.4' y='15.4' width='2.3' height='5' rx='1' fill='white'/><rect x='14.5' y='12.8' width='2.3' height='7.6' rx='1' fill='white'/><rect x='18.6' y='10.4' width='2.3' height='10' rx='1' fill='white'/><path d='M21.4 7.6 L22 9.4 L23.8 10 L22 10.6 L21.4 12.4 L20.8 10.6 L19 10 L20.8 9.4 Z' fill='white'/></svg>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css?v=10" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Will Penny change things without my approval?","acceptedAnswer":{"@type":"Answer","text":"No. Penny is read-only by default. You choose which optimizations she's allowed to apply automatically and which need your approval, all within budgets and guardrails you set, with a full audit log."}},
+{"@type":"Question","name":"What does Penny cost?","acceptedAnswer":{"@type":"Answer","text":"Penny is included on every paid plan. The model is simple: you pay when she actively lowers your bill — optimization is the value, so that's what you pay for."}},
+{"@type":"Question","name":"Is Penny available on the free plan?","acceptedAnswer":{"@type":"Answer","text":"The free plan gives you full AI cost intelligence — you see spend, margin and carbon and the opportunities. Penny, the agent that acts on them, is a paid feature."}}
+]}
+</script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
+      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
+        <defs><linearGradient id="tkNav" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5a5"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+        <circle cx="16" cy="16" r="13" fill="none" stroke="url(#tkNav)" stroke-width="2.4"/>
+        <rect x="9.8" y="17.3" width="2.8" height="5.2" rx="1.2" fill="url(#tkNav)"/>
+        <rect x="14.6" y="13.7" width="2.8" height="8.8" rx="1.2" fill="url(#tkNav)"/>
+        <rect x="19.4" y="10.6" width="2.8" height="11.9" rx="1.2" fill="url(#tkNav)"/>
+        <path d="M22.7 7.1 L23.5 9.5 L25.9 10.3 L23.5 11.1 L22.7 13.5 L21.9 11.1 L19.5 10.3 L21.9 9.5 Z" fill="url(#tkNav)"/>
+      </svg>
+      <span class="brand-name">tokanalyzr<b>.ai</b></span>
+    </a>
+    <nav class="nav-links" id="navLinks">
+      <a href="meter.html">Meter</a>
+      <a href="ledger.html">Ledger</a>
+      <a href="margin.html">Margin</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="resources.html">Resources</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="index.html#start" class="signin">Sign in</a>
+      <a href="pricing.html" class="btn btn-primary">See plans</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
+    </div>
+  </div>
+</header>
+
+<section class="page-hero">
+  <div class="wrap">
+    <img class="penny-hero-av" src="assets/penny.svg" alt="Penny" />
+    <span class="eyebrow app light" style="justify-content:center;">Your AI FinOps analyst &middot; paid</span>
+    <h1>Penny finds the savings. Automatically.</h1>
+    <p>Free shows you where the money goes. <b>Penny gets it back.</b> She's the AI agent inside tokanalyzr that watches your spend around the clock, flags risk before it hits the invoice, and implements the savings for you &mdash; included on every paid plan.</p>
+    <div class="hero-cta" style="justify-content:center;margin-top:26px;">
+      <a href="pricing.html" class="btn btn-primary btn-lg">Unlock Penny &rarr;</a>
+      <a href="index.html#start" class="btn btn-ghost btn-lg">Start free first</a>
+    </div>
+    <p style="color:#8fa6c9;font-size:13.5px;margin-top:16px;">You only pay when she actively lowers your bill.</p>
+  </div>
+</section>
+
+<!-- WHAT SHE DOES -->
+<section id="does">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow app">What Penny does</span>
+      <h2>An analyst that never sleeps &mdash; and acts</h2>
+      <p>Most tools hand you a dashboard and leave the work to you. Penny does the work.</p>
+    </div>
+    <div class="vstrip reveal">
+      <div class="vcard"><div class="ic">&#128064;</div><h3>Watches everything</h3><p>Every request, model, team, product and customer across all your providers &mdash; continuously, not in a weekly report.</p></div>
+      <div class="vcard"><div class="ic">&#128276;</div><h3>Flags risk early</h3><p>Surfaces margin-negative customers, cost spikes, runaway loops and abuse <b>before</b> they land on the invoice.</p></div>
+      <div class="vcard"><div class="ic">&#9889;</div><h3>Cuts the bill</h3><p>Routes to the cheapest capable model, trims prompts, compresses context and caches duplicates &mdash; automatically.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW SHE WORKS -->
+<section class="how" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow light">How Penny works</span>
+      <h2 style="color:#fff;">A continuous optimization loop</h2>
+      <p>Penny runs the same loop a great FinOps analyst would &mdash; just continuously, across everything.</p>
+    </div>
+    <div class="steps five reveal">
+      <div class="step"><div class="num">1</div><h3>Observe</h3><p>Reads usage across every provider, read-only.</p></div>
+      <div class="step"><div class="num">2</div><h3>Detect</h3><p>Spots waste, anomalies and margin risk.</p></div>
+      <div class="step"><div class="num">3</div><h3>Recommend</h3><p>Surfaces the fix and the projected saving.</p></div>
+      <div class="step"><div class="num">4</div><h3>Act</h3><p>Implements it &mdash; within your guardrails.</p></div>
+      <div class="step"><div class="num">5</div><h3>Report</h3><p>Tells you what she did and what it saved.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE VS PENNY -->
+<section id="value">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Free vs Penny</span>
+      <h2>Seeing the problem is free. Fixing it is Penny.</h2>
+      <p>You can run tokanalyzr free forever and see exactly where your AI money goes. Penny is the paid upgrade that turns that visibility into savings.</p>
+    </div>
+    <div class="ladder reveal">
+      <div class="ladder-card free">
+        <span class="lc-tag">Free forever</span>
+        <h3>You, with the dashboard</h3>
+        <p>Full AI cost intelligence &mdash; the numbers and the opportunities, on you to action.</p>
+        <ul>
+          <li>See spend, margin &amp; carbon</li>
+          <li>Opportunities surfaced</li>
+          <li>You decide, you implement, you monitor</li>
+        </ul>
+        <a href="index.html#start" class="btn btn-outline">Start free</a>
+      </div>
+      <div class="ladder-arrow" aria-hidden="true">&rarr;</div>
+      <div class="ladder-card optimize">
+        <span class="lc-tag">Paid</span>
+        <h3 class="h-penny"><img class="penny-av" src="assets/penny.svg" alt="Penny" /> Penny, on the job</h3>
+        <p>The agent does the actioning &mdash; continuously, and only bills you when she saves.</p>
+        <ul>
+          <li>Implements routing, caching &amp; prompt fixes</li>
+          <li>Alerts you the moment margin slips</li>
+          <li>Reports the savings she banked</li>
+        </ul>
+        <a href="pricing.html" class="btn btn-primary">See plans</a>
+      </div>
+    </div>
+    <p class="roi-note" style="text-align:center;margin-top:22px;">Curious what's on the table? The <a href="calculator.html" style="color:var(--brand);font-weight:700;">cost calculator</a> shows what right-sizing alone could save &mdash; Penny captures it for you.</p>
+  </div>
+</section>
+
+<!-- CONTROL / TRUST -->
+<section class="greensec" id="control">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow app light">You stay in control</span>
+      <h2 style="color:#fff;">An agent you can actually trust with production</h2>
+      <p>Penny is powerful because she acts &mdash; and safe because you set the rules.</p>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-card"><div class="why-ic">&#128274;</div><h3>Read-only by default</h3><p>She observes everything but changes nothing until you allow it.</p></div>
+      <div class="why-card"><div class="why-ic">&#9989;</div><h3>You approve the actions</h3><p>Choose what she can auto-apply and what needs a human yes &mdash; per workload.</p></div>
+      <div class="why-card"><div class="why-ic">&#128203;</div><h3>Guardrails &amp; audit log</h3><p>Budgets, limits and a full record of every change Penny makes and what it saved.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="start" id="start">
+  <div class="wrap">
+    <div class="start-card reveal">
+      <img class="penny-hero-av" src="assets/penny.svg" alt="Penny" style="width:64px;height:64px;" />
+      <span class="eyebrow eco light" style="justify-content:center;">Put Penny to work</span>
+      <h2>Start free. Unlock Penny when you're ready to save.</h2>
+      <p>Measure your AI economics free, forever. Upgrade to a paid plan and Penny starts finding and banking savings &mdash; you only pay when she lowers your bill.</p>
+      <div class="hero-cta" style="justify-content:center;">
+        <a href="pricing.html" class="btn btn-primary btn-lg">See plans &amp; unlock Penny &rarr;</a>
+        <a href="index.html#start" class="btn btn-ghost btn-lg">Start free</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
+          <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
+            <defs><linearGradient id="tkFoot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5a5"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
+            <circle cx="16" cy="16" r="13" fill="none" stroke="url(#tkFoot)" stroke-width="2.4"/>
+            <rect x="9.8" y="17.3" width="2.8" height="5.2" rx="1.2" fill="url(#tkFoot)"/>
+            <rect x="14.6" y="13.7" width="2.8" height="8.8" rx="1.2" fill="url(#tkFoot)"/>
+            <rect x="19.4" y="10.6" width="2.8" height="11.9" rx="1.2" fill="url(#tkFoot)"/>
+            <path d="M22.7 7.1 L23.5 9.5 L25.9 10.3 L23.5 11.1 L22.7 13.5 L21.9 11.1 L19.5 10.3 L21.9 9.5 Z" fill="url(#tkFoot)"/>
+          </svg>
+          <span class="brand-name">tokanalyzr<b>.ai</b></span>
+        </a>
+        <p>The first AI FinOps platform — track cost, maximize margin and minimize carbon across every LLM. Free to measure.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Products</h5>
+        <a href="meter.html">Meter &middot; Individuals</a>
+        <a href="ledger.html">Ledger &middot; Team</a>
+        <a href="margin.html">Margin &middot; Application</a>
+        <a href="pricing.html">Pricing</a>
+      </div>
+      <div class="foot-col">
+        <h5>Resources</h5>
+        <a href="penny.html">Meet Penny</a>
+        <a href="calculator.html">LLM cost calculator</a>
+        <a href="green-score.html">Green Score</a>
+        <a href="resources.html">Guides &amp; tools</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company &amp; legal</h5>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="security.html">Security</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="foot-legal">
+        <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a><a href="about.html">About</a><a href="affiliate.html">Affiliate</a><a href="contact.html">Contact</a>
+      </div>
+      <span>&copy; <span id="yr"></span> tokanalyzr.ai. All rights reserved.</span>
+      <span>Meter &middot; Ledger &middot; Margin &mdash; one engine for AI cost</span>
+    </div>
+  </div>
+</footer>
+
+<script src="app.js" defer></script>
+</body>
+</html>

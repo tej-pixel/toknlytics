@@ -1,12 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="Penny">
   <defs>
     <linearGradient id="pennyg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#0ea5a5"/>
+      <stop offset="0" stop-color="#16c0b0"/>
       <stop offset="1" stop-color="#2563eb"/>
     </linearGradient>
   </defs>
   <circle cx="20" cy="20" r="20" fill="url(#pennyg)"/>
-  <circle cx="20" cy="20" r="14.5" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="1.4"/>
-  <path d="M20 9.5 L21.7 17.2 L29.4 18.9 L21.7 20.6 L20 28.3 L18.3 20.6 L10.6 18.9 L18.3 17.2 Z" fill="#fff"/>
-  <path d="M27.5 24.5 L28.2 27 L30.7 27.7 L28.2 28.4 L27.5 30.9 L26.8 28.4 L24.3 27.7 L26.8 27 Z" fill="#fff" fill-opacity=".85"/>
+  <path d="M20 3.5 Q21.7 18.8 36.5 20.5 Q21.7 22.2 20 37.5 Q18.3 22.2 3.5 20.5 Q18.3 18.8 20 3.5 Z" fill="#fff"/>
+  <path d="M29.6 7 Q30.1 11.5 34.6 12 Q30.1 12.5 29.6 17 Q29.1 12.5 24.6 12 Q30.1 11.5 29.6 7 Z" fill="#fff" fill-opacity=".92"/>
 </svg>
