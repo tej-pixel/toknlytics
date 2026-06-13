@@ -711,3 +711,38 @@ footer { background: var(--navy); color: #a9b1cd; padding: 54px 0 34px; border-t
 .nf h2 { margin: 8px 0 12px; font-size: 26px; }
 .nf p { color: #b6bdd8; max-width: 460px; margin: 0 auto 26px; }
 .nf-links { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+/* ===================================================================
+   Affiliate / Creator program
+   =================================================================== */
+.earn-card { padding: 24px; background: linear-gradient(160deg, var(--navy) 0%, var(--navy-3) 100%); border: 1px solid rgba(255,255,255,.1); }
+.earn-card .eh { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.earn-card .eh h4 { color: #fff; font-size: 15px; }
+.earn-card .eh span { color: #9aa3bd; font-size: 12px; }
+.earn-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,.07); }
+.earn-row .el { color: #c1c8e0; font-size: 14px; }
+.earn-row .ev { font-family: var(--mono); color: #fff; font-weight: 800; font-size: 14px; }
+.earn-total { margin-top: 14px; background: rgba(24,201,141,.1); border: 1px solid rgba(24,201,141,.3); border-radius: 14px; padding: 15px 18px; display: flex; justify-content: space-between; align-items: center; }
+.earn-total .el { color: #5fe3b3; font-weight: 700; font-size: 14px; }
+.earn-total .ev { color: #5fe3b3; font-weight: 900; font-size: 24px; font-family: var(--mono); }
+
+.tiers3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; max-width: 1000px; margin: 0 auto; }
+.tier-card { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius); padding: 26px; }
+.tier-card .tc-tier { font-size: 12.5px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: #5fe3b3; }
+.tier-card .tc-rate { font-size: 38px; font-weight: 900; color: #fff; letter-spacing: -.02em; margin: 8px 0 2px; }
+.tier-card .tc-rate small { font-size: 15px; color: #9aa3bd; font-weight: 700; }
+.tier-card .tc-who { color: #a9b1cd; font-size: 14px; margin-bottom: 14px; }
+.tier-card ul { list-style: none; display: grid; gap: 8px; }
+.tier-card li { color: #c1c8e0; font-size: 13.5px; display: flex; gap: 9px; }
+.tier-card li::before { content: "\2713"; color: #18c98d; font-weight: 900; }
+@media (max-width: 760px) { .tiers3 { grid-template-columns: 1fr; } }
+
+/* multi-field application form */
+.apply-form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 8px; }
+.apply-form .full { grid-column: 1 / -1; }
+.apply-form label { display: block; font-size: 13px; font-weight: 700; color: #c1c8e0; margin-bottom: 6px; }
+.apply-form input, .apply-form select { width: 100%; padding: 13px 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,.16); background: rgba(255,255,255,.06); color: #fff; font: inherit; font-size: 15px; }
+.apply-form input::placeholder { color: #8f97b5; }
+.apply-form input:focus, .apply-form select:focus { outline: 2px solid rgba(14,165,165,.5); border-color: transparent; }
+.apply-form select option { color: #0f172a; }
+@media (max-width: 620px) { .apply-form { grid-template-columns: 1fr; } }
