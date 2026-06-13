@@ -806,3 +806,18 @@ footer { background: var(--navy); color: #a9b1cd; padding: 54px 0 34px; border-t
 .prose a.btn-ghost { color: #fff; }
 .prose a.btn-outline { color: var(--ink); }
 .prose a.btn-outline:hover { color: var(--brand); }
+
+/* pricing: freemium band + free pill */
+.free-band { display: flex; align-items: center; justify-content: space-between; gap: 22px; flex-wrap: wrap;
+  background: linear-gradient(120deg, rgba(24,201,141,.12), rgba(14,165,165,.08)); border: 1px solid rgba(24,201,141,.32);
+  border-radius: 20px; padding: 22px 28px; max-width: 1040px; margin: 0 auto 30px; }
+.free-band .fb-l { display: flex; align-items: center; gap: 16px; }
+.free-band .fb-ic { width: 46px; height: 46px; flex: 0 0 auto; border-radius: 13px; background: var(--green-grad); display: grid; place-items: center; font-size: 22px; }
+.free-band h3 { font-size: 19px; }
+.free-band p { color: var(--muted); font-size: 14.5px; margin-top: 3px; }
+.free-band .btn { flex: 0 0 auto; }
+@media (max-width: 640px) { .free-band { flex-direction: column; align-items: flex-start; } .free-band .btn { width: 100%; justify-content: center; } }
+
+.tier .free-pill { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 800; letter-spacing: .03em; text-transform: uppercase;
+  color: var(--green-2); background: rgba(24,201,141,.13); border: 1px solid rgba(24,201,141,.3); padding: 4px 11px; border-radius: 999px; margin-bottom: 14px; }
+.tier .price-from { font-size: 13px; color: var(--muted-2); font-weight: 600; margin-bottom: 2px; }

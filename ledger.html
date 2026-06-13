@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=3" />
+<link rel="stylesheet" href="styles.css?v=4" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Ledger by tokanalyzr.ai","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Org-wide AI spend across every team and model, budgets that stop surprises, and ESG-ready carbon reporting.","offers":[{"@type":"Offer","price":"0","priceCurrency":"USD","name":"Free"},{"@type":"Offer","price":"12","priceCurrency":"USD","name":"Pro (per user/mo)"}],"publisher":{"@type":"Organization","name":"tokanalyzr.ai","legalName":"TokenAI Ltd"}}
 </script>
@@ -52,7 +52,7 @@
       <nav class="nav-links" id="navLinks">
         <a href="#optimize">Optimize</a>
         <a href="#savings">Savings</a>
-        <a href="#pricing">Pricing</a>
+        <a href="pricing.html">Pricing</a>
         <a href="index.html#products">All products</a>
       </nav>
     </div>
@@ -73,7 +73,7 @@
       <p class="lede">Ledger unifies usage across every team, app and LLM, finds the waste, and turns it into one-click savings — with ESG-ready carbon reporting built in. Analytics are free; you pay only to optimize.</p>
       <div class="hero-cta">
         <a href="#start" class="btn btn-primary btn-lg">Start free &rarr;</a>
-        <a href="#pricing" class="btn btn-ghost btn-lg">See pricing</a>
+        <a href="pricing.html" class="btn btn-ghost btn-lg">See pricing</a>
       </div>
       <div class="hero-meta">
         <span class="pill"><span class="dot"></span> Org-wide, every model</span>
@@ -253,53 +253,6 @@
   </div>
 </section>
 
-<!-- PRICING -->
-<section class="pricing" id="pricing">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Pricing</span>
-      <h2>Free to measure. Pay to optimize.</h2>
-      <p>Analytics and the Green Score are free for your whole team, forever. Upgrade when you're ready to start saving.</p>
-    </div>
-    <div style="text-align:center;">
-      <div class="bill-toggle" id="billToggle">
-        <button class="is-active" data-bill="monthly" type="button">Monthly</button>
-        <button data-bill="annual" type="button">Annual<span class="save">&minus;25%</span></button>
-      </div>
-    </div>
-    <div class="price-grid reveal">
-      <div class="tier">
-        <h3>Free</h3>
-        <div class="tier-for">For getting visibility</div>
-        <div class="tier-price">$0</div>
-        <div class="tier-note">Forever. No card.</div>
-        <a href="#start" class="btn btn-outline">Start free</a>
-        <ul>
-          <li><span class="tk">&#10003;</span> <span>Unified team analytics, <b>all LLMs</b></span></li>
-          <li><span class="tk">&#10003;</span> <span><b>Green Score</b> for your org</span></li>
-          <li><span class="tk">&#10003;</span> <span>Cost explorer &amp; budget alerts</span></li>
-          <li><span class="tk">&#10003;</span> <span>7-day history &middot; up to 3 seats</span></li>
-        </ul>
-      </div>
-      <div class="tier pop">
-        <span class="pop-flag">Most popular</span>
-        <h3>Pro</h3>
-        <div class="tier-for">For teams that want to save</div>
-        <div class="tier-price">$<span class="price-val" data-m="12" data-a="9">12</span><small>/user/mo</small></div>
-        <div class="tier-note bill-note" data-m-note="Billed monthly" data-a-note="Per user/mo, billed annually">Billed monthly</div>
-        <a href="#start" class="btn btn-primary">Start Pro</a>
-        <ul>
-          <li><span class="tk">&#10003;</span> <span>Everything in <b>Free</b></span></li>
-          <li><span class="tk">&#10003;</span> <span><b>Optimization</b>: routing, caching &amp; prompt trimming</span></li>
-          <li><span class="tk">&#10003;</span> <span><b>Carbon reporting</b> &amp; ESG exports</span></li>
-          <li><span class="tk">&#10003;</span> <span>Budget controls &amp; SSO-lite</span></li>
-          <li><span class="tk">&#10003;</span> <span>Unlimited history &amp; seats</span></li>
-        </ul>
-      </div>
-    </div>
-    <p class="roi-note" style="margin-top:22px;">Need SSO/SAML, a VPC proxy or an SLA? <a href="mailto:hello@tokanalyzr.ai?subject=tokanalyzr.ai%20Enterprise" style="color:var(--brand);font-weight:700;">Talk to us about Enterprise &rarr;</a></p>
-  </div>
-</section>
 
 <!-- FAQ -->
 <section class="faq" id="faq">
@@ -310,7 +263,7 @@
       <details class="faq-item"><summary>Is it secure and compliant?</summary><div class="faq-a">Keys are encrypted, we never store prompt or response content, and we're GDPR-ready with SOC&nbsp;2 in progress. SSO and budget controls come with Pro.</div></details>
       <details class="faq-item"><summary>Will it slow our applications down?</summary><div class="faq-a">Analytics are passive &mdash; zero added latency. The optional routing/caching proxy adds only a few milliseconds and always fails open to your provider.</div></details>
       <details class="faq-item"><summary>How is the carbon calculated?</summary><div class="faq-a">Energy-per-token benchmarks per model &times; the carbon intensity of the datacenter region it ran in &mdash; auditable and exportable for ESG disclosures.</div></details>
-      <details class="faq-item"><summary>What does it cost?</summary><div class="faq-a">Analytics and the Green Score are free for your whole team, forever. Pro is $12/user/mo ($9 annual) for optimization and reporting &mdash; <a href="#pricing">see plans</a>.</div></details>
+      <details class="faq-item"><summary>What does it cost?</summary><div class="faq-a">Analytics and the Green Score are free for your whole team, forever. Pro is $12/user/mo ($9 annual) for optimization and reporting &mdash; <a href="pricing.html">see plans</a>.</div></details>
     </div>
   </div>
 </section>
@@ -360,7 +313,7 @@
         <h5>Ledger &middot; Team</h5>
         <a href="#optimize">Optimization</a>
         <a href="#savings">Savings calculator</a>
-        <a href="#pricing">Pricing</a>
+        <a href="pricing.html">Pricing</a>
         <a href="meter.html">Meter &middot; Individuals</a>
         <a href="margin.html">Margin &middot; Application</a>
       </div>

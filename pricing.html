@@ -21,7 +21,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=3" />
+<link rel="stylesheet" href="styles.css?v=4" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Is it really free to measure?","acceptedAnswer":{"@type":"Answer","text":"Yes. Analytics and your Green Score are free forever on every product. You only pay when you turn on optimization (Meter, Ledger) or per-customer margin (Margin)."}},
@@ -68,37 +68,61 @@
   </div>
 </section>
 
-<section class="pricing" style="padding-top:54px;">
+<section class="pricing" style="padding-top:48px;">
   <div class="wrap">
+    <div class="free-band reveal">
+      <div class="fb-l">
+        <div class="fb-ic">&#127793;</div>
+        <div>
+          <h3>Free to measure &mdash; forever</h3>
+          <p>See your spend and Green Score across every LLM on all three products. No card, no trial clock. You only pay if and when you choose to optimize.</p>
+        </div>
+      </div>
+      <a href="index.html#start" class="btn btn-green btn-lg">Start free &rarr;</a>
+    </div>
+
+    <div style="text-align:center;">
+      <div class="bill-toggle" id="billToggle" style="margin:0 auto 34px;">
+        <button class="is-active" data-bill="monthly" type="button">Monthly</button>
+        <button data-bill="annual" type="button">Annual<span class="save">&minus;25%</span></button>
+      </div>
+    </div>
+
     <div class="price-grid three reveal">
       <div class="tier">
+        <span class="free-pill">&#10003; Free forever</span>
         <h3>Meter</h3>
         <div class="tier-for">For individuals &amp; developers</div>
-        <div class="tier-price">$8<small>/mo</small></div>
-        <div class="tier-note">Free forever to track &middot; Pro from $6/mo annual</div>
-        <a href="meter.html" class="btn btn-outline">Explore Meter</a>
+        <div class="price-from">then Pro from</div>
+        <div class="tier-price">$<span class="price-val" data-m="8" data-a="6">8</span><small>/mo</small></div>
+        <div class="tier-note bill-note" data-m-note="Billed monthly" data-a-note="Per month, billed annually">Billed monthly</div>
+        <a href="index.html#start" class="btn btn-outline">Start free</a>
         <ul>
-          <li><span class="tk">&#10003;</span> <span>All your LLMs in one dashboard</span></li>
-          <li><span class="tk">&#10003;</span> <span>Personal <b>Green Score</b></span></li>
-          <li><span class="tk">&#10003;</span> <span>Prompt analyzer &amp; model routing</span></li>
+          <li><span class="tk">&#10003;</span> <span><b>Free:</b> all LLMs + personal <b>Green Score</b></span></li>
+          <li><span class="tk">&#10003;</span> <span><b>Pro:</b> prompt analyzer &amp; model routing</span></li>
+          <li><span class="tk">&#10003;</span> <span>Unlimited history</span></li>
         </ul>
       </div>
       <div class="tier pop">
         <span class="pop-flag">Most popular</span>
+        <span class="free-pill">&#10003; Free forever</span>
         <h3>Ledger</h3>
         <div class="tier-for">For teams &amp; RevOps</div>
-        <div class="tier-price">$12<small>/user/mo</small></div>
-        <div class="tier-note">Free forever to track &middot; Pro from $9 annual</div>
-        <a href="ledger.html" class="btn btn-primary">Explore Ledger</a>
+        <div class="price-from">then Pro from</div>
+        <div class="tier-price">$<span class="price-val" data-m="12" data-a="9">12</span><small>/user/mo</small></div>
+        <div class="tier-note bill-note" data-m-note="Billed monthly" data-a-note="Per user/mo, billed annually">Billed monthly</div>
+        <a href="index.html#start" class="btn btn-primary">Start free</a>
         <ul>
-          <li><span class="tk">&#10003;</span> <span>Org-wide spend, every team &amp; model</span></li>
-          <li><span class="tk">&#10003;</span> <span><b>Budget alerts</b> &amp; cost governance</span></li>
-          <li><span class="tk">&#10003;</span> <span>ESG-ready carbon reporting &amp; SSO</span></li>
+          <li><span class="tk">&#10003;</span> <span><b>Free:</b> org-wide spend &amp; Green Score</span></li>
+          <li><span class="tk">&#10003;</span> <span><b>Pro:</b> budgets, alerts &amp; SSO</span></li>
+          <li><span class="tk">&#10003;</span> <span>ESG-ready carbon reporting</span></li>
         </ul>
       </div>
       <div class="tier">
+        <span class="free-pill" style="color:var(--violet-2);background:rgba(124,92,255,.13);border-color:rgba(124,92,255,.3);">Premium &middot; FinOps</span>
         <h3>Margin</h3>
         <div class="tier-for">For AI-native products</div>
+        <div class="price-from">&nbsp;</div>
         <div class="tier-price tier-price-sm">Usage&#8209;based</div>
         <div class="tier-note">Sales-led &middot; scales with tracked spend</div>
         <a href="margin.html" class="btn btn-app">See Margin</a>
