@@ -796,3 +796,13 @@ footer { background: var(--navy); color: #a9b1cd; padding: 54px 0 34px; border-t
 /* 3-up pricing grid (pricing.html) */
 .price-grid.three { grid-template-columns: repeat(3, 1fr); max-width: 1040px; }
 @media (max-width: 860px) { .price-grid.three { grid-template-columns: 1fr; } }
+
+/* Fix: buttons inside .prose must keep their own text colour (not the prose link blue) */
+.prose a.btn { text-decoration: none; }
+.prose a.btn:hover { text-decoration: none; }
+.prose a.btn-primary { color: #08102e; }
+.prose a.btn-green { color: #03291c; }
+.prose a.btn-app { color: #fff; }
+.prose a.btn-ghost { color: #fff; }
+.prose a.btn-outline { color: var(--ink); }
+.prose a.btn-outline:hover { color: var(--brand); }
