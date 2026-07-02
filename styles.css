@@ -1018,3 +1018,59 @@ html[data-theme="light"] .page-hero p { color: #5A617E; }
 .ts-hint { margin-top: 9px; font-size: 12px; font-weight: 600; color: var(--muted); background: rgba(22,184,122,.09); border: 1px solid rgba(22,184,122,.28); border-radius: 9px; padding: 8px 11px; }
 .ts-hint a { color: var(--green-2); font-weight: 700; }
 .ts-hint[hidden] { display: none; }
+
+/* ---------- Playbook ---------- */
+.playfam { margin-top: 46px; }
+.playfam-head { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; flex-wrap: wrap; border-bottom: 2px solid var(--line); padding-bottom: 10px; margin-bottom: 18px; }
+.playfam-head h3 { font-size: 22px; margin: 0; }
+.playfam-head .fam-note { font-family: var(--mono); font-size: 11.5px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-2); }
+.playgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.play { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 20px; display: flex; flex-direction: column; gap: 8px; }
+.play h4 { font-family: var(--display); font-size: 16.5px; font-weight: 600; margin: 0; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.play .pchip { font-family: var(--mono); font-size: 9.5px; letter-spacing: .1em; text-transform: uppercase; border-radius: 4px; padding: 2px 7px; }
+.play .pchip.flag { background: var(--grad); color: #fff; }
+.play .pchip.prod { background: rgba(124,58,237,.14); color: var(--brand-2); }
+.play p { margin: 0; font-size: 13.5px; color: var(--muted); }
+.play .psig { font-size: 12.5px; color: var(--muted-2); }
+.play .psig b { color: var(--muted); font-weight: 600; }
+.play .psave { margin-top: auto; font-family: var(--mono); font-size: 12.5px; font-weight: 600; color: var(--green-2); }
+
+/* ---------- Integrations ---------- */
+.integ { border: 1px solid var(--line); border-radius: 12px; background: var(--card); margin-bottom: 10px; overflow: hidden; }
+.integ summary { display: flex; align-items: center; gap: 14px; padding: 15px 18px; cursor: pointer; list-style: none; font-weight: 700; }
+.integ summary::-webkit-details-marker { display: none; }
+.integ summary img { width: 26px; height: 26px; }
+.integ summary .im { margin-left: auto; font-family: var(--mono); font-size: 11px; color: var(--muted-2); letter-spacing: .06em; }
+.integ .integ-body { padding: 0 18px 16px 58px; font-size: 14px; color: var(--muted); }
+.readwrite { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 22px 0; }
+@media (max-width: 640px) { .readwrite { grid-template-columns: 1fr; } }
+.rw { border-radius: 14px; padding: 20px; border: 1px solid; }
+.rw.yes { background: rgba(22,184,122,.07); border-color: rgba(22,184,122,.3); }
+.rw.no { background: rgba(240,68,68,.06); border-color: rgba(240,68,68,.28); }
+.rw h4 { margin: 0 0 10px; font-size: 15px; }
+.rw.yes h4 { color: var(--green-2); } .rw.no h4 { color: var(--rose); }
+.rw ul { margin: 0; padding-left: 18px; font-size: 13.5px; color: var(--muted); display: grid; gap: 6px; }
+
+/* ---------- Architecture diagram ---------- */
+.arch { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 18px; overflow-x: auto; }
+.arch svg { display: block; min-width: 640px; width: 100%; height: auto; }
+
+/* ---------- Changelog ---------- */
+.log-entry { border-left: 3px solid; border-image: var(--flow, linear-gradient(180deg,#2E5CFF,#B14BF4)) 1; padding: 2px 0 2px 20px; margin-bottom: 30px; }
+.log-entry .log-date { font-family: var(--mono); font-size: 12px; color: var(--muted-2); letter-spacing: .05em; }
+.log-entry h3 { font-size: 18px; margin: 6px 0 8px; }
+.log-entry p, .log-entry li { color: var(--muted); font-size: 14.5px; }
+.log-entry ul { margin: 8px 0 0; padding-left: 20px; display: grid; gap: 6px; }
+
+/* ---------- Penny moment card ---------- */
+.penny-moment { max-width: 560px; margin: 26px auto 0; background: linear-gradient(160deg, #14142A 0%, #10101E 100%); border: 1px solid rgba(155,163,199,.2); border-radius: 16px; padding: 18px 20px; box-shadow: 0 24px 60px -28px rgba(0,0,0,.55); text-align: left; }
+.penny-moment .pm-head { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.penny-moment .pm-head img { width: 30px; height: 30px; }
+.penny-moment .pm-head b { color: #fff; font-size: 14px; }
+.penny-moment .pm-head span { font-family: var(--mono); font-size: 11px; color: #8f97b5; margin-left: auto; }
+.penny-moment p { margin: 0; color: #c4cae0; font-size: 14.5px; line-height: 1.55; }
+.penny-moment p b { color: #fff; }
+.penny-moment .pm-actions { display: flex; gap: 8px; margin-top: 14px; }
+.penny-moment .pm-btn { font-size: 12.5px; font-weight: 700; padding: 7px 14px; border-radius: 8px; border: 0; }
+.penny-moment .pm-btn.go { background: var(--grad); color: #fff; }
+.penny-moment .pm-btn.ghost { background: rgba(255,255,255,.07); color: #c4cae0; border: 1px solid rgba(255,255,255,.14); }

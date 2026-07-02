@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body { width:1200px; height:800px; overflow:hidden; }
+  body { font-family:'Inter',sans-serif; background:#0A0A14; color:#EEF1FA; display:flex; }
+  .side { width:210px; background:#0E0E1C; border-right:1px solid #1E1E33; padding:22px 16px; display:flex; flex-direction:column; gap:4px; }
+  .side .brand { display:flex; align-items:center; gap:9px; font-family:'Poppins',sans-serif; font-weight:600; font-size:17px; margin-bottom:22px; color:#fff; }
+  .side .brand b { background:linear-gradient(120deg,#2E5CFF,#7C3AED 55%,#B14BF4); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .side a { display:flex; align-items:center; gap:9px; padding:9px 11px; border-radius:9px; color:#8A92B5; font-size:13px; font-weight:600; text-decoration:none; }
+  .side a.on { background:rgba(124,58,237,.16); color:#fff; }
+  .side .dot { width:7px; height:7px; border-radius:50%; background:currentColor; opacity:.7; }
+  .main { flex:1; padding:26px 30px; overflow:hidden; }
+  .top { display:flex; align-items:center; justify-content:space-between; margin-bottom:22px; }
+  .top h1 { font-family:'Poppins',sans-serif; font-size:20px; font-weight:600; }
+  .top .env { font-family:'JetBrains Mono',monospace; font-size:11px; color:#8A92B5; background:#12121F; border:1px solid #22223A; padding:6px 12px; border-radius:999px; }
+  .cards { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-bottom:20px; }
+  .card { background:#12121F; border:1px solid #22223A; border-radius:13px; padding:16px; }
+  .card .k { font-size:11px; font-weight:700; letter-spacing:.07em; text-transform:uppercase; color:#8A92B5; }
+  .card .v { font-family:'JetBrains Mono',monospace; font-size:23px; font-weight:600; margin-top:7px; font-variant-numeric:tabular-nums; }
+  .card .d { font-size:11.5px; margin-top:5px; font-family:'JetBrains Mono',monospace; }
+  .up { color:#F04444; } .down { color:#16B87A; } .grad-t { background:linear-gradient(120deg,#2E5CFF,#7C3AED 55%,#B14BF4); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .panel { background:#12121F; border:1px solid #22223A; border-radius:13px; padding:18px; }
+  .panel h3 { font-size:13.5px; font-weight:700; margin-bottom:14px; display:flex; justify-content:space-between; }
+  .panel h3 span { color:#8A92B5; font-weight:600; font-size:11.5px; font-family:'JetBrains Mono',monospace; }
+  .row2 { display:grid; grid-template-columns:1.3fr .7fr; gap:14px; }
+  .bar { display:grid; grid-template-columns:120px 1fr 84px; align-items:center; gap:12px; font-size:12.5px; margin-bottom:11px; }
+  .bar .t { color:#C4CAE0; font-weight:600; }
+  .bar .track { height:9px; border-radius:999px; background:#1B1B30; overflow:hidden; }
+  .bar .fill { height:100%; border-radius:999px; background:linear-gradient(90deg,#2E5CFF,#7C3AED 70%,#B14BF4); }
+  .bar .m { font-family:'JetBrains Mono',monospace; font-size:12px; text-align:right; color:#fff; }
+  table { width:100%; border-collapse:collapse; font-size:12.5px; }
+  th { text-align:left; font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; color:#8A92B5; padding:8px 10px; border-bottom:1px solid #22223A; }
+  td { padding:10px; border-bottom:1px solid #1B1B30; font-family:'JetBrains Mono',monospace; font-variant-numeric:tabular-nums; }
+  td.n { font-family:'Inter',sans-serif; font-weight:600; color:#E6EAF7; }
+  .pill { font-size:10px; font-weight:700; padding:3px 9px; border-radius:999px; font-family:'Inter',sans-serif; }
+  .pill.ok { background:rgba(22,184,122,.15); color:#4ADFA8; }
+  .pill.warn { background:rgba(245,166,35,.15); color:#F7BC55; }
+  .pill.neg { background:rgba(240,68,68,.16); color:#F98C8C; }
+  .m-pos { color:#16B87A; } .m-warn { color:#F5A623; } .m-neg { color:#F04444; }
+
+  /* penny play detail */
+  .play-wrap { max-width:760px; margin:0 auto; }
+  .crumb { font-family:'JetBrains Mono',monospace; font-size:11px; color:#8A92B5; margin-bottom:14px; }
+  .play-hero { background:#12121F; border:1px solid #22223A; border-radius:15px; padding:22px; margin-bottom:14px; }
+  .ph-top { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+  .ph-top img { width:34px; height:34px; }
+  .ph-top h2 { font-family:'Poppins',sans-serif; font-size:19px; font-weight:600; }
+  .flag { font-size:9.5px; letter-spacing:.1em; text-transform:uppercase; background:linear-gradient(120deg,#2E5CFF,#B14BF4); color:#fff; border-radius:4px; padding:3px 8px; font-weight:700; margin-left:auto; }
+  .ph-desc { color:#A7AECB; font-size:13.5px; line-height:1.55; }
+  .est { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin:16px 0; }
+  .est .card .v { font-size:20px; }
+  .run { display:flex; gap:10px; align-items:center; }
+  .btn { border:0; border-radius:10px; padding:12px 22px; font-weight:700; font-size:13.5px; font-family:'Inter',sans-serif; }
+  .btn.go { background:linear-gradient(120deg,#2E5CFF,#7C3AED 55%,#B14BF4); color:#fff; }
+  .btn.gh { background:rgba(255,255,255,.06); color:#C4CAE0; border:1px solid rgba(255,255,255,.14); }
+  .guard { font-size:11.5px; color:#8A92B5; margin-left:auto; font-family:'JetBrains Mono',monospace; }
+  .ledger-log .lrow { display:flex; justify-content:space-between; padding:9px 4px; border-bottom:1px dashed #22223A; font-size:12.5px; color:#C4CAE0; }
+  .ledger-log .lrow span:last-child { font-family:'JetBrains Mono',monospace; color:#16B87A; font-weight:600; }
+</style>
+</head>
+<body>
+<script>
+const v = new URLSearchParams(location.search).get('v') || 'ledger';
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('[data-v]').forEach(el => { if (el.dataset.v !== v) el.remove(); });
+});
+</script>
+
+<!-- LEDGER DASHBOARD -->
+<div data-v="ledger" style="display:flex;width:100%;">
+  <div class="side">
+    <div class="brand"><svg width="22" height="22" viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" fill="none" stroke="url(#g)" stroke-width="7" stroke-dasharray="6 5"/><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2E5CFF"/><stop offset="1" stop-color="#B14BF4"/></linearGradient></defs></svg> Token<b>IQ</b></div>
+    <a href="#"><span class="dot"></span> Overview</a>
+    <a href="#" class="on"><span class="dot"></span> Ledger</a>
+    <a href="#"><span class="dot"></span> Budgets</a>
+    <a href="#"><span class="dot"></span> Green Score</a>
+    <a href="#"><span class="dot"></span> Penny</a>
+    <a href="#" style="margin-top:auto;"><span class="dot"></span> Settings</a>
+  </div>
+  <div class="main">
+    <div class="top"><h1>Ledger — June 2026</h1><span class="env">7 providers · read-only · live</span></div>
+    <div class="cards">
+      <div class="card"><div class="k">Spend MTD</div><div class="v">$18,462</div><div class="d up">▲ 12% vs May</div></div>
+      <div class="card"><div class="k">Forecast</div><div class="v">$21,900</div><div class="d">budget $24,000</div></div>
+      <div class="card"><div class="k">Green Score</div><div class="v grad-t">B+</div><div class="d down">▲ from B</div></div>
+      <div class="card"><div class="k">Penny found</div><div class="v down">−$3,120/mo</div><div class="d">4 plays ready</div></div>
+    </div>
+    <div class="row2">
+      <div class="panel">
+        <h3>Spend by team <span>June · all providers</span></h3>
+        <div class="bar"><span class="t">Product AI</span><div class="track"><div class="fill" style="width:88%"></div></div><span class="m">$8,120</span></div>
+        <div class="bar"><span class="t">Support bot</span><div class="track"><div class="fill" style="width:52%"></div></div><span class="m">$4,804</span></div>
+        <div class="bar"><span class="t">Data / RAG</span><div class="track"><div class="fill" style="width:34%"></div></div><span class="m">$3,141</span></div>
+        <div class="bar"><span class="t">Internal tools</span><div class="track"><div class="fill" style="width:18%"></div></div><span class="m">$1,663</span></div>
+        <div class="bar"><span class="t">R&amp;D</span><div class="track"><div class="fill" style="width:8%"></div></div><span class="m">$734</span></div>
+      </div>
+      <div class="panel">
+        <h3>By model <span>top 5</span></h3>
+        <table>
+          <tr><th>Model</th><th style="text-align:right;">Spend</th></tr>
+          <tr><td class="n">GPT-5</td><td style="text-align:right;">$6,908</td></tr>
+          <tr><td class="n">Claude Sonnet 4.5</td><td style="text-align:right;">$5,412</td></tr>
+          <tr><td class="n">Gemini 2.5 Flash</td><td style="text-align:right;">$2,208</td></tr>
+          <tr><td class="n">Claude Haiku 4.5</td><td style="text-align:right;">$1,940</td></tr>
+          <tr><td class="n">Llama 4 (hosted)</td><td style="text-align:right;">$1,102</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PENNY PLAY DETAIL -->
+<div data-v="penny" style="width:100%;padding:36px 0;">
+  <div class="play-wrap">
+    <div class="crumb">Penny → Playbook → Caching → Prompt Cache Enabler</div>
+    <div class="play-hero">
+      <div class="ph-top">
+        <img src="assets/penny.svg" alt="" />
+        <h2>Prompt Cache Enabler</h2>
+        <span class="flag">Flagship play</span>
+      </div>
+      <p class="ph-desc"><b style="color:#fff;">Detected:</b> 61% of your Anthropic traffic re-sends an identical 2,900-token prompt prefix with no cache-hit billing lines. Provider-native prompt caching would serve those reads at ~10% of the price.</p>
+      <div class="est">
+        <div class="card"><div class="k">Affected traffic</div><div class="v">2.1M tok/day</div></div>
+        <div class="card"><div class="k">Estimated saving</div><div class="v" style="color:#16B87A;">$186/mo</div></div>
+        <div class="card"><div class="k">Quality risk</div><div class="v" style="color:#4ADFA8;">None</div></div>
+      </div>
+      <div class="run">
+        <button class="btn go">Run this play</button>
+        <button class="btn gh">Show the math</button>
+        <span class="guard">guardrails: approval required · audit log on</span>
+      </div>
+    </div>
+    <div class="panel ledger-log">
+      <h3>Savings ledger — plays Penny is already running <span>June</span></h3>
+      <div class="lrow"><span>Smart Router — 34% of summaries → Haiku 4.5</span><span>+$412 saved</span></div>
+      <div class="lrow"><span>Token Governor — max-token caps on 3 endpoints</span><span>+$88 saved</span></div>
+      <div class="lrow"><span>Retry Sweeper — killed 429 double-billing</span><span>+$64 saved</span></div>
+      <div class="lrow" style="border-bottom:none;"><span style="color:#fff;font-weight:700;">Penny's fee (Ledger · up to 10)</span><span style="color:#F5A623;">−$99</span></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

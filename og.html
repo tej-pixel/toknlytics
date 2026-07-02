@@ -49,5 +49,27 @@
     <span class="sep">&rarr;</span>
     <span class="chip"><span class="dot a"></span> Penny &middot; the paid layer</span>
   </div>
+<script>
+(function(){
+  var V = {
+    meter:   { e:'METER — FREE FOREVER', h:'Know what <span class="g">your own AI</span> costs.', l:'Personal spend, prompt analyzer and your Green Score — across every model you use. Free forever.', c:[['m','Free forever'],['l','Green Score'],['a','Penny · $8/mo']] },
+    ledger:  { e:'LEDGER — FREE FOR YOUR TEAM', h:'Every person. Every model. <span class="g">One ledger.</span>', l:'Org-wide spend, budgets and ESG carbon reporting — free for the whole team.', c:[['m','Free forever'],['l','Budgets & ESG'],['a','Penny · from $99/mo']] },
+    margin:  { e:'MARGIN — FOR AI-NATIVE PRODUCTS', h:'Know your margin on <span class="g">every customer.</span>', l:'Per-customer cost-of-goods, gross margin and margin-negative alerts.', c:[['m','Per-customer COGS'],['l','Margin alerts'],['a','Usage-based']] },
+    penny:   { e:'PENNY — YOUR AI FINOPS ANALYST', h:'Penny finds the savings. <span class="g">Automatically.</span>', l:'19 plays in her Playbook, matched to your traffic and run for you. The only thing you pay for.', c:[['m','19 plays'],['l','$8/mo individual'],['a','Teams from $99/mo']] },
+    pricing: { e:'PRICING', h:'Free to measure. <span class="g">Pay to optimize.</span>', l:'Meter and Ledger are free forever. You only pay for Penny.', c:[['m','Meter · Free'],['l','Ledger · Free'],['a','Penny · $8–$299/mo']] },
+    playbook:{ e:"PENNY'S PLAYBOOK", h:'19 plays. Six families. <span class="g">All included.</span>', l:'Routing, prompt & context, caching, waste control, scheduling, governance — new plays ship monthly.', c:[['m','Detect · free'],['l','Estimate · free'],['a','Penny runs them']] }
+  };
+  var k = new URLSearchParams(location.search).get('v');
+  if (!k || !V[k]) return;
+  var v = V[k];
+  document.querySelector('div[style*="letter-spacing"]').textContent = v.e;
+  document.querySelector('h1').innerHTML = v.h;
+  document.querySelector('.lede').textContent = v.l;
+  var row = document.querySelector('.row');
+  row.innerHTML = v.c.map(function(c,i){
+    return (i? '<span class="sep">&middot;</span>' : '') + '<span class="chip"><span class="dot '+c[0]+'"></span> '+c[1]+'</span>';
+  }).join('');
+})();
+</script>
 </body>
 </html>
