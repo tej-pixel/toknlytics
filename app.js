@@ -490,7 +490,7 @@
         ledgerVal.setAttribute("data-m", band.m);
         ledgerVal.setAttribute("data-a", band.a);
         ledgerPrice.classList.remove("custom");
-        if (ledgerCta) { ledgerCta.textContent = "Unlock Penny"; ledgerCta.setAttribute("href", "penny.html"); }
+        if (ledgerCta) { ledgerCta.textContent = "Unlock Penny"; ledgerCta.setAttribute("href", "#start"); }
       } else {
         ledgerPrice.classList.add("custom");
         if (ledgerCta) { ledgerCta.textContent = "Talk to us"; ledgerCta.setAttribute("href", "contact.html"); }
@@ -503,7 +503,7 @@
     syncLedger();
   })();
 
-  // ---------- Start form (mock) ----------
+  // ---------- Early-access form (mailto handoff — no third-party backend) ----------
   (function () {
     var form = document.getElementById("startForm");
     if (!form) return;
@@ -512,6 +512,10 @@
       e.preventDefault();
       var v = (email.value || "").trim();
       if (!v || v.indexOf("@") === -1) { email.focus(); return; }
+      var kind = form.getAttribute("data-kind") || "early-access";
+      var subject = encodeURIComponent("TokenIQ " + kind);
+      var body = encodeURIComponent("Please add " + v + " to the " + kind + " list.\n(Sent from " + location.pathname + ")");
+      window.location.href = "mailto:hello@tokeniq.ai?subject=" + subject + "&body=" + body;
       form.style.display = "none";
       if (success) success.style.display = "block";
     });

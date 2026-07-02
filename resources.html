@@ -47,7 +47,6 @@
     </nav>
     <div class="nav-cta">
       <button class="theme-btn" id="themeBtn" aria-label="Switch theme">&#9790;</button>
-      <a href="index.html#start" class="signin">Sign in</a>
       <a href="index.html#start" class="btn btn-primary">Start free</a>
       <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>
     </div>
@@ -87,11 +86,11 @@
       <span class="eyebrow eco light" style="justify-content:center;">Free report</span>
       <h2>Get the 2026 AI Cost Benchmark</h2>
       <p>What teams really spend per million tokens &mdash; compiled from public pricing and our cost modeling &mdash; and the moves that cut it most. Straight to your inbox &mdash; no fluff.</p>
-      <form class="start-form" id="startForm" novalidate>
+      <form class="start-form" id="startForm" data-kind="benchmark" novalidate>
         <input type="email" id="startEmail" placeholder="you@company.com" aria-label="Email" required />
         <button type="submit" class="btn btn-primary btn-lg">Send me the benchmark &rarr;</button>
       </form>
-      <div class="start-success" id="startSuccess">&#128231; On its way &mdash; check your inbox. (Demo: nothing was actually sent.)</div>
+      <div class="start-success" id="startSuccess">&#128231; Almost there &mdash; your mail app just opened. Hit send and the benchmark lands in your inbox when it ships.</div>
       <div class="start-meta">No spam &middot; unsubscribe anytime &middot; we never share your email</div>
     </div>
   </div>
