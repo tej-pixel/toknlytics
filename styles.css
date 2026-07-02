@@ -1005,3 +1005,12 @@ html[data-theme="light"] .glass {
 /* light mode: subpage hero band */
 html[data-theme="light"] .page-hero { background: linear-gradient(180deg, #F1F2F9 0%, #ffffff 100%); color: #0B0E1A; border-bottom: 1px solid #eceef7; }
 html[data-theme="light"] .page-hero p { color: #5A617E; }
+
+/* Penny for Ledger — team size selector */
+.team-size { margin: 4px 0 12px; }
+.team-size .ts-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+.team-size label { font-size: 12.5px; font-weight: 700; color: var(--muted); }
+.team-size output { font-family: var(--mono); font-weight: 600; font-size: 15px; color: var(--ink); font-variant-numeric: tabular-nums; }
+.team-size .ts-bands { display: flex; justify-content: space-between; margin-top: 7px; font-size: 10.5px; font-weight: 700; color: var(--muted-2); letter-spacing: .02em; }
+.tier-price.custom .cur, .tier-price.custom small { display: none; }
+.tier-price.custom .price-val { font-size: 30px; }

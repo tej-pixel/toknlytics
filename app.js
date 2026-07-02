@@ -445,21 +445,55 @@
     nums.forEach(function (el) { io.observe(el); });
   })();
 
-  // ---------- Pricing: monthly / annual toggle (data-driven) ----------
+  // ---------- Pricing: monthly / annual toggle + Ledger team-size bands ----------
   (function () {
     var toggle = document.getElementById("billToggle");
     if (!toggle) return;
     var btns = Array.prototype.slice.call(toggle.querySelectorAll("button"));
     var vals = Array.prototype.slice.call(document.querySelectorAll(".price-val"));
     var notes = Array.prototype.slice.call(document.querySelectorAll(".bill-note"));
-    function setBill(mode) {
+    var mode = "monthly";
+    var team = document.getElementById("teamSize");
+    var teamOut = document.getElementById("teamOut");
+    var ledgerVal = document.getElementById("ledgerVal");
+    var ledgerPrice = document.getElementById("ledgerPrice");
+    var ledgerNote = document.getElementById("ledgerNote");
+    var ledgerCta = document.getElementById("ledgerCta");
+
+    function ledgerBand(n) { return n <= 10 ? { m: "99", a: "74" } : (n <= 50 ? { m: "299", a: "224" } : null); }
+
+    function apply() {
       vals.forEach(function (el) { el.textContent = el.getAttribute(mode === "annual" ? "data-a" : "data-m"); });
       notes.forEach(function (el) {
         el.textContent = mode === "annual" ? (el.getAttribute("data-a-note") || "Billed annually") : (el.getAttribute("data-m-note") || "Billed monthly");
       });
+      if (ledgerPrice && ledgerPrice.classList.contains("custom")) {
+        ledgerVal.textContent = "Custom";
+        if (ledgerNote) ledgerNote.textContent = "Sales-led — we'll size it with you";
+      }
       btns.forEach(function (b) { b.classList.toggle("is-active", b.getAttribute("data-bill") === mode); });
     }
-    btns.forEach(function (b) { b.addEventListener("click", function () { setBill(b.getAttribute("data-bill")); }); });
+
+    function syncLedger() {
+      if (!team) { apply(); return; }
+      var n = +team.value;
+      teamOut.textContent = n > 50 ? "50+" : n;
+      var band = ledgerBand(n);
+      if (band) {
+        ledgerVal.setAttribute("data-m", band.m);
+        ledgerVal.setAttribute("data-a", band.a);
+        ledgerPrice.classList.remove("custom");
+        if (ledgerCta) { ledgerCta.textContent = "Unlock Penny"; ledgerCta.setAttribute("href", "penny.html"); }
+      } else {
+        ledgerPrice.classList.add("custom");
+        if (ledgerCta) { ledgerCta.textContent = "Talk to us"; ledgerCta.setAttribute("href", "contact.html"); }
+      }
+      apply();
+    }
+
+    btns.forEach(function (b) { b.addEventListener("click", function () { mode = b.getAttribute("data-bill"); syncLedger(); }); });
+    if (team) team.addEventListener("input", syncLedger);
+    syncLedger();
   })();
 
   // ---------- Start form (mock) ----------
