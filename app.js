@@ -53,6 +53,25 @@
     navLinks.addEventListener("click", function (e) { if (e.target.tagName === "A") navLinks.classList.remove("open"); });
   }
 
+  // ---------- Products dropdown (click/tap + outside close) ----------
+  Array.prototype.forEach.call(document.querySelectorAll(".nav-drop-btn"), function (btn) {
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var drop = btn.parentElement;
+      drop.classList.toggle("open");
+      btn.setAttribute("aria-expanded", drop.classList.contains("open") ? "true" : "false");
+    });
+  });
+  document.addEventListener("click", function (e) {
+    Array.prototype.forEach.call(document.querySelectorAll(".nav-drop.open"), function (drop) {
+      if (!drop.contains(e.target)) {
+        drop.classList.remove("open");
+        var b = drop.querySelector(".nav-drop-btn");
+        if (b) b.setAttribute("aria-expanded", "false");
+      }
+    });
+  });
+
   // ---------- Reveal on scroll ----------
   (function () {
     var els = Array.prototype.slice.call(document.querySelectorAll(".reveal"));

@@ -78,8 +78,9 @@ header {
   border-bottom: 1px solid rgba(255,255,255,.08);
 }
 .nav { display: flex; align-items: center; justify-content: space-between; height: 70px; gap: 18px; }
-.brand { display: flex; align-items: center; gap: 10px; color: #fff; font-family: var(--display); font-weight: 600; font-size: 20px; letter-spacing: -0.01em; }
+.brand { display: flex; align-items: center; gap: 12px; color: #fff; font-family: var(--display); font-weight: 600; font-size: 23px; letter-spacing: -0.01em; }
 .brand svg, .brand img { display: block; }
+.nav .brand img { width: 38px; height: 38px; filter: drop-shadow(0 0 9px rgba(124,58,237,.55)); }
 .brand-name b { font-weight: 600; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .nav-mid { display: flex; align-items: center; gap: 18px; }
 .nav-links { display: flex; align-items: center; gap: 26px; }
@@ -89,6 +90,22 @@ header {
 .nav-cta .signin { color: #c4cae0; font-weight: 600; font-size: 14.5px; }
 .nav-cta .signin:hover { color: #fff; }
 .menu-btn { display: none; background: none; border: 0; color: #fff; font-size: 26px; cursor: pointer; }
+
+/* Products dropdown */
+.nav-drop { position: relative; }
+.nav-drop-btn { display: inline-flex; align-items: center; gap: 7px; background: none; border: 0; padding: 8px 0; color: #c4cae0; font-family: inherit; font-weight: 600; font-size: 14.5px; cursor: pointer; transition: color .15s; }
+.nav-drop-btn .caret { font-size: 13px; line-height: 1; transition: transform .18s; }
+.nav-drop-btn:hover, .nav-drop.open .nav-drop-btn, .nav-drop:focus-within .nav-drop-btn { color: #fff; }
+.nav-drop.open .nav-drop-btn .caret { transform: rotate(180deg); }
+.nav-drop-menu { position: absolute; top: calc(100% + 10px); left: -14px; min-width: 268px; background: var(--navy-2); border: 1px solid rgba(155,163,199,.18); border-radius: 14px; padding: 8px; box-shadow: 0 26px 60px -18px rgba(0,0,0,.7); opacity: 0; visibility: hidden; transform: translateY(6px); transition: opacity .18s ease, transform .18s ease, visibility .18s; z-index: 60; }
+.nav-drop.open .nav-drop-menu, .nav-drop:focus-within .nav-drop-menu { opacity: 1; visibility: visible; transform: none; }
+@media (hover: hover) { .nav-drop:hover .nav-drop-menu { opacity: 1; visibility: visible; transform: none; } }
+.nav-drop-menu a { display: grid; grid-template-columns: 12px 1fr; column-gap: 10px; row-gap: 1px; align-items: center; padding: 10px 12px; border-radius: 10px; }
+.nav-drop-menu a:hover { background: rgba(255,255,255,.06); }
+.nav-drop-menu .pd { grid-row: 1 / span 2; width: 9px; height: 9px; border-radius: 50%; background: var(--pc, var(--brand)); }
+.nav-drop-menu .pd.grad { background: var(--grad); }
+.nav-drop-menu b { grid-column: 2; color: #fff; font-size: 14px; font-weight: 600; }
+.nav-drop-menu small { grid-column: 2; color: #8f97b5; font-size: 12px; line-height: 1.35; }
 
 /* audience segmented toggle (subpages) */
 .aud-seg { display: inline-flex; gap: 3px; padding: 3px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); border-radius: 999px; }
@@ -519,6 +536,13 @@ footer { background: var(--navy); color: #a9b1cd; padding: 54px 0 34px; border-t
   .nav-links { display: none; }
   .menu-btn { display: block; }
   .nav-links.open { display: flex; position: absolute; top: 70px; left: 0; right: 0; flex-direction: column; background: var(--navy-2); padding: 20px 24px; gap: 18px; border-bottom: 1px solid rgba(255,255,255,.1); }
+  /* flatten the Products dropdown inside the mobile menu */
+  .nav-links.open .nav-drop { width: 100%; }
+  .nav-links.open .nav-drop-btn { display: none; }
+  .nav-links.open .nav-drop-menu { position: static; opacity: 1; visibility: visible; transform: none; background: transparent; border: 0; box-shadow: none; padding: 0; min-width: 0; display: flex; flex-direction: column; gap: 16px; }
+  .nav-links.open .nav-drop-menu a { display: flex; justify-content: center; align-items: center; gap: 10px; padding: 0; }
+  .nav-links.open .nav-drop-menu small { display: none; }
+  .nav-links.open .nav-drop-menu .pd { grid-row: 1; }
 }
 @media (max-width: 620px) {
   .steps, .steps.three, .price-grid, .impact-grid { grid-template-columns: 1fr; }
