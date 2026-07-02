@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
+<script>(function(){try{var t=localStorage.getItem("tiq-theme");if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TokenIQ — The first AI FinOps platform</title>
 <meta name="description" content="TokenIQ is the first AI FinOps platform. Read-only across all 7 major LLM providers — spend, margin and carbon in one ledger, with per-customer unit economics. Cost intelligence is free forever; upgrade and Penny cuts the bill." />
@@ -21,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=11" />
+<link rel="stylesheet" href="styles.css?v=12" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
 {"@type":"Organization","@id":"https://tej-pixel.github.io/toknlytics/#org","name":"TokenIQ","legalName":"TokenAI Ltd","url":"https://tej-pixel.github.io/toknlytics/","logo":"https://tej-pixel.github.io/toknlytics/og-cover-v5.png","email":"hello@tokeniq.ai","description":"AI token analytics, a Green Score for every model, and per-customer margin — the system of record for AI cost."},
@@ -58,6 +59,7 @@
       <a href="resources.html">Resources</a>
     </nav>
     <div class="nav-cta">
+      <button class="theme-btn" id="themeBtn" aria-label="Switch theme">&#9790;</button>
       <a href="#start" class="signin">Sign in</a>
       <a href="#start" class="btn btn-primary">Start free</a>
       <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>

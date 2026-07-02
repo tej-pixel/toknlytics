@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
 <meta charset="UTF-8" />
+<script>(function(){try{var t=localStorage.getItem("tiq-theme");if(!t)t=window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches?"light":"dark";document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Margin — per-customer AI cost & margin | TokenIQ</title>
 <meta name="description" content="Margin by TokenIQ is the system of record for your AI cost-of-goods. Know what each customer costs you to serve, your gross margin on every one, and who just turned margin-negative — built for AI-native products that resell AI." />
@@ -21,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=11" />
+<link rel="stylesheet" href="styles.css?v=12" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"SoftwareApplication","name":"Margin by TokenIQ","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Per-customer AI cost-of-goods, gross margin and margin-negative alerts — the system of record for your AI COGS.","offers":{"@type":"Offer","priceCurrency":"USD","description":"Usage-based pricing — sales-led"},"publisher":{"@type":"Organization","name":"TokenIQ","legalName":"TokenAI Ltd"}}
 </script>
@@ -45,6 +46,7 @@
       </nav>
     </div>
     <div class="nav-cta">
+      <button class="theme-btn" id="themeBtn" aria-label="Switch theme">&#9790;</button>
       <a href="#start" class="signin">Sign in</a>
       <a href="#start" class="btn btn-app">Book a demo</a>
       <button class="menu-btn" id="menuBtn" aria-label="Menu">&#9776;</button>

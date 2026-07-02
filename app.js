@@ -53,6 +53,24 @@
     navLinks.addEventListener("click", function (e) { if (e.target.tagName === "A") navLinks.classList.remove("open"); });
   }
 
+  // ---------- Theme toggle ----------
+  var themeBtn = document.getElementById("themeBtn");
+  function syncThemeBtn() {
+    if (!themeBtn) return;
+    var t = document.documentElement.getAttribute("data-theme");
+    themeBtn.innerHTML = t === "dark" ? "&#9788;" : "&#9790;"; // sun in dark (switch to light), moon in light
+    themeBtn.setAttribute("aria-label", t === "dark" ? "Switch to light mode" : "Switch to dark mode");
+  }
+  if (themeBtn) {
+    themeBtn.addEventListener("click", function () {
+      var next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try { localStorage.setItem("tiq-theme", next); } catch (e) {}
+      syncThemeBtn();
+    });
+    syncThemeBtn();
+  }
+
   // ---------- Products dropdown (click/tap + outside close) ----------
   Array.prototype.forEach.call(document.querySelectorAll(".nav-drop-btn"), function (btn) {
     btn.addEventListener("click", function (e) {
