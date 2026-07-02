@@ -1014,3 +1014,7 @@ html[data-theme="light"] .page-hero p { color: #5A617E; }
 .team-size .ts-bands { display: flex; justify-content: space-between; margin-top: 7px; font-size: 10.5px; font-weight: 700; color: var(--muted-2); letter-spacing: .02em; }
 .tier-price.custom .cur, .tier-price.custom small { display: none; }
 .tier-price.custom .price-val { font-size: 30px; }
+
+.ts-hint { margin-top: 9px; font-size: 12px; font-weight: 600; color: var(--muted); background: rgba(22,184,122,.09); border: 1px solid rgba(22,184,122,.28); border-radius: 9px; padding: 8px 11px; }
+.ts-hint a { color: var(--green-2); font-weight: 700; }
+.ts-hint[hidden] { display: none; }

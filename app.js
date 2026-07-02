@@ -460,7 +460,12 @@
     var ledgerNote = document.getElementById("ledgerNote");
     var ledgerCta = document.getElementById("ledgerCta");
 
-    function ledgerBand(n) { return n <= 10 ? { m: "99", a: "74" } : (n <= 50 ? { m: "299", a: "224" } : null); }
+    function ledgerBand(n) {
+      if (n <= 10) return { m: "99", a: "74" };
+      if (n <= 25) return { m: "199", a: "149" };
+      if (n <= 50) return { m: "299", a: "224" };
+      return null;
+    }
 
     function apply() {
       vals.forEach(function (el) { el.textContent = el.getAttribute(mode === "annual" ? "data-a" : "data-m"); });
@@ -474,10 +479,12 @@
       btns.forEach(function (b) { b.classList.toggle("is-active", b.getAttribute("data-bill") === mode); });
     }
 
+    var teamHint = document.getElementById("teamHint");
     function syncLedger() {
       if (!team) { apply(); return; }
       var n = +team.value;
       teamOut.textContent = n > 50 ? "50+" : n;
+      if (teamHint) teamHint.hidden = n > 3;
       var band = ledgerBand(n);
       if (band) {
         ledgerVal.setAttribute("data-m", band.m);

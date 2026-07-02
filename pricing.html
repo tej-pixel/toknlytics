@@ -22,7 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-<link rel="stylesheet" href="styles.css?v=13" />
+<link rel="stylesheet" href="styles.css?v=14" />
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
 {"@type":"Question","name":"Is it really free to measure?","acceptedAnswer":{"@type":"Answer","text":"Yes. Analytics and your Green Score are free forever on every product. You only pay when you turn on optimization (Meter, Ledger) or per-customer margin (Margin)."}},
@@ -112,14 +112,15 @@
         <div class="team-size">
           <div class="ts-row"><label for="teamSize">How big is your team?</label><output id="teamOut" for="teamSize">10</output></div>
           <input type="range" id="teamSize" min="1" max="55" step="1" value="10" />
-          <div class="ts-bands"><span>&le;10 &middot; $99</span><span>11&ndash;50 &middot; $299</span><span>50+ &middot; custom</span></div>
+          <div class="ts-bands"><span>&le;10 &middot; $99</span><span>11&ndash;25 &middot; $199</span><span>26&ndash;50 &middot; $299</span><span>50+ &middot; custom</span></div>
+          <div class="ts-hint" id="teamHint" hidden>Just a couple of you? <a href="penny.html">Penny for Meter is $8/person &rarr;</a></div>
         </div>
         <div class="tier-price" id="ledgerPrice"><span class="cur">$</span><span class="price-val" id="ledgerVal" data-m="99" data-a="74">99</span><small>/mo</small></div>
         <div class="tier-note bill-note" id="ledgerNote" data-m-note="Billed monthly" data-a-note="Per month, billed annually">Billed monthly</div>
         <a href="penny.html" class="btn btn-primary" id="ledgerCta">Unlock Penny</a>
         <ul>
           <li><span class="tk">&#10003;</span> <span><b>Ledger stays free</b> for the whole team</span></li>
-          <li><span class="tk">&#10003;</span> <span>Up to 10 people <b>$99/mo</b> &middot; 11&ndash;50 <b>$299/mo</b> &middot; 50+ <b>custom</b></span></li>
+          <li><span class="tk">&#10003;</span> <span>&le;10 <b>$99/mo</b> &middot; 11&ndash;25 <b>$199/mo</b> &middot; 26&ndash;50 <b>$299/mo</b> &middot; 50+ <b>custom</b></span></li>
           <li><span class="tk">&#10003;</span> <span>All Optimize packs + budgets, alerts &amp; team savings report</span></li>
         </ul>
       </div>
