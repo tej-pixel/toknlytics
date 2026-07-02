@@ -2,50 +2,44 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html, body { width: 1200px; height: 630px; overflow: hidden; }
   body {
     font-family: 'Inter', sans-serif; color: #fff; position: relative;
     background:
-      radial-gradient(900px 500px at 85% -10%, rgba(37,99,235,.30), transparent 60%),
-      radial-gradient(760px 460px at 5% 110%, rgba(14,165,165,.28), transparent 55%),
-      linear-gradient(160deg, #0a0e24 0%, #11163a 60%, #1e293b 100%);
+      radial-gradient(900px 500px at 85% -10%, rgba(46,92,255,.30), transparent 60%),
+      radial-gradient(760px 460px at 5% 110%, rgba(124,58,237,.28), transparent 55%),
+      linear-gradient(160deg, #0A0A14 0%, #12121F 60%, #181828 100%);
     padding: 72px 76px; display: flex; flex-direction: column; justify-content: space-between;
   }
   .strip { position: absolute; top: 0; left: 0; right: 0; height: 8px;
-    background: linear-gradient(90deg, #18c98d 0%, #0ea5a5 34%, #2563eb 67%, #8b5cf6 100%); }
+    background: linear-gradient(90deg, #2E5CFF 0%, #7C3AED 55%, #B14BF4 100%); }
   .brand { display: flex; align-items: center; gap: 14px; }
-  .brand .name { font-size: 30px; font-weight: 800; letter-spacing: -.02em; }
-  .brand .name b { color: #38bdf8; }
-  h1 { font-size: 70px; font-weight: 900; letter-spacing: -.025em; line-height: 1.04; max-width: 1000px; }
-  h1 .g { background: linear-gradient(120deg,#0ea5a5,#2563eb); -webkit-background-clip: text; background-clip: text; color: transparent; }
-  h1 .e { background: linear-gradient(120deg,#18c98d,#7ce3b1); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .brand .name { font-family: 'Poppins', sans-serif; font-size: 30px; font-weight: 600; letter-spacing: -.01em; }
+  .brand .name b { background: linear-gradient(120deg,#2E5CFF 0%,#7C3AED 55%,#B14BF4 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  h1 { font-family: 'Poppins', sans-serif; font-size: 68px; font-weight: 600; letter-spacing: -.015em; line-height: 1.06; max-width: 1000px; }
+  h1 .g { background: linear-gradient(120deg,#2E5CFF 0%,#7C3AED 55%,#B14BF4 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  h1 .e { background: linear-gradient(120deg,#16B87A,#5EE0AC); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .lede { font-size: 26px; color: #c1c8e0; margin-top: 22px; max-width: 900px; font-weight: 500; }
   .row { display: flex; gap: 14px; align-items: center; }
   .chip { display: flex; align-items: center; gap: 11px; font-size: 23px; font-weight: 700; color: #e7ebf7;
     background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); padding: 13px 22px; border-radius: 999px; }
   .dot { width: 12px; height: 12px; border-radius: 50%; }
-  .dot.m { background: #18c98d; } .dot.l { background: #2563eb; } .dot.a { background: #8b5cf6; }
+  .dot.m { background: #2E5CFF; } .dot.l { background: #7C3AED; } .dot.a { background: #B14BF4; }
   .sep { font-size: 22px; color: #6b7390; }
 </style>
 </head>
 <body>
   <div class="strip"></div>
   <div class="brand">
-    <svg width="46" height="46" viewBox="0 0 32 32"><defs><linearGradient id="o" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5a5"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
-      <circle cx="16" cy="16" r="13" fill="none" stroke="url(#o)" stroke-width="2.4"/>
-      <rect x="9.8" y="17.3" width="2.8" height="5.2" rx="1.2" fill="url(#o)"/>
-      <rect x="14.6" y="13.7" width="2.8" height="8.8" rx="1.2" fill="url(#o)"/>
-      <rect x="19.4" y="10.6" width="2.8" height="11.9" rx="1.2" fill="url(#o)"/>
-      <path d="M22.7 7.1 L23.5 9.5 L25.9 10.3 L23.5 11.1 L22.7 13.5 L21.9 11.1 L19.5 10.3 L21.9 9.5 Z" fill="url(#o)"/>
-    </svg>
-    <span class="name">tokanalyzr<b>.ai</b></span>
+    <img src="assets/tokeniq-mark.svg" width="46" height="46" alt="" />
+    <span class="name">Token<b>IQ</b></span>
   </div>
   <div>
-    <div style="font-size:23px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#7cc0ff;margin-bottom:16px;">The first AI FinOps platform</div>
-    <h1>Track cost.<br /><span class="g">Maximize margin.</span> <span class="e">Minimize carbon.</span></h1>
+    <div style="font-size:23px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#C4B5FD;margin-bottom:16px;">The first AI FinOps platform</div>
+    <h1><span class="e">Free</span> AI Cost Intelligence.<br /><span class="g">Paid</span> AI Optimization.</h1>
     <p class="lede">See what every model costs, maximize per-customer margin, and shrink your carbon &mdash; across every LLM.</p>
   </div>
   <div class="row">

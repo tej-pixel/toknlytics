@@ -1,4 +1,4 @@
-/* tokanalyzr.ai — shared interactions. Every component self-guards: it only
+/* TokenIQ — shared interactions. Every component self-guards: it only
    initialises if its DOM exists, so the same file powers all pages. */
 (function () {
   "use strict";

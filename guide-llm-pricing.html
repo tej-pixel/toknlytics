@@ -3,40 +3,33 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>LLM pricing explained: GPT-4o vs Claude vs Gemini | tokanalyzr.ai</title>
+<title>LLM pricing explained: GPT-4o vs Claude vs Gemini | TokenIQ</title>
 <meta name="description" content="How LLM pricing works in 2026 — input vs output tokens, the price spread between frontier and small models, and how to pick the cheapest capable model." />
 <link rel="canonical" href="https://tej-pixel.github.io/toknlytics/guide-llm-pricing.html" />
 <meta property="og:type" content="article" />
-<meta property="og:site_name" content="tokanalyzr.ai" />
+<meta property="og:site_name" content="TokenIQ" />
 <meta property="og:title" content="LLM pricing explained: GPT-4o vs Claude vs Gemini" />
 <meta property="og:description" content="Input vs output tokens, the price spread between frontier and small models, and how to pick the cheapest capable model." />
 <meta property="og:url" content="https://tej-pixel.github.io/toknlytics/guide-llm-pricing.html" />
-<meta property="og:image" content="https://tej-pixel.github.io/toknlytics/og-cover-v2.png" />
+<meta property="og:image" content="https://tej-pixel.github.io/toknlytics/og-cover-v4.png" />
 <meta property="og:image:width" content="1200" /><meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="LLM pricing explained | tokanalyzr.ai" />
+<meta name="twitter:title" content="LLM pricing explained | TokenIQ" />
 <meta name="twitter:description" content="How LLM token pricing works and how to pick the cheapest capable model." />
-<meta name="twitter:image" content="https://tej-pixel.github.io/toknlytics/og-cover-v2.png" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%230ea5a5'/><stop offset='1' stop-color='%232563eb'/></linearGradient></defs><rect width='32' height='32' rx='9' fill='url(%23g)'/><circle cx='16' cy='15.5' r='9.7' fill='none' stroke='white' stroke-width='1.8'/><rect x='10.4' y='15.4' width='2.3' height='5' rx='1' fill='white'/><rect x='14.5' y='12.8' width='2.3' height='7.6' rx='1' fill='white'/><rect x='18.6' y='10.4' width='2.3' height='10' rx='1' fill='white'/><path d='M21.4 7.6 L22 9.4 L23.8 10 L22 10.6 L21.4 12.4 L20.8 10.6 L19 10 L20.8 9.4 Z' fill='white'/></svg>" />
+<meta name="twitter:image" content="https://tej-pixel.github.io/toknlytics/og-cover-v4.png" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx=%2222.80%22 cy=%2216.00%22 r=%221.70%22 fill=%22rgb(177,75,244)%22/%3E%3Ccircle cx=%2222.49%22 cy=%2219.21%22 r=%221.51%22 fill=%22rgb(171,73,243)%22/%3E%3Ccircle cx=%2220.75%22 cy=%2222.24%22 r=%221.37%22 fill=%22rgb(154,68,241)%22/%3E%3Ccircle cx=%2217.62%22 cy=%2224.38%22 r=%221.24%22 fill=%22rgb(129,60,238)%22/%3E%3Ccircle cx=%2213.53%22 cy=%2224.95%22 r=%221.12%22 fill=%22rgb(98,69,243)%22/%3E%3Ccircle cx=%229.28%22 cy=%2223.52%22 r=%221.01%22 fill=%22rgb(70,82,250)%22/%3E%3Ccircle cx=%225.87%22 cy=%2220.07%22 r=%220.90%22 fill=%22rgb(51,90,254)%22/%3E%3Ccircle cx=%224.24%22 cy=%2215.08%22 r=%220.80%22 fill=%22rgb(46,92,255)%22/%3E%3Ccircle cx=%225.10%22 cy=%229.49%22 r=%220.70%22 fill=%22rgb(56,88,253)%22/%3E%3Ccircle cx=%228.61%22 cy=%224.54%22 r=%220.60%22 fill=%22rgb(79,78,247)%22/%3E%3Ccircle cx=%2214.36%22 cy=%221.49%22 r=%220.50%22 fill=%22rgb(109,65,240)%22/%3E%3Ccircle cx=%2220.81%22 cy=%2220.81%22 r=%221.70%22 fill=%22rgb(160,69,242)%22/%3E%3Ccircle cx=%2218.31%22 cy=%2222.86%22 r=%221.51%22 fill=%22rgb(137,62,239)%22/%3E%3Ccircle cx=%2214.95%22 cy=%2223.77%22 r=%221.37%22 fill=%22rgb(107,65,241)%22/%3E%3Ccircle cx=%2211.22%22 cy=%2223.07%22 r=%221.24%22 fill=%22rgb(77,78,248)%22/%3E%3Ccircle cx=%227.93%22 cy=%2220.58%22 r=%221.12%22 fill=%22rgb(55,88,253)%22/%3E%3Ccircle cx=%225.94%22 cy=%2216.57%22 r=%221.01%22 fill=%22rgb(46,92,255)%22/%3E%3Ccircle cx=%225.96%22 cy=%2211.71%22 r=%220.90%22 fill=%22rgb(52,90,254)%22/%3E%3Ccircle cx=%228.34%22 cy=%227.03%22 r=%220.80%22 fill=%22rgb(71,81,249)%22/%3E%3Ccircle cx=%2212.89%22 cy=%223.68%22 r=%220.70%22 fill=%22rgb(100,69,243)%22/%3E%3Ccircle cx=%2218.88%22 cy=%222.67%22 r=%220.60%22 fill=%22rgb(131,60,238)%22/%3E%3Ccircle cx=%2225.10%22 cy=%224.58%22 r=%220.50%22 fill=%22rgb(155,68,241)%22/%3E%3Ccircle cx=%2216.00%22 cy=%2222.80%22 r=%221.70%22 fill=%22rgb(117,61,239)%22/%3E%3Ccircle cx=%2212.79%22 cy=%2222.49%22 r=%221.51%22 fill=%22rgb(85,75,246)%22/%3E%3Ccircle cx=%229.76%22 cy=%2220.75%22 r=%221.37%22 fill=%22rgb(60,86,252)%22/%3E%3Ccircle cx=%227.62%22 cy=%2217.62%22 r=%221.24%22 fill=%22rgb(47,91,255)%22/%3E%3Ccircle cx=%227.05%22 cy=%2213.53%22 r=%221.12%22 fill=%22rgb(49,91,254)%22/%3E%3Ccircle cx=%228.48%22 cy=%229.28%22 r=%221.01%22 fill=%22rgb(64,84,251)%22/%3E%3Ccircle cx=%2211.93%22 cy=%225.87%22 r=%220.90%22 fill=%22rgb(91,73,245)%22/%3E%3Ccircle cx=%2216.92%22 cy=%224.24%22 r=%220.80%22 fill=%22rgb(122,59,237)%22/%3E%3Ccircle cx=%2222.51%22 cy=%225.10%22 r=%220.70%22 fill=%22rgb(148,66,240)%22/%3E%3Ccircle cx=%2227.46%22 cy=%228.61%22 r=%220.60%22 fill=%22rgb(168,72,243)%22/%3E%3Ccircle cx=%2230.51%22 cy=%2214.36%22 r=%220.50%22 fill=%22rgb(177,75,244)%22/%3E%3Ccircle cx=%2211.19%22 cy=%2220.81%22 r=%221.70%22 fill=%22rgb(67,83,250)%22/%3E%3Ccircle cx=%229.14%22 cy=%2218.31%22 r=%221.51%22 fill=%22rgb(50,90,254)%22/%3E%3Ccircle cx=%228.23%22 cy=%2214.95%22 r=%221.37%22 fill=%22rgb(47,92,255)%22/%3E%3Ccircle cx=%228.93%22 cy=%2211.22%22 r=%221.24%22 fill=%22rgb(58,87,252)%22/%3E%3Ccircle cx=%2211.42%22 cy=%227.93%22 r=%221.12%22 fill=%22rgb(82,76,247)%22/%3E%3Ccircle cx=%2215.43%22 cy=%225.94%22 r=%221.01%22 fill=%22rgb(113,63,240)%22/%3E%3Ccircle cx=%2220.29%22 cy=%225.96%22 r=%220.90%22 fill=%22rgb(141,64,239)%22/%3E%3Ccircle cx=%2224.97%22 cy=%228.34%22 r=%220.80%22 fill=%22rgb(163,70,242)%22/%3E%3Ccircle cx=%2228.32%22 cy=%2212.89%22 r=%220.70%22 fill=%22rgb(175,74,244)%22/%3E%3Ccircle cx=%2229.33%22 cy=%2218.88%22 r=%220.60%22 fill=%22rgb(176,75,244)%22/%3E%3Ccircle cx=%2227.42%22 cy=%2225.10%22 r=%220.50%22 fill=%22rgb(164,71,242)%22/%3E%3Ccircle cx=%229.20%22 cy=%2216.00%22 r=%221.70%22 fill=%22rgb(46,92,255)%22/%3E%3Ccircle cx=%229.51%22 cy=%2212.79%22 r=%221.51%22 fill=%22rgb(53,89,253)%22/%3E%3Ccircle cx=%2211.25%22 cy=%229.76%22 r=%221.37%22 fill=%22rgb(74,80,249)%22/%3E%3Ccircle cx=%2214.38%22 cy=%227.62%22 r=%221.24%22 fill=%22rgb(103,67,242)%22/%3E%3Ccircle cx=%2218.47%22 cy=%227.05%22 r=%221.12%22 fill=%22rgb(134,61,238)%22/%3E%3Ccircle cx=%2222.72%22 cy=%228.48%22 r=%221.01%22 fill=%22rgb(157,69,241)%22/%3E%3Ccircle cx=%2226.13%22 cy=%2211.93%22 r=%220.90%22 fill=%22rgb(173,74,243)%22/%3E%3Ccircle cx=%2227.76%22 cy=%2216.92%22 r=%220.80%22 fill=%22rgb(177,75,244)%22/%3E%3Ccircle cx=%2226.90%22 cy=%2222.51%22 r=%220.70%22 fill=%22rgb(169,72,243)%22/%3E%3Ccircle cx=%2223.39%22 cy=%2227.46%22 r=%220.60%22 fill=%22rgb(150,66,240)%22/%3E%3Ccircle cx=%2217.64%22 cy=%2230.51%22 r=%220.50%22 fill=%22rgb(125,58,237)%22/%3E%3Ccircle cx=%2211.19%22 cy=%2211.19%22 r=%221.70%22 fill=%22rgb(67,83,250)%22/%3E%3Ccircle cx=%2213.69%22 cy=%229.14%22 r=%221.51%22 fill=%22rgb(94,71,244)%22/%3E%3Ccircle cx=%2217.05%22 cy=%228.23%22 r=%221.37%22 fill=%22rgb(126,59,237)%22/%3E%3Ccircle cx=%2220.78%22 cy=%228.93%22 r=%221.24%22 fill=%22rgb(151,67,241)%22/%3E%3Ccircle cx=%2224.07%22 cy=%2211.42%22 r=%221.12%22 fill=%22rgb(169,73,243)%22/%3E%3Ccircle cx=%2226.06%22 cy=%2215.43%22 r=%221.01%22 fill=%22rgb(177,75,244)%22/%3E%3Ccircle cx=%2226.04%22 cy=%2220.29%22 r=%220.90%22 fill=%22rgb(172,73,243)%22/%3E%3Ccircle cx=%2223.66%22 cy=%2224.97%22 r=%220.80%22 fill=%22rgb(156,68,241)%22/%3E%3Ccircle cx=%2219.11%22 cy=%2228.32%22 r=%220.70%22 fill=%22rgb(133,61,238)%22/%3E%3Ccircle cx=%2213.12%22 cy=%2229.33%22 r=%220.60%22 fill=%22rgb(102,68,242)%22/%3E%3Ccircle cx=%226.90%22 cy=%2227.42%22 r=%220.50%22 fill=%22rgb(73,80,249)%22/%3E%3Ccircle cx=%2216.00%22 cy=%229.20%22 r=%221.70%22 fill=%22rgb(117,61,239)%22/%3E%3Ccircle cx=%2219.21%22 cy=%229.51%22 r=%221.51%22 fill=%22rgb(144,64,240)%22/%3E%3Ccircle cx=%2222.24%22 cy=%2211.25%22 r=%221.37%22 fill=%22rgb(165,71,242)%22/%3E%3Ccircle cx=%2224.38%22 cy=%2214.38%22 r=%221.24%22 fill=%22rgb(176,75,244)%22/%3E%3Ccircle cx=%2224.95%22 cy=%2218.47%22 r=%221.12%22 fill=%22rgb(175,74,244)%22/%3E%3Ccircle cx=%2223.52%22 cy=%2222.72%22 r=%221.01%22 fill=%22rgb(162,70,242)%22/%3E%3Ccircle cx=%2220.07%22 cy=%2226.13%22 r=%220.90%22 fill=%22rgb(140,63,239)%22/%3E%3Ccircle cx=%2215.08%22 cy=%2227.76%22 r=%220.80%22 fill=%22rgb(111,64,240)%22/%3E%3Ccircle cx=%229.49%22 cy=%2226.90%22 r=%220.70%22 fill=%22rgb(81,77,247)%22/%3E%3Ccircle cx=%224.54%22 cy=%2223.39%22 r=%220.60%22 fill=%22rgb(57,87,252)%22/%3E%3Ccircle cx=%221.49%22 cy=%2217.64%22 r=%220.50%22 fill=%22rgb(46,92,255)%22/%3E%3Ccircle cx=%2220.81%22 cy=%2211.19%22 r=%221.70%22 fill=%22rgb(160,69,242)%22/%3E%3Ccircle cx=%2222.86%22 cy=%2213.69%22 r=%221.51%22 fill=%22rgb(174,74,244)%22/%3E%3Ccircle cx=%2223.77%22 cy=%2217.05%22 r=%221.37%22 fill=%22rgb(176,75,244)%22/%3E%3Ccircle cx=%2223.07%22 cy=%2220.78%22 r=%221.24%22 fill=%22rgb(167,72,243)%22/%3E%3Ccircle cx=%2220.58%22 cy=%2224.07%22 r=%221.12%22 fill=%22rgb(147,65,240)%22/%3E%3Ccircle cx=%2216.57%22 cy=%2226.06%22 r=%221.01%22 fill=%22rgb(121,59,238)%22/%3E%3Ccircle cx=%2211.71%22 cy=%2226.04%22 r=%220.90%22 fill=%22rgb(89,73,245)%22/%3E%3Ccircle cx=%227.03%22 cy=%2223.66%22 r=%220.80%22 fill=%22rgb(63,85,251)%22/%3E%3Ccircle cx=%223.68%22 cy=%2219.11%22 r=%220.70%22 fill=%22rgb(48,91,255)%22/%3E%3Ccircle cx=%222.67%22 cy=%2213.12%22 r=%220.60%22 fill=%22rgb(48,91,255)%22/%3E%3Ccircle cx=%224.58%22 cy=%226.90%22 r=%220.50%22 fill=%22rgb(61,85,251)%22/%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="styles.css?v=10" />
 </head>
 <body>
 
 <header>
   <div class="wrap nav">
-    <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
-      <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true">
-        <defs><linearGradient id="tkNav" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5a5"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
-        <circle cx="16" cy="16" r="13" fill="none" stroke="url(#tkNav)" stroke-width="2.4"/>
-        <rect x="9.8" y="17.3" width="2.8" height="5.2" rx="1.2" fill="url(#tkNav)"/>
-        <rect x="14.6" y="13.7" width="2.8" height="8.8" rx="1.2" fill="url(#tkNav)"/>
-        <rect x="19.4" y="10.6" width="2.8" height="11.9" rx="1.2" fill="url(#tkNav)"/>
-        <path d="M22.7 7.1 L23.5 9.5 L25.9 10.3 L23.5 11.1 L22.7 13.5 L21.9 11.1 L19.5 10.3 L21.9 9.5 Z" fill="url(#tkNav)"/>
-      </svg>
-      <span class="brand-name">tokanalyzr<b>.ai</b></span>
+    <a href="index.html" class="brand" aria-label="TokenIQ home">
+      <img src="assets/tokeniq-mark.svg" width="30" height="30" alt="" />
+      <span class="brand-name">Token<b>IQ</b></span>
     </a>
     <nav class="nav-links" id="navLinks">
       <a href="meter.html">Meter</a>
@@ -93,16 +86,9 @@
   <div class="wrap">
     <div class="foot-grid">
       <div class="foot-brand">
-        <a href="index.html" class="brand" aria-label="tokanalyzr.ai home">
-          <svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true">
-            <defs><linearGradient id="tkFoot" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5a5"/><stop offset="1" stop-color="#2563eb"/></linearGradient></defs>
-            <circle cx="16" cy="16" r="13" fill="none" stroke="url(#tkFoot)" stroke-width="2.4"/>
-            <rect x="9.8" y="17.3" width="2.8" height="5.2" rx="1.2" fill="url(#tkFoot)"/>
-            <rect x="14.6" y="13.7" width="2.8" height="8.8" rx="1.2" fill="url(#tkFoot)"/>
-            <rect x="19.4" y="10.6" width="2.8" height="11.9" rx="1.2" fill="url(#tkFoot)"/>
-            <path d="M22.7 7.1 L23.5 9.5 L25.9 10.3 L23.5 11.1 L22.7 13.5 L21.9 11.1 L19.5 10.3 L21.9 9.5 Z" fill="url(#tkFoot)"/>
-          </svg>
-          <span class="brand-name">tokanalyzr<b>.ai</b></span>
+        <a href="index.html" class="brand" aria-label="TokenIQ home">
+          <img src="assets/tokeniq-mark.svg" width="32" height="32" alt="" />
+          <span class="brand-name">Token<b>IQ</b></span>
         </a>
         <p>The first AI FinOps platform — track cost, maximize margin and minimize carbon across every LLM. Free to measure.</p>
       </div>
@@ -134,7 +120,7 @@
       <div class="foot-legal">
         <a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="security.html">Security</a><a href="about.html">About</a><a href="affiliate.html">Affiliate</a><a href="contact.html">Contact</a>
       </div>
-      <span>&copy; <span id="yr"></span> tokanalyzr.ai. All rights reserved.</span>
+      <span>&copy; <span id="yr"></span> TokenIQ. All rights reserved.</span>
       <span>Meter &middot; Ledger &middot; Margin &mdash; one engine for AI cost</span>
     </div>
   </div>

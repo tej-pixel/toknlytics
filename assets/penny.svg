@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" role="img" aria-label="Penny">
   <defs>
     <linearGradient id="pennyg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#16c0b0"/>
-      <stop offset="1" stop-color="#2563eb"/>
+      <stop offset="0" stop-color="#2E5CFF"/><stop offset=".55" stop-color="#7C3AED"/>
+      <stop offset="1" stop-color="#B14BF4"/>
     </linearGradient>
   </defs>
   <circle cx="20" cy="20" r="20" fill="url(#pennyg)"/>
